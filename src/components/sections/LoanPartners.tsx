@@ -94,8 +94,14 @@ export function LoanPartners() {
             >
               Our trusted banking partners offer exclusive home loan assistance with competitive interest rates and simplified documentation — so you can focus on choosing your home, not the paperwork.
             </p>
-            <button
-              className="loan-cta-btn w-full md:w-auto"
+            <a
+              id="loan-advisor-whatsapp-cta"
+              href={`https://wa.me/919101002790?text=${encodeURIComponent(
+                "Hello,\n\nI am interested in purchasing a property with Sukrit Infrastructure Pvt Ltd and would like to enquire about home loan options.\n\nCould you please guide me on:\n• Eligible loan amount & interest rates\n• Required documents\n• EMI & repayment options\n• Bank tie-ups (HDFC / ICICI / LIC)\n\nLooking forward to your assistance.\n\nThank you 🙏"
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="loan-cta-btn w-full md:w-auto inline-flex items-center justify-center gap-2 group"
               style={{
                 backgroundColor: "transparent",
                 border: "1px solid #1C1C1C",
@@ -109,18 +115,25 @@ export function LoanPartners() {
                 borderRadius: "0",
                 transition: "all 0.35s ease",
                 cursor: "pointer",
+                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#1C1C1C";
-                e.currentTarget.style.color = "#FFFFFF";
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#25D366";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#25D366";
+                (e.currentTarget as HTMLAnchorElement).style.color = "#FFFFFF";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.color = "#1C1C1C";
+                (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "#1C1C1C";
+                (e.currentTarget as HTMLAnchorElement).style.color = "#1C1C1C";
               }}
             >
+              {/* WhatsApp icon */}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
               TALK TO OUR LOAN ADVISOR →
-            </button>
+            </a>
           </div>
         </div>
 
@@ -147,7 +160,10 @@ export function LoanPartners() {
             }}
           >
             <div className="card-number">01</div>
-            <div className="card-bank-name">HDFC</div>
+            <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <img src="/hdfc-logo.png" alt="HDFC Logo" style={{ height: "42px", objectFit: "contain" }} />
+              <span>HDFC</span>
+            </div>
             <div className="card-bank-type">Bank</div>
             <div className="card-separator">
               <div className="card-approved">Approved Lending Partner</div>
@@ -164,8 +180,9 @@ export function LoanPartners() {
             }}
           >
             <div className="card-number">02</div>
-            <div className="card-bank-name">
-              IDFC <span style={{ fontWeight: 300, color: "#B8963E" }}>FIRST</span>
+            <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <img src="/icici-logo.png" alt="ICICI Logo" style={{ height: "42px", objectFit: "contain" }} />
+              <span>ICICI</span>
             </div>
             <div className="card-bank-type">Home Loans</div>
             <div className="card-separator">
@@ -183,7 +200,10 @@ export function LoanPartners() {
             }}
           >
             <div className="card-number">03</div>
-            <div className="card-bank-name">PNB</div>
+            <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <img src="/lic-logo.png" alt="LIC Logo" style={{ height: "42px", objectFit: "contain" }} />
+              <span>LIC</span>
+            </div>
             <div className="card-bank-type">Home Loans</div>
             <div className="card-separator">
               <div className="card-approved">Approved Lending Partner</div>
@@ -197,7 +217,7 @@ export function LoanPartners() {
             className="text-[11px] italic m-0"
             style={{ fontFamily: "DM Sans, sans-serif", color: "#AAAAAA" }}
           >
-            * Home loan approval is subject to respective bank eligibility criteria and documentation. Sukrit Infrastructure facilitates this process as a referral partner.
+            * Home loan approval is subject to respective bank eligibility criteria and documentation. Sukrit Infrastructure Pvt Ltd facilitates this process as a referral partner.
           </p>
         </div>
       </div>

@@ -17,7 +17,7 @@ export function About() {
               Two Decades of Shaping Assam's Skyline.
             </h2>
             <p className="mt-8 text-[16px] leading-[1.85] text-[var(--text-muted)]">
-              From a single residential project in Guwahati to landmark developments across the state, Sukrit Infrastructure has spent twenty-five years quietly raising the standard of how Assam lives, works, and grows. We build with patience, with craft, and with a deep respect for the land we call home.
+              From a single residential project in Guwahati to landmark developments across the state, Sukrit Infrastructure Pvt Ltd has spent twenty-five years quietly raising the standard of how Assam lives, works, and grows. We build with patience, with craft, and with a deep respect for the land we call home.
             </p>
             <span className="divider-gold mt-10" />
             <div className="mt-8 flex gap-12">

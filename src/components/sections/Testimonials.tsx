@@ -6,7 +6,7 @@ const row1Cards = [
     initials: "RS",
     background: "#3A3020",
     stars: 5,
-    quote: "Sukrit Infrastructure delivered our dream home on time with zero compromises on quality. The finishing, the materials, everything exceeded our expectations. Truly a world-class experience right here in Assam.",
+    quote: "Sukrit Infrastructure Pvt Ltd delivered our dream home on time with zero compromises on quality. The finishing, the materials, everything exceeded our expectations. Truly a world-class experience right here in Assam.",
     label: "Homeowner · Sukrit Heights, Guwahati",
   },
   {
@@ -46,7 +46,7 @@ const row1Cards = [
     initials: "AK",
     background: "#302820",
     stars: 5,
-    quote: "As a commercial investor I have worked with multiple developers. Sukrit Infrastructure's professionalism, legal clarity, and delivery standards are truly at par with the best in India.",
+    quote: "As a commercial investor I have worked with multiple developers. Sukrit Infrastructure Pvt Ltd's professionalism, legal clarity, and delivery standards are truly at par with the best in India.",
     label: "Commercial Investor · Sukrit Business Park",
   },
 ];

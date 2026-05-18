@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX, Mic, MicOff } from "lucide-react";
+
+const INSTAGRAM_URL = "https://www.instagram.com/sukrit.infrastructure/";
 
 const videos = [
   {
@@ -53,14 +54,11 @@ videos.forEach((video) => {
 
 export function WorkInMotion() {
   const [activeIndex, setActiveIndex] = useState(2);
-  const [activeTab, setActiveTab] = useState("All");
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
-  const [isMuted, setIsMuted] = useState(true);
 
-  const tabs = ["All", "Residential", "Commercial", "Ongoing"];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -151,8 +149,8 @@ export function WorkInMotion() {
     setActiveIndex((prev) => (prev + 1) % videos.length);
   };
 
-  const handleCardClick = (index: number) => {
-    setActiveIndex(index);
+  const handleCardClick = () => {
+    window.open(INSTAGRAM_URL, "_blank", "noopener,noreferrer");
   };
 
   const [touchStart, setTouchStart] = useState(0);
@@ -212,31 +210,6 @@ export function WorkInMotion() {
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div
-          className="flex justify-center gap-3 mb-16"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s",
-          }}
-        >
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className="px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300"
-              style={{
-                fontFamily: "DM Sans, sans-serif",
-                backgroundColor: activeTab === tab ? "#B8963E" : "transparent",
-                color: activeTab === tab ? "white" : "#888888",
-                border: activeTab === tab ? "none" : "1px solid #D0CBC4",
-              }}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
 
         {/* Fan Card Layout */}
         <div
@@ -252,7 +225,7 @@ export function WorkInMotion() {
           {videos.map((video, index) => (
             <div
               key={index}
-              onClick={() => handleCardClick(index)}
+              onClick={handleCardClick}
               className="absolute w-[260px] h-[380px] rounded-2xl overflow-hidden cursor-pointer transition-all duration-600 ease-[cubic-bezier(0.25,0.1,0.25,1)] bg-gray-900"
               style={{
                 ...getCardStyle(index),
@@ -262,13 +235,12 @@ export function WorkInMotion() {
               <video
                 src={video.src}
                 autoPlay
-                muted={index === activeIndex ? isMuted : true}
+                muted
                 loop
                 playsInline
                 preload="auto"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  console.error(`Video ${index} failed to load:`, video.src, e);
                   const target = e.target as HTMLVideoElement;
                   target.style.display = 'none';
                   const parent = target.parentElement;
@@ -280,12 +252,6 @@ export function WorkInMotion() {
                     parent.appendChild(fallback);
                   }
                 }}
-                onLoadStart={() => {
-                  console.log(`Video ${index} started loading:`, video.src);
-                }}
-                onCanPlay={() => {
-                  console.log(`Video ${index} can play:`, video.src);
-                }}
               />
               {index === activeIndex && (
                 <div className="absolute inset-0 flex flex-col justify-end">
@@ -295,23 +261,16 @@ export function WorkInMotion() {
                       background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)",
                     }}
                   />
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsMuted(!isMuted);
-                    }}
-                    className="absolute top-6 right-6 z-[100] h-12 px-5 flex items-center gap-3 bg-white text-black hover:bg-[#B8963E] hover:text-white rounded-full transition-all duration-300 shadow-2xl"
-                    style={{ 
-                      fontFamily: 'DM Sans, sans-serif',
-                      boxShadow: '0 10px 30px rgba(0,0,0,0.5)' 
-                    }}
-                    aria-label={isMuted ? "Unmute video" : "Mute video"}
+                  {/* Instagram tap hint */}
+                  <div
+                    className="absolute top-5 right-5 z-[100] flex items-center gap-2 px-3 py-2 rounded-full"
+                    style={{ backgroundColor: "rgba(0,0,0,0.5)", backdropFilter: "blur(6px)" }}
                   >
-                    {isMuted ? <MicOff size={20} strokeWidth={2.5} /> : <Mic size={20} strokeWidth={2.5} />}
-                    <span className="text-[11px] uppercase tracking-[0.15em] font-bold">
-                      {isMuted ? "Sound Off" : "Sound On"}
-                    </span>
-                  </button>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    <span style={{ fontFamily: "DM Sans, sans-serif", fontSize: "10px", color: "white", letterSpacing: "0.1em", textTransform: "uppercase" }}>View on Instagram</span>
+                  </div>
                   <div className="relative p-5">
                     <div className="flex justify-between items-start mb-3">
                       <span

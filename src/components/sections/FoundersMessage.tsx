@@ -76,7 +76,7 @@ export function FoundersMessage() {
                   className="text-[15px] font-normal text-[#888888] leading-[1.75] max-w-[320px] mb-[40px]"
                   style={{ fontFamily: "DM Sans, sans-serif" }}
                 >
-                  At Sukrit Infrastructure, our values guide everything we build. 
+                  At Sukrit Infrastructure Pvt Ltd, our values guide everything we build. 
                   They shape our approach, our decisions, and the way we serve 
                   every family and investor who trusts us.
                 </p>
@@ -87,7 +87,13 @@ export function FoundersMessage() {
                   className="text-[22px] italic font-normal text-[#1C1C1C]"
                   style={{ fontFamily: "Cormorant Garamond, serif" }}
                 >
-                  Sukrit Infrastructure
+                  Sukrit Infrastructure Pvt Ltd
+                </div>
+                <div
+                  className="text-[10px] font-normal tracking-[0.2em] text-[#888888] mt-1 uppercase"
+                  style={{ fontFamily: "DM Sans, sans-serif" }}
+                >
+                  CIN U41001AS2026PTC029861 <span className="mx-2 opacity-50">|</span> UNIT OF AB GROUP
                 </div>
                 <div
                   className="text-[11px] uppercase tracking-[0.18em] text-[#888888] mt-[6px]"
@@ -104,7 +110,7 @@ export function FoundersMessage() {
                 className="text-[11px] text-[#CCCCCC]"
                 style={{ fontFamily: "DM Sans, sans-serif" }}
               >
-                © 2025 Sukrit Infrastructure. All Rights Reserved.
+                © 2025 Sukrit Infrastructure Pvt Ltd. All Rights Reserved.
               </div>
             </div>
           </div>

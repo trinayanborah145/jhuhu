@@ -57,7 +57,7 @@ export function BrandStatement() {
             className="font-serif text-[24px] lg:text-[36px] font-normal leading-[1.45] text-[#1a1a1a] max-w-[580px]"
             style={{ fontFamily: 'Playfair Display, Cormorant Garamond, serif' }}
           >
-            With 30+ years of trusted real estate development and infrastructure excellence, Sukrit Infrastructure has an unmatched legacy of delivery and a proven track record of customer-centric excellence in Assam.
+            With 30+ years of trusted real estate development and infrastructure excellence, Sukrit Infrastructure Pvt Ltd has an unmatched legacy of delivery and a proven track record of customer-centric excellence in Assam.
           </h2>
           
           {/* Divider */}
@@ -68,7 +68,7 @@ export function BrandStatement() {
             className="text-[15px] leading-[1.7] text-[#888888] max-w-[520px]"
             style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 400 }}
           >
-            At Sukrit Infrastructure, we take pride in our uncompromising integrity in customer engagement, quality assurance, and our deep commitment to building lasting communities across Assam.
+            At Sukrit Infrastructure Pvt Ltd, we take pride in our uncompromising integrity in customer engagement, quality assurance, and our deep commitment to building lasting communities across Assam.
           </p>
           
           {/* Read More Link */}
@@ -144,12 +144,14 @@ export function BrandStatement() {
       <div className="max-w-[1440px] mx-auto mt-[60px] pt-5" style={{ borderTop: '1px solid #E0DBD5' }}>
         <div className="flex flex-col lg:flex-row items-center gap-6 reveal">
           {/* Black Badge */}
-          <div
-            className="px-6 py-[14px]"
+          <a
+            href="#contact"
+            className="px-6 py-[14px] hover:bg-[#B8963E] transition-colors duration-300 block text-center"
             style={{
               backgroundColor: '#111111',
               borderRadius: '0',
               flexShrink: 0,
+              textDecoration: 'none',
             }}
           >
             <span
@@ -160,9 +162,9 @@ export function BrandStatement() {
                 letterSpacing: '0.08em',
               }}
             >
-              Corporate Announcements
+              Corporate Announcements to Start Your Project
             </span>
-          </div>
+          </a>
 
           {/* Scrolling Ticker */}
           <div className="flex-1 overflow-hidden whitespace-nowrap">

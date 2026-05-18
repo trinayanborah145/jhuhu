@@ -5,7 +5,7 @@ declare global {
     onYouTubeIframeAPIReady: () => void;
     YT: any;
   }
-}
+} 
 
 export function Hero() {
   const bgRef = useRef<HTMLDivElement | null>(null);

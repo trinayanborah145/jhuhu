@@ -1,129 +1,289 @@
-import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { IconArrowRight } from "@tabler/icons-react";
 
-const projects = [
+/* ─── Gallery data ─── */
+const images = [
   {
-    name: "Sukrit Heights",
+    src: "/gallery/staircase.png",
+    label: "Foyer & Staircase",
+    project: "Sukrit Heights",
     location: "Guwahati",
-    price: "INR 85 L onwards",
-    type: "3 & 4 BHK Residences",
-    possession: "December 2026",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&q=80",
   },
   {
-    name: "Sukrit Greens",
-    location: "Jorhat",
-    price: "INR 55 L onwards",
-    type: "2 & 3 BHK Residences",
-    possession: "March 2027",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=2000&q=80",
-  },
-  {
-    name: "Sukrit Elite",
+    src: "/gallery/bedroom-1.png",
+    label: "Master Bedroom",
+    project: "Sukrit Elite",
     location: "Dibrugarh",
-    price: "Price on Request",
-    type: "4 BHK Luxury Residences",
-    possession: "2028",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=80",
+  },
+  {
+    src: "/gallery/living.png",
+    label: "Living Space",
+    project: "Sukrit Greens",
+    location: "Jorhat",
+  },
+  {
+    src: "/gallery/dining.png",
+    label: "Dining Area",
+    project: "Sukrit Heights",
+    location: "Guwahati",
+  },
+  {
+    src: "/gallery/bedroom-2.png",
+    label: "Suite Bedroom",
+    project: "Sukrit Business Park",
+    location: "Guwahati",
+  },
+  {
+    src: "/gallery/kitchen.png",
+    label: "Modular Kitchen",
+    project: "Sukrit Greens",
+    location: "Jorhat",
+  },
+  {
+    src: "/gallery/bathroom.png",
+    label: "Luxury Bath",
+    project: "Sukrit Elite",
+    location: "Dibrugarh",
   },
 ];
 
+/* ─── Column layout config (5 columns, each with their image slots & offsets) ─── */
+// Each column: { offset (px top padding to stagger), images: indices from `images` }
+const columns = [
+  { offset: 80,  items: [images[0], images[6]] },   // Col 1 – starts low
+  { offset: 20,  items: [images[1], images[5]] },   // Col 2 – starts mid
+  { offset: -20, items: [images[2]] },               // Col 3 – center HERO (tall)
+  { offset: 40,  items: [images[3], images[4]] },   // Col 4 – starts mid-low
+  { offset: 90,  items: [images[5], images[0]] },   // Col 5 – starts lowest
+];
+
+/* ─── Individual image card ─── */
+function GalleryCard({
+  img,
+  isHero = false,
+  delay = 0,
+  isVisible,
+}: {
+  img: (typeof images)[0];
+  isHero?: boolean;
+  delay?: number;
+  isVisible: boolean;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-xl group cursor-pointer shrink-0"
+      style={{
+        height: isHero ? "520px" : "280px",
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(40px)",
+        transition: `opacity 0.8s ease ${delay}s, transform 0.8s ease ${delay}s`,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Photo */}
+      <img
+        src={img.src}
+        alt={img.label}
+        loading="lazy"
+        className="w-full h-full object-cover"
+        style={{
+          transform: hovered ? "scale(1.06)" : "scale(1)",
+          transition: "transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1)",
+        }}
+      />
+
+      {/* Hover overlay */}
+      <div
+        className="absolute inset-0 flex flex-col justify-end p-4"
+        style={{
+          background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 55%)",
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.35s ease",
+        }}
+      >
+        <p
+          className="text-white text-[10px] uppercase tracking-[0.2em] mb-1"
+          style={{ fontFamily: "DM Sans, sans-serif", color: "#B8963E" }}
+        >
+          {img.project} · {img.location}
+        </p>
+        <p
+          className="text-white text-[14px] font-medium"
+          style={{ fontFamily: "Cormorant Garamond, serif" }}
+        >
+          {img.label}
+        </p>
+      </div>
+
+      {/* Gold accent line at bottom on hover */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          height: "2px",
+          background: "#B8963E",
+          width: hovered ? "100%" : "0%",
+          transition: "width 0.4s ease",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ─── Main export ─── */
 export function FeaturedProjects() {
-  const [i, setI] = useState(0);
-  const next = () => setI((p) => (p + 1) % projects.length);
-  const prev = () => setI((p) => (p - 1 + projects.length) % projects.length);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const t = setInterval(next, 7000);
-    return () => clearInterval(t);
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) obs.observe(sectionRef.current);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section id="projects" className="bg-[var(--ivory)] pt-[120px]">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 mb-16 reveal">
-        <span className="eyebrow eyebrow-line">Our Projects</span>
-        <h2 className="font-display text-[36px] lg:text-[56px] mt-6 max-w-[800px] leading-[1.1]">
-          Landmark Spaces, Lasting Impressions.
-        </h2>
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="bg-[#F8F5F0] pt-[100px] pb-[80px] overflow-hidden"
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+        /* Horizontal drag-scroll for mobile */
+        .gallery-scroll::-webkit-scrollbar { display: none; }
+        .gallery-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+
+      {/* ── Section Header ── */}
+      <div
+        className="max-w-[1200px] mx-auto px-6 md:px-12 mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 0.8s ease, transform 0.8s ease",
+        }}
+      >
+        <div>
+          <span
+            className="block text-[11px] uppercase tracking-[0.3em] mb-4"
+            style={{ fontFamily: "DM Sans, sans-serif", color: "#B8963E" }}
+          >
+            Our Work
+          </span>
+          <h2
+            className="text-[40px] md:text-[60px] font-normal leading-[1.05]"
+            style={{ fontFamily: "Cormorant Garamond, serif", color: "#1C1C1C" }}
+          >
+            Spaces We've
+            <br />
+            <em style={{ color: "#B8963E" }}>Crafted.</em>
+          </h2>
+        </div>
+
+        <a
+          href="#contact"
+          id="projects-cta"
+          className="inline-flex items-center gap-3 border border-[#1C1C1C] text-[#1C1C1C] hover:bg-[#1C1C1C] hover:text-white transition-all duration-300 rounded-full px-7 py-3 self-start md:self-auto group"
+          style={{ fontFamily: "DM Sans, sans-serif", fontSize: "12px", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}
+        >
+          View All Projects
+          <IconArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </a>
       </div>
 
-      <div className="relative w-full h-[80vh] min-h-[600px] overflow-hidden reveal">
-        {projects.map((p, idx) => (
-          <div
-            key={p.name}
-            className="absolute inset-0 transition-opacity duration-1000"
-            style={{ opacity: idx === i ? 1 : 0, pointerEvents: idx === i ? "auto" : "none" }}
-          >
+      {/* ── 5-Column Staggered Masonry Grid ── */}
+      {/* Desktop */}
+      <div className="hidden md:block px-6 md:px-12">
+        <div
+          className="max-w-[1200px] mx-auto flex gap-4"
+          style={{ alignItems: "flex-start" }}
+        >
+          {columns.map((col, colIdx) => (
             <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${p.image})`,
-                transform: idx === i ? "scale(1.05)" : "scale(1)",
-                transition: "transform 8s ease",
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)",
-              }}
-            />
+              key={colIdx}
+              className="flex-1 flex flex-col gap-4"
+              style={{ paddingTop: `${col.offset}px` }}
+            >
+              {col.items.map((img, imgIdx) => (
+                <GalleryCard
+                  key={`${colIdx}-${imgIdx}`}
+                  img={img}
+                  isHero={colIdx === 2 && imgIdx === 0}
+                  delay={colIdx * 0.1 + imgIdx * 0.08}
+                  isVisible={isVisible}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
 
-            <div className="relative z-10 h-full max-w-[1440px] mx-auto px-6 lg:px-12 flex items-end pb-20 lg:pb-28">
-              <div className="bg-black/40 backdrop-blur-md border border-white/10 p-8 lg:p-12 max-w-[520px]">
-                <div className="text-[var(--gold)] text-[11px] uppercase tracking-[0.3em] mb-4">
-                  {p.location}
-                </div>
-                <h3 className="font-display text-white text-[32px] lg:text-[44px] leading-tight">
-                  {p.name}
-                </h3>
-                <div className="mt-6 grid grid-cols-2 gap-y-3 gap-x-6 text-white/80 text-[13px]">
-                  <div>
-                    <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-1">Price</div>
-                    {p.price}
-                  </div>
-                  <div>
-                    <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-1">Possession</div>
-                    {p.possession}
-                  </div>
-                  <div className="col-span-2">
-                    <div className="text-[10px] uppercase tracking-[0.25em] text-white/50 mb-1">Configuration</div>
-                    {p.type}
-                  </div>
-                </div>
-                <a href="#contact" className="story-link mt-8 inline-flex">
-                  Know More <span>→</span>
-                </a>
+      {/* Mobile – horizontal scroll */}
+      <div className="md:hidden">
+        <div
+          className="gallery-scroll flex gap-3 overflow-x-auto px-6 pb-4"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
+          {images.map((img, i) => (
+            <div
+              key={i}
+              className="shrink-0 w-[220px] h-[300px] rounded-xl overflow-hidden relative group cursor-pointer"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 0.6s ease ${i * 0.07}s, transform 0.6s ease ${i * 0.07}s`,
+              }}
+            >
+              <img
+                src={img.src}
+                alt={img.label}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div
+                className="absolute inset-0 flex flex-col justify-end p-3"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%)" }}
+              >
+                <p className="text-[10px] uppercase tracking-[0.15em] mb-0.5" style={{ fontFamily: "DM Sans, sans-serif", color: "#B8963E" }}>
+                  {img.project}
+                </p>
+                <p className="text-white text-[13px]" style={{ fontFamily: "Cormorant Garamond, serif" }}>
+                  {img.label}
+                </p>
               </div>
             </div>
-          </div>
-        ))}
-
-        {/* Controls */}
-        <div className="absolute bottom-8 right-8 lg:bottom-12 lg:right-12 z-20 flex gap-3">
-          <button
-            onClick={prev}
-            className="w-12 h-12 rounded-full border border-white/40 text-white flex items-center justify-center hover:bg-[var(--gold)] hover:border-[var(--gold)] transition-all"
-            aria-label="Previous"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            onClick={next}
-            className="w-12 h-12 rounded-full border border-white/40 text-white flex items-center justify-center hover:bg-[var(--gold)] hover:border-[var(--gold)] transition-all"
-            aria-label="Next"
-          >
-            <ChevronRight size={18} />
-          </button>
+          ))}
         </div>
+      </div>
 
-        {/* Slide indicator */}
-        <div className="absolute top-8 right-8 lg:top-12 lg:right-12 z-20 text-white/80 font-display text-[20px]">
-          <span className="text-[var(--gold)]">{String(i + 1).padStart(2, "0")}</span>
-          <span className="mx-2 opacity-50">/</span>
-          <span>{String(projects.length).padStart(2, "0")}</span>
-        </div>
+      {/* ── Bottom note ── */}
+      <div
+        className="max-w-[1200px] mx-auto px-6 md:px-12 mt-12 flex items-center gap-4"
+        style={{
+          opacity: isVisible ? 1 : 0,
+          transition: "opacity 0.8s ease 0.6s",
+        }}
+      >
+        <div className="flex-1 h-[1px] bg-[#E2DDD8]" />
+        <p
+          className="text-[11px] uppercase tracking-[0.2em] shrink-0"
+          style={{ fontFamily: "DM Sans, sans-serif", color: "#888888" }}
+        >
+          Real renders · Actual projects · Assam's finest interiors
+        </p>
+        <div className="flex-1 h-[1px] bg-[#E2DDD8]" />
       </div>
     </section>
   );

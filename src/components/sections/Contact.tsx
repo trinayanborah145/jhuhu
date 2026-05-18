@@ -7,11 +7,34 @@ export function Contact() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Get input element values
+    const nameVal = (document.getElementById("name") as HTMLInputElement)?.value || "";
+    const phoneVal = (document.getElementById("phone") as HTMLInputElement)?.value || "";
+    const emailVal = (document.getElementById("email") as HTMLInputElement)?.value || "";
+    const cityVal = (document.getElementById("city") as HTMLInputElement)?.value || "";
+    const messageVal = (document.getElementById("message") as HTMLTextAreaElement)?.value || "";
+
     setSending(true);
+
+    const messageLines = [
+      "📞 *New Contact Enquiry — Sukrit Infrastructure Pvt Ltd*",
+      "",
+      `👤 *Name:* ${nameVal}`,
+      `📱 *Phone:* ${phoneVal}`,
+      `✉️ *Email:* ${emailVal}`,
+      `🏙️ *City:* ${cityVal}`,
+      `💬 *Message:* ${messageVal}`,
+    ];
+
+    const text = messageLines.join("\n");
+    const whatsappUrl = `https://wa.me/919101002790?text=${encodeURIComponent(text)}`;
+
     setTimeout(() => {
       setSending(false);
       setSent(true);
-    }, 1400);
+      window.location.href = whatsappUrl;
+    }, 1200);
   };
 
   return (
@@ -27,18 +50,38 @@ export function Contact() {
           </p>
 
           <div className="mt-12 space-y-6">
-            <Item icon={<MapPin size={16} />} label="Address" value="GS Road, Christian Basti, Guwahati 781005, Assam" />
-            <Item icon={<Phone size={16} />} label="Phone" value="+91 361 245 8800" />
+            <Item icon={<MapPin size={16} />} label="Address" value="Ward No-01, Rajamaidam, New Colony, Jorhat, Assam 785001" />
+            <Item icon={<Phone size={16} />} label="Phone" value="+91 91010 02790" />
             <Item icon={<Mail size={16} />} label="Email" value="hello@sukritinfrastructure.in" />
           </div>
 
-          <div className="mt-12 border border-[var(--divider)] aspect-[16/9] overflow-hidden">
+          <div className="mt-12 border border-[var(--divider)] aspect-[16/9] overflow-hidden relative">
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=91.71%2C26.13%2C91.79%2C26.18&layer=mapnik"
-              className="w-full h-full grayscale"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.8!2d94.2114948!3d26.7693947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3746c32bf5f9818f%3A0xb2f07978cbf13faa!2sSUKRIT%20INFRASTRUCTURE%20PRIVATE%20LIMITED!5e0!3m2!1sen!2sin!4v1716000000000"
+              className="w-full h-full"
               loading="lazy"
-              title="Map"
+              title="Sukrit Infrastructure Pvt Ltd — Jorhat Office"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
             />
+            {/* "Get Directions" overlay button */}
+            <a
+              href="https://www.google.com/maps/dir//SUKRIT+INFRASTRUCTURE+PRIVATE+LIMITED,+Ward+no-01,+Rajamaidam,+New+Colony,+Jorhat,+Dulia+Gaon,+Assam+785001/@26.7693947,94.2114948,17z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-3 right-3 flex items-center gap-2 px-4 py-2 text-white text-[11px] uppercase tracking-[0.15em] font-medium rounded-full shadow-lg transition-all duration-300 hover:shadow-xl"
+              style={{
+                fontFamily: "DM Sans, sans-serif",
+                backgroundColor: "#B8963E",
+                textDecoration: "none",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              Get Directions
+            </a>
           </div>
         </div>
 
@@ -48,7 +91,7 @@ export function Contact() {
           <Field id="email" label="Email Address" type="email" />
           <Field id="city" label="City of Interest" />
           <div className="floating-field">
-            <textarea id="message" rows={3} placeholder=" " />
+            <textarea id="message" rows={3} placeholder=" " required />
             <label htmlFor="message">Message</label>
           </div>
 
@@ -83,10 +126,10 @@ function Item({ icon, label, value }: { icon: React.ReactNode; label: string; va
   );
 }
 
-function Field({ id, label, type = "text" }: { id: string; label: string; type?: string }) {
+function Field({ id, label, type = "text", required = true }: { id: string; label: string; type?: string; required?: boolean }) {
   return (
     <div className="floating-field">
-      <input id={id} type={type} placeholder=" " />
+      <input id={id} type={type} placeholder=" " required={required} />
       <label htmlFor={id}>{label}</label>
     </div>
   );

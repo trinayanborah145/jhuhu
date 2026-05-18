@@ -90,8 +90,11 @@ export function Navbar() {
             }`}
             style={{ letterSpacing: "0.16em", flexShrink: 1, minWidth: 0 }}
           >
-            <span className="hidden sm:inline">Sukrit Infrastructure</span>
-            <span className="sm:hidden">Sukrit</span>
+            <div className="flex flex-col">
+              <span className="hidden sm:inline">Sukrit Infrastructure Pvt Ltd</span>
+              <span className="sm:hidden">Sukrit Pvt Ltd</span>
+              <span className="text-[9px] font-sans font-normal tracking-[0.1em] opacity-60 mt-0.5" style={{ textTransform: "none" }}>CIN U41001AS2026PTC029861 <span className="mx-1 opacity-50">|</span> UNIT OF AB GROUP</span>
+            </div>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-10">
@@ -136,13 +139,16 @@ export function Navbar() {
                 )}
               </div>
             ))}
-            <Link
-              to="/"
-              hash="contact"
+            <a
+              href={`https://wa.me/919101002790?text=${encodeURIComponent(
+                "Hello Sukrit Infrastructure,\n\nI would like to enquire about your residential construction projects and services.\n\nCould you please guide me on your ongoing projects, available locations, and how we can get started?\n\nThank you!"
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`btn-gold !py-3 !px-6 ${scrolled ? "" : "!text-white !border-white/70"}`}
             >
               Enquire Now
-            </Link>
+            </a>
           </nav>
 
           <div className="flex items-center lg:hidden">
