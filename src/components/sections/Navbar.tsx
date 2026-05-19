@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Menu, X, Search, X as CloseIcon } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 
 const links = [
   { label: "Our Legacy", to: "/", hash: "legacy" },
@@ -18,6 +18,10 @@ export function Navbar() {
   const [navHeight, setNavHeight] = useState(84);
   const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
+  const showScrolled = !isHome || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -59,7 +63,7 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
           isProjectsMenuOpen
             ? "menu-open"
-            : scrolled
+            : showScrolled
             ? "bg-[rgba(248,245,240,0.92)] backdrop-blur-md border-b border-[var(--divider)]"
             : "bg-transparent border-b border-transparent"
         }`}
@@ -86,13 +90,12 @@ export function Navbar() {
           <Link
             to="/"
             className={`font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors ${
-              isProjectsMenuOpen ? "text-white" : scrolled ? "text-[var(--text-soft)]" : "text-white"
+              isProjectsMenuOpen ? "text-white" : showScrolled ? "text-[var(--text-soft)]" : "text-white"
             }`}
             style={{ letterSpacing: "0.16em", flexShrink: 1, minWidth: 0 }}
           >
             <div className="flex flex-col">
-              <span className="hidden sm:inline">Sukrit Infrastructure Pvt Ltd</span>
-              <span className="sm:hidden">Sukrit Pvt Ltd</span>
+              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block">Sukrit Infrastructure Pvt Ltd</span>
               <span className="text-[9px] font-sans font-normal tracking-[0.1em] opacity-60 mt-0.5" style={{ textTransform: "none" }}>CIN U41001AS2026PTC029861 <span className="mx-1 opacity-50">|</span> UNIT OF AB GROUP</span>
             </div>
           </Link>
@@ -106,7 +109,7 @@ export function Navbar() {
                       to="/projects"
                       onMouseEnter={openProjectsMenu}
                       className={`text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative ${
-                        isProjectsMenuOpen ? "text-white/90" : scrolled ? "text-[var(--text-soft)]" : "text-white/90"
+                        isProjectsMenuOpen ? "text-white/90" : showScrolled ? "text-[var(--text-soft)]" : "text-white/90"
                       }`}
                       style={{ letterSpacing: "0.18em" }}
                     >
@@ -126,7 +129,7 @@ export function Navbar() {
                     to={l.to}
                     hash={l.hash}
                     className={`text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative group ${
-                      isProjectsMenuOpen ? "text-white/90" : scrolled ? "text-[var(--text-soft)]" : "text-white/90"
+                      isProjectsMenuOpen ? "text-white/90" : showScrolled ? "text-[var(--text-soft)]" : "text-white/90"
                     }`}
                     style={{ letterSpacing: "0.18em" }}
                   >
@@ -145,7 +148,7 @@ export function Navbar() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={`btn-gold !py-3 !px-6 ${scrolled ? "" : "!text-white !border-white/70"}`}
+              className={`btn-gold !py-3 !px-6 ${showScrolled ? "" : "!text-white !border-white/70"}`}
             >
               Enquire Now
             </a>
@@ -155,7 +158,7 @@ export function Navbar() {
             <button
               onClick={() => setOpen(true)}
               className={`p-2 -mr-2 flex items-center justify-center transition-all ${
-                scrolled ? "text-[var(--text-soft)]" : "text-white"
+                showScrolled ? "text-[var(--text-soft)]" : "text-white"
               }`}
               aria-label="Open menu"
               style={{ zIndex: 10001 }}

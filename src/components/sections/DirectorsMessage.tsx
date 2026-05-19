@@ -13,7 +13,7 @@ export function DirectorsMessage() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
 
     const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
@@ -23,9 +23,7 @@ export function DirectorsMessage() {
   }, []);
 
   const handleCardClick = (index: number) => {
-    if (window.innerWidth <= 768) {
-      setFlippedCard(flippedCard === index ? null : index);
-    }
+    setFlippedCard(flippedCard === index ? null : index);
   };
 
   const directors = [
@@ -151,7 +149,6 @@ export function DirectorsMessage() {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           border-radius: 16px;
-          overflow: hidden;
         }
 
         .flip-card-back {
@@ -167,6 +164,9 @@ export function DirectorsMessage() {
           width: 100%;
           height: 70%;
           position: relative;
+          border-top-left-radius: 16px;
+          border-top-right-radius: 16px;
+          overflow: hidden;
         }
 
         .front-card-top img {
@@ -183,6 +183,8 @@ export function DirectorsMessage() {
           padding: 20px 24px;
           display: flex;
           flex-direction: column;
+          border-bottom-left-radius: 16px;
+          border-bottom-right-radius: 16px;
         }
 
         .director-img-gray {

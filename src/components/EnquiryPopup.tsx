@@ -32,17 +32,10 @@ export function EnquiryPopup() {
       return;
     }
 
-    // 2. Internal link check - skip if already loaded in this SPA session
-    if (typeof window !== "undefined") {
-      if ((window as any).__sukritLoaded) {
-        return;
-      }
-      (window as any).__sukritLoaded = true;
-    }
-
-    // 3. Trigger 1.5s delay
+    // 2. Trigger 1.5s delay
     const timer = setTimeout(() => {
       setIsOpen(true);
+      sessionStorage.setItem("popupShown", "true");
       // Let React render first, then apply entering animation class
       requestAnimationFrame(() => {
         setIsAnimatingIn(true);
