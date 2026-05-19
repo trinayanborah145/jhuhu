@@ -1,4 +1,4 @@
-import{r as s,j as e}from"./index-BG6HAo1I.js";import{C as o,N as a,F as n}from"./CustomCursor-BkW6Ymai.js";function r(){return s.useEffect(()=>(document.body.style.cursor="none",()=>{document.body.style.cursor=""}),[]),e.jsxs(e.Fragment,{children:[e.jsx(o,{}),e.jsx(a,{}),e.jsxs("main",{className:"min-h-screen flex flex-col items-center justify-center text-center px-6",style:{backgroundColor:"#F8F5F0"},children:[e.jsx("style",{children:`
+import{r as s,j as e}from"./index-C3z_Pra_.js";import{C as o,N as a,F as n}from"./CustomCursor-ElniKDBO.js";function r(){return s.useEffect(()=>(document.body.style.cursor="none",()=>{document.body.style.cursor=""}),[]),e.jsxs(e.Fragment,{children:[e.jsx(o,{}),e.jsx(a,{}),e.jsxs("main",{className:"min-h-screen flex flex-col items-center justify-center text-center px-6",style:{backgroundColor:"#F8F5F0"},children:[e.jsx("style",{children:`
           @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Sans:wght@400;500&display=swap');
 
           @keyframes fadeUp {

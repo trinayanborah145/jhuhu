@@ -34,10 +34,10 @@ export function EnquiryPopup() {
 
     // 2. Internal link check - skip if already loaded in this SPA session
     if (typeof window !== "undefined") {
-      if (window.__sukritLoaded) {
+      if ((window as any).__sukritLoaded) {
         return;
       }
-      window.__sukritLoaded = true;
+      (window as any).__sukritLoaded = true;
     }
 
     // 3. Trigger 1.5s delay

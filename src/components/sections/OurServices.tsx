@@ -266,7 +266,7 @@ export function OurServices() {
       `}</style>
 
       <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-[48px]">
-        
+
         {/* Left Column */}
         <div className="w-full md:w-[42%] flex flex-col shrink-0">
           <div ref={leftTopRef} className="reveal-left-top">
@@ -277,20 +277,20 @@ export function OurServices() {
               What You Need<br />We Deliver It.
             </h2>
           </div>
-          
+
           <div ref={leftBottomRef} className="reveal-left-bottom">
             <p className="font-['DM_Sans'] text-[15px] text-[#888888] font-normal leading-[1.75] max-w-[360px] mb-10">
               From foundation to finish, Sukrit Infrastructure Pvt Ltd provides end-to-end construction and finishing services built on quality, reliability and timeless craftsmanship.
             </p>
-            <button className="bg-transparent border border-[#1C1C1C] text-[#1C1C1C] font-['DM_Sans'] text-[11px] uppercase tracking-[0.12em] font-medium py-[13px] px-[28px] rounded-none hover:bg-[#1C1C1C] hover:text-white transition-all duration-350 ease-out">
-              EXPLORE ALL SERVICES &rarr;
-            </button>
+            <a href="#contact" className="inline-block bg-transparent border border-[#1C1C1C] text-[#1C1C1C] font-['DM_Sans'] text-[11px] uppercase tracking-[0.12em] font-medium py-[13px] px-[28px] rounded-none hover:bg-[#1C1C1C] hover:text-white transition-all duration-350 ease-out text-center decoration-none">
+              START YOUR PROJECT
+            </a>
           </div>
         </div>
 
         {/* Right Column */}
-        <div 
-          ref={rightRef} 
+        <div
+          ref={rightRef}
           className="w-full md:w-[58%] h-[360px] md:h-[480px] grid grid-cols-2 gap-4 overflow-hidden relative services-track-container reveal-right"
         >
           {/* Track 1 - Scrolling Up */}

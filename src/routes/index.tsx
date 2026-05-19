@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Sukrit Infrastructure Pvt Ltd crafts landmark residential and commercial spaces across Assam — 25+ years of trusted real estate development with uncompromising quality.",
+          "Sukrit Infrastructure Pvt Ltd crafts landmark residential and commercial spaces across Assam — 30+ years of trusted real estate development with uncompromising quality.",
       },
       { property: "og:title", content: "Sukrit Infrastructure Pvt Ltd — Luxury Real Estate in Assam" },
       {

@@ -46,11 +46,13 @@ const videos = [
 ];
 
 // Preload videos
-videos.forEach((video) => {
-  const videoEl = document.createElement('video');
-  videoEl.src = video.src;
-  videoEl.preload = 'auto';
-});
+if (typeof document !== "undefined") {
+  videos.forEach((video) => {
+    const videoEl = document.createElement('video');
+    videoEl.src = video.src;
+    videoEl.preload = 'auto';
+  });
+}
 
 export function WorkInMotion() {
   const [activeIndex, setActiveIndex] = useState(2);
