@@ -59,10 +59,10 @@ export function BrandStatement() {
           >
             With 30+ years of trusted real estate development and infrastructure excellence, Sukrit Infrastructure Pvt Ltd has an unmatched legacy of delivery and a proven track record of customer-centric excellence in Assam.
           </h2>
-          
+
           {/* Divider */}
           <div className="w-full mt-[28px] mb-[28px]" style={{ height: '1px', backgroundColor: '#D0CBC4' }} />
-          
+
           {/* Paragraph */}
           <p
             className="text-[15px] leading-[1.7] text-[#888888] max-w-[520px]"
@@ -70,7 +70,7 @@ export function BrandStatement() {
           >
             At Sukrit Infrastructure Pvt Ltd, we take pride in our uncompromising integrity in customer engagement, quality assurance, and our deep commitment to building lasting communities across Assam.
           </p>
-          
+
           {/* Read More Link */}
           <a
             href="#legacy"
@@ -162,7 +162,7 @@ export function BrandStatement() {
                 letterSpacing: '0.08em',
               }}
             >
-              Corporate Announcements to Start Your Project
+              Start Your Project
             </span>
           </a>
 

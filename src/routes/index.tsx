@@ -23,7 +23,6 @@ import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useRevealAll } from "@/hooks/use-reveal";
-import { EnquiryPopup } from "@/components/EnquiryPopup";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -61,7 +60,6 @@ function Index() {
   return (
     <>
       <CustomCursor />
-      <EnquiryPopup />
       <Navbar />
       <main>
         <Hero />
@@ -85,7 +83,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
-      <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire hidden lg:flex"><span className="side-line">Veritas Media</span><span className="side-line">Marketed by</span></a>
+      <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire flex"><span className="side-line">Veritas Media</span><span className="side-line">Marketed by</span></a>
     </>
   );
 }

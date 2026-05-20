@@ -115,7 +115,7 @@ export function OurPlans() {
       badge: "Best Value",
       badgeColor: "#888888",
       accent: "#B8963E",
-      warranty: "5 Years Civil Warranty · 2 Years Material Warranty",
+      warranty: "Lifetime Civil Work Guarantee · 2 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Zeecon 500D / Icon / Durgapur" },
         { name: "Cement", value: "Nuvoco Duraguard / Ambuja / Dalmia" },
@@ -134,7 +134,7 @@ export function OurPlans() {
       badge: "Most Popular",
       badgeColor: "#B8963E",
       accent: "#D4B870",
-      warranty: "10 Years Civil Warranty · 5 Years Material Warranty",
+      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Zeecon 500D / Icon / Durgapur" },
         { name: "Cement", value: "Nuvoco Duraguard / Ambuja / Dalmia" },
@@ -153,7 +153,7 @@ export function OurPlans() {
       badge: "Recommended",
       badgeColor: "#B8963E",
       accent: "#b8963e",
-      warranty: "10 Years Civil Warranty · 5 Years Material Warranty",
+      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Jindal Panther / Mythan / Kamdhenu" },
         { name: "CP Fittings", value: "Parryware Quality Series" },
@@ -172,7 +172,7 @@ export function OurPlans() {
       badge: "Elite Choice",
       badgeColor: "#D4B870",
       accent: "#F8F5F0",
-      warranty: "10 Years Civil Warranty · 5 Years Material Warranty · Full Waterproofing",
+      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty · Full Waterproofing",
       inclusions: [
         { name: "TMT Steel", value: "TATA Tiscon 550SD / JSW / Jindal Panther" },
         { name: "CP Fittings", value: "Hindware / Aquant Elite Series" },

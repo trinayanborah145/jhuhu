@@ -89,14 +89,19 @@ export function Navbar() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-[84px] flex items-center justify-between">
           <Link
             to="/"
-            className={`font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors ${
-              isProjectsMenuOpen ? "text-white" : showScrolled ? "text-[var(--text-soft)]" : "text-white"
-            }`}
-            style={{ letterSpacing: "0.16em", flexShrink: 1, minWidth: 0 }}
+            className="font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors"
+            style={{
+              letterSpacing: "0.16em",
+              flexShrink: 1,
+              minWidth: 0,
+              color: isProjectsMenuOpen ? "white" : showScrolled ? "var(--text-soft)" : "white"
+            }}
           >
-            <div className="flex flex-col">
-              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block">Sukrit Infrastructure Pvt Ltd</span>
-              <span className="text-[9px] font-sans font-normal tracking-[0.1em] opacity-60 mt-0.5" style={{ textTransform: "none" }}>CIN U41001AS2026PTC029861 <span className="mx-1 opacity-50">|</span> UNIT OF AB GROUP</span>
+            <div className="flex flex-col overflow-hidden">
+              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block font-medium truncate">Sukrit Infrastructure Pvt Ltd</span>
+              <span className="text-[8px] sm:text-[9px] font-sans font-normal tracking-[0.05em] sm:tracking-[0.1em] opacity-60 mt-0.5 truncate" style={{ textTransform: "none" }}>
+                CIN U41001AS2026PTC029861 <span className="hidden sm:inline">| UNIT OF AB GROUP</span>
+              </span>
             </div>
           </Link>
 
@@ -108,10 +113,11 @@ export function Navbar() {
                     <Link
                       to="/projects"
                       onMouseEnter={openProjectsMenu}
-                      className={`text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative ${
-                        isProjectsMenuOpen ? "text-white/90" : showScrolled ? "text-[var(--text-soft)]" : "text-white/90"
-                      }`}
-                      style={{ letterSpacing: "0.18em" }}
+                      className="text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative"
+                      style={{
+                        letterSpacing: "0.18em",
+                        color: isProjectsMenuOpen ? "rgba(255,255,255,0.9)" : showScrolled ? "var(--text-soft)" : "rgba(255,255,255,0.9)"
+                      }}
                     >
                       {l.label}
                       {isProjectsMenuOpen && (
@@ -128,10 +134,11 @@ export function Navbar() {
                   <Link
                     to={l.to}
                     hash={l.hash}
-                    className={`text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative group ${
-                      isProjectsMenuOpen ? "text-white/90" : showScrolled ? "text-[var(--text-soft)]" : "text-white/90"
-                    }`}
-                    style={{ letterSpacing: "0.18em" }}
+                    className="text-[12px] font-medium uppercase transition-colors hover:text-[var(--gold)] relative group"
+                    style={{
+                      letterSpacing: "0.18em",
+                      color: isProjectsMenuOpen ? "rgba(255,255,255,0.9)" : showScrolled ? "var(--text-soft)" : "rgba(255,255,255,0.9)"
+                    }}
                   >
                     {l.label}
                     <span
@@ -154,14 +161,12 @@ export function Navbar() {
             </a>
           </nav>
 
-          <div className="flex items-center lg:hidden">
+          <div className="flex items-center lg:hidden shrink-0" style={{ zIndex: 10001 }}>
             <button
               onClick={() => setOpen(true)}
-              className={`p-2 -mr-2 flex items-center justify-center transition-all ${
-                showScrolled ? "text-[var(--text-soft)]" : "text-white"
-              }`}
+              className="p-2 -mr-2 flex items-center justify-center transition-all"
+              style={{ color: showScrolled ? "var(--text-soft)" : "white" }}
               aria-label="Open menu"
-              style={{ zIndex: 10001 }}
             >
               <Menu size={30} strokeWidth={1.5} />
             </button>

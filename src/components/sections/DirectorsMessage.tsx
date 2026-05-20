@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function DirectorsMessage() {
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -9,15 +10,16 @@ export function DirectorsMessage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            setIsVisible(true);
           }
         });
       },
       { threshold: 0.05 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
-    elements?.forEach((el) => observer.observe(el));
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -68,7 +70,7 @@ export function DirectorsMessage() {
 
         .animate-on-scroll {
           opacity: 0;
-          transition: all 0.8s ease;
+          transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .animate-on-scroll.header {
@@ -116,10 +118,13 @@ export function DirectorsMessage() {
 
         .flip-card {
           perspective: 1200px;
+          -webkit-perspective: 1200px;
           position: relative;
           width: 320px;
           height: 420px;
           cursor: pointer;
+          transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
         }
 
         .flip-card-inner {
@@ -127,6 +132,7 @@ export function DirectorsMessage() {
           width: 100%;
           height: 100%;
           transform-style: preserve-3d;
+          -webkit-transform-style: preserve-3d;
           transition: transform 0.85s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
 
@@ -140,7 +146,18 @@ export function DirectorsMessage() {
           transform: rotateY(180deg);
         }
 
-        .flip-card-front,
+        .flip-card-front {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          border-radius: 16px;
+          transform: translateZ(1px);
+          -webkit-transform: translateZ(1px);
+        }
+
         .flip-card-back {
           position: absolute;
           inset: 0;
@@ -149,10 +166,8 @@ export function DirectorsMessage() {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           border-radius: 16px;
-        }
-
-        .flip-card-back {
-          transform: rotateY(180deg);
+          transform: rotateY(180deg) translateZ(1px);
+          -webkit-transform: rotateY(180deg) translateZ(1px);
           background: #1C1C1C;
           padding: 36px 32px;
           display: flex;
@@ -284,7 +299,7 @@ export function DirectorsMessage() {
       `}} />
 
       <div className="mx-auto px-6" style={{ maxWidth: '1440px' }}>
-        <div className="flex flex-col items-center animate-on-scroll header">
+        <div className={`flex flex-col items-center animate-on-scroll header ${isVisible ? 'is-visible' : ''}`}>
           <div style={{
             fontFamily: '"DM Sans", sans-serif',
             fontSize: '11px',
@@ -324,7 +339,7 @@ export function DirectorsMessage() {
           {directors.map((dir, index) => (
             <div
               key={dir.id}
-              className={`flip-card animate-on-scroll card-${index} ${index === 1 ? 'center-elevated' : ''} ${flippedCard === index ? 'mobile-flipped' : ''}`}
+              className={`flip-card animate-on-scroll card-${index} ${index === 1 ? 'center-elevated' : ''} ${flippedCard === index ? 'mobile-flipped' : ''} ${isVisible ? 'is-visible' : ''}`}
               onClick={() => handleCardClick(index)}
             >
               <div className="flip-card-inner">
@@ -460,7 +475,7 @@ export function DirectorsMessage() {
           ))}
         </div>
 
-        <div className="stats-bar-container animate-on-scroll stats">
+        <div className={`stats-bar-container animate-on-scroll stats ${isVisible ? 'is-visible' : ''}`}>
           <div className="stat-item stats-left">
             <div style={{
               fontFamily: '"DM Sans", sans-serif',
