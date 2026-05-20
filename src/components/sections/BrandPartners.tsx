@@ -197,10 +197,6 @@ export function BrandPartners() {
           animation-fill-mode: both;
           will-change: transform;
         }
-        .partners-track-container:hover .partners-scroll-up,
-        .partners-track-container:hover .partners-scroll-down {
-          animation-play-state: paused;
-        }
 
         /* Section reveal animations */
         .reveal-left-top {

@@ -236,12 +236,6 @@ export function Testimonials() {
               willChange: "transform",
               animation: "scrollLeft 35s linear infinite",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.animationPlayState = "paused";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.animationPlayState = "running";
-            }}
           >
             {[...row1Cards, ...row1Cards].map((card, index) => renderCard(card, index))}
           </div>
@@ -260,12 +254,6 @@ export function Testimonials() {
             style={{
               willChange: "transform",
               animation: "scrollLeft 50s linear infinite",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.animationPlayState = "paused";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.animationPlayState = "running";
             }}
           >
             {[...row2Cards, ...row2Cards].map((card, index) => renderCard(card, index))}

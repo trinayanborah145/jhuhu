@@ -234,11 +234,6 @@ export function OurServices() {
           animation-fill-mode: both;
           will-change: transform;
         }
-        
-        .services-track-container:hover .service-scroll-up,
-        .services-track-container:hover .service-scroll-down {
-          animation-play-state: paused;
-        }
 
         .reveal-left-top {
           opacity: 0;

@@ -1,93 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 
-declare global {
-  interface Window {
-    onYouTubeIframeAPIReady: () => void;
-    YT: any;
-  }
-} 
-
 export function Hero() {
   const bgRef = useRef<HTMLDivElement | null>(null);
   const [loaded, setLoaded] = useState(false);
-  const playerRef = useRef<any>(null);
 
   useEffect(() => {
     setLoaded(true);
-
-    // Load YouTube API
-    if (!window.YT) {
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    }
-
-    window.onYouTubeIframeAPIReady = () => {
-      initPlayer();
-    };
-
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-    }
-
-    function initPlayer() {
-      playerRef.current = new window.YT.Player('hero-video-player', {
-        videoId: 'QURvgXoaIxM',
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          loop: 1,
-          playlist: 'QURvgXoaIxM',
-          controls: 0,
-          showinfo: 0,
-          rel: 0,
-          iv_load_policy: 3,
-          modestbranding: 1,
-          disablekb: 1,
-          fs: 0,
-          autohide: 1,
-          playsinline: 1
-        },
-        events: {
-          onReady: (event: any) => {
-            event.target.mute();
-            event.target.playVideo();
-            if (event.target.setPlaybackQuality) {
-              event.target.setPlaybackQuality('hd1080');
-            }
-          },
-          onStateChange: (event: any) => {
-            if (event.data === (window.YT?.PlayerState?.ENDED || 0)) {
-              event.target.playVideo();
-            }
-            // Ensure quality on play
-            if (event.data === (window.YT?.PlayerState?.PLAYING || 1)) {
-              if (event.target.setPlaybackQuality) {
-                event.target.setPlaybackQuality('hd1080');
-              }
-            }
-          }
-        }
-      });
-    }
   }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-[var(--charcoal)]">
       <div ref={bgRef} className="absolute inset-0">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div
-            id="hero-video-player"
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/QURvgXoaIxM?autoplay=1&mute=1&loop=1&playlist=QURvgXoaIxM&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&fs=0&playsinline=1"
+            title="Hero Video"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             style={{
               width: 'max(100vw, 177.78vh)',
               height: 'max(100vh, 56.25vw)',
               minWidth: '100%',
               minHeight: '100%',
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              border: 'none'
             }}
-          ></div>
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
         </div>
         <div
           className="absolute inset-0"
