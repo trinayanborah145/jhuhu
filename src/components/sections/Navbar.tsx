@@ -89,7 +89,7 @@ export function Navbar() {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-[84px] flex items-center justify-between">
           <Link
             to="/"
-            className="font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors"
+            className="font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors mr-8"
             style={{
               letterSpacing: "0.16em",
               flexShrink: 1,
@@ -98,14 +98,14 @@ export function Navbar() {
             }}
           >
             <div className="flex flex-col overflow-hidden">
-              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block font-medium truncate">Sukrit Infrastructure Pvt Ltd</span>
+              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block font-medium truncate">SUKRIT INFRASTRUCTURE PVT LTD</span>
               <span className="text-[8px] sm:text-[9px] font-sans font-normal tracking-[0.05em] sm:tracking-[0.1em] opacity-60 mt-0.5 truncate" style={{ textTransform: "none" }}>
                 CIN U41001AS2026PTC029861 <span className="hidden sm:inline">| UNIT OF AB GROUP</span>
               </span>
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-10 ml-auto">
             {links.map((l) => (
               <div key={l.label} className="relative">
                 {l.label === "Projects" ? (
