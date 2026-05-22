@@ -47,24 +47,7 @@ export function OurPlans() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-    try {
-      const targetUrl = "/sukrit-catalogue.pdf";
-      const response = await fetch(targetUrl, { method: "HEAD" });
-      if (response.ok) {
-        const link = document.createElement("a");
-        link.href = targetUrl;
-        link.download = "Sukrit-Infrastructure-Catalogue.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        window.location.href =
-          "mailto:info@sukritinfras.com?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
-      }
-    } catch {
-      window.location.href =
-        "mailto:info@sukritinfras.com?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
-    }
+    window.open("https://drive.google.com/file/d/18qXpEFDPidVhOebIrUVpxiWyhXQZTTwp/view?usp=sharing", "_blank");
   };
 
   useEffect(() => {
