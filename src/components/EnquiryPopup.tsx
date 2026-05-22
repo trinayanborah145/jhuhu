@@ -56,7 +56,7 @@ export function EnquiryPopup() {
   };
 
   const handleDownload = async () => {
-    window.open("https://drive.google.com/file/d/18qXpEFDPidVhOebIrUVpxiWyhXQZTTwp/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1jkdri5gqxzkOIUjGPtSut3snOdrIPLeP/view?usp=sharing", "_blank");
   };
 
   const triggerMailto = () => {
