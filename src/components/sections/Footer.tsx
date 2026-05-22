@@ -10,8 +10,8 @@ export function Footer() {
           </div>
           <div className="flex flex-col lg:items-center mt-1">
             <a
-              href="/Sukrit_Infrastructure_Catalogue.pdf"
-              download="Sukrit_Infrastructure_Catalogue.pdf"
+              href="/sukrit-catalogue.pdf"
+              download="Sukrit-Infrastructure-Catalogue.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[11px] uppercase tracking-[0.2em] text-[var(--gold)] hover:text-[#d4b870] transition-colors mb-2 font-medium flex items-center gap-1.5"

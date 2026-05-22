@@ -48,12 +48,12 @@ export function OurPlans() {
 
   const handleDownload = async () => {
     try {
-      const targetUrl = "/Sukrit_Infrastructure_Catalogue.pdf";
+      const targetUrl = "/sukrit-catalogue.pdf";
       const response = await fetch(targetUrl, { method: "HEAD" });
       if (response.ok) {
         const link = document.createElement("a");
         link.href = targetUrl;
-        link.download = "Sukrit_Infrastructure_Catalogue.pdf";
+        link.download = "Sukrit-Infrastructure-Catalogue.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
