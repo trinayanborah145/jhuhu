@@ -5,7 +5,8 @@ export default defineConfig({
     preset: "static",
     prerender: {
       routes: ["/"],
-      crawlLinks: true
+      crawlLinks: true,
+      shouldPrerender: (path: string) => !/\.(?:png|jpe?g|gif|svg|pdf|zip|mp4|webp|ico)$/i.test(path),
     }
   }
 });
