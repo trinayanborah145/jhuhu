@@ -48,7 +48,7 @@ export function OurPlans() {
 
   const handleDownload = async () => {
     try {
-      const targetUrl = "/Sukrit%20Infrastructure%20-%20(Residential%20Construcion)%20-%20OneXmedia%20_20251222_191544_0000.pdf";
+      const targetUrl = "/Sukrit_Infrastructure_Catalogue.pdf";
       const response = await fetch(targetUrl, { method: "HEAD" });
       if (response.ok) {
         const link = document.createElement("a");

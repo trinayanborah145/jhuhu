@@ -10,7 +10,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col lg:items-center mt-1">
             <a
-              href="/Sukrit%20Infrastructure%20-%20(Residential%20Construcion)%20-%20OneXmedia%20_20251222_191544_0000.pdf"
+              href="/Sukrit_Infrastructure_Catalogue.pdf"
               download="Sukrit_Infrastructure_Catalogue.pdf"
               target="_blank"
               rel="noopener noreferrer"
