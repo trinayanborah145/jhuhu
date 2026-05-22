@@ -32,18 +32,18 @@ export function DirectorsMessage() {
     {
       id: 1,
       badge: "DIRECTOR 1",
-      photo: "/directors/director-2.jpg",
-      name: "Ajay Yadav",
-      title: "Managing Director",
+      photo: "/directors/director-1.jpg",
+      name: "Bikram Yadav",
+      title: "CEO & Managing Director",
       message: "Building Assam's future is not just our business — it is our deepest responsibility. Every brick we lay carries the trust of a family, and that drives everything we do at Sukrit Infrastructure Pvt Ltd.",
       grayscale: false,
     },
     {
       id: 2,
       badge: "DIRECTOR 2",
-      photo: "/directors/director-1.jpg",
-      name: "Bikram Yadav",
-      title: "Director — Operations",
+      photo: "/directors/director-2.jpg",
+      name: "Ajay Yadav",
+      title: "Director — Projects",
       message: "Our commitment to quality is unwavering. We believe that excellence in construction is not an option — it is the only standard we accept. Assam deserves world-class infrastructure.",
       grayscale: false,
     },
@@ -52,7 +52,7 @@ export function DirectorsMessage() {
       badge: "DIRECTOR 3",
       photo: "/directors/director-3.jpg",
       name: "Abhay Yadav",
-      title: "Director — Projects",
+      title: "Director — Operations",
       message: "Innovation and sustainability are at the heart of every project we undertake. We are not just constructing buildings — we are crafting the legacy of a better, stronger, greener Assam for generations.",
       grayscale: false,
     }
@@ -496,7 +496,7 @@ export function DirectorsMessage() {
               color: '#1C1C1C',
               lineHeight: 1
             }}>
-              200+
+              150+
             </div>
             <div style={{
               fontFamily: '"DM Sans", sans-serif',
@@ -515,7 +515,7 @@ export function DirectorsMessage() {
               color: '#1C1C1C',
               lineHeight: 1
             }}>
-              30+
+              8+
             </div>
             <div style={{
               fontFamily: '"DM Sans", sans-serif',

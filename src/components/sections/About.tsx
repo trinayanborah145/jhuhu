@@ -14,16 +14,16 @@ export function About() {
           <div className="max-w-[520px] reveal">
             <span className="eyebrow eyebrow-line">Our Legacy</span>
             <h2 className="font-display text-[34px] lg:text-[48px] mt-6 leading-[1.15]">
-              Three Decades of Shaping Assam's Skyline.
+              Over Eight Years of Shaping Assam's Skyline.
             </h2>
             <p className="mt-8 text-[16px] leading-[1.85] text-[var(--text-muted)]">
-              From a single residential project in Guwahati to landmark developments across the state, Sukrit Infrastructure Pvt Ltd has spent thirty years quietly raising the standard of how Assam lives, works, and grows. We build with patience, with craft, and with a deep respect for the land we call home.
+              From a single residential project in Guwahati to landmark developments across the state, Sukrit Infrastructure Pvt Ltd has spent eight years quietly raising the standard of how Assam lives, works, and grows. We build with patience, with craft, and with a deep respect for the land we call home.
             </p>
             <span className="divider-gold mt-10" />
             <div className="mt-8 flex gap-12">
               <div>
                 <div className="font-display text-[40px] font-light">
-                  30<span className="text-[var(--gold)]">+</span>
+                  8<span className="text-[var(--gold)]">+</span>
                 </div>
                 <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--text-muted)] mt-1">
                   Years
@@ -31,7 +31,7 @@ export function About() {
               </div>
               <div>
                 <div className="font-display text-[40px] font-light">
-                  200<span className="text-[var(--gold)]">+</span>
+                  150<span className="text-[var(--gold)]">+</span>
                 </div>
                 <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--text-muted)] mt-1">
                   Projects

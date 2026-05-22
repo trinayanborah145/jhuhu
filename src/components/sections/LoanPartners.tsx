@@ -96,8 +96,8 @@ export function LoanPartners() {
             </p>
             <a
               id="loan-advisor-whatsapp-cta"
-              href={`https://wa.me/919101002790?text=${encodeURIComponent(
-                "Hello,\n\nI am interested in purchasing a property with Sukrit Infrastructure Pvt Ltd and would like to enquire about home loan options.\n\nCould you please guide me on:\n• Eligible loan amount & interest rates\n• Required documents\n• EMI & repayment options\n• Bank tie-ups (HDFC / ICICI / LIC)\n\nLooking forward to your assistance.\n\nThank you 🙏"
+              href={`https://wa.me/919395297074?text=${encodeURIComponent(
+                "Hello,\n\nI am interested in purchasing a property with Sukrit Infrastructure Pvt Ltd and would like to enquire about home loan options.\n\nCould you please guide me on:\n• Eligible loan amount & interest rates\n• Required documents\n• EMI & repayment options\n• Bank tie-ups (LIC)\n\nLooking forward to your assistance.\n\nThank you 🙏"
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -149,10 +149,10 @@ export function LoanPartners() {
         />
 
         {/* Bank Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 bank-cards-container">
+        <div className="flex justify-center bank-cards-container max-w-sm mx-auto">
           {/* Card 1 */}
           <div
-            className="bank-card"
+            className="bank-card w-full"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -160,46 +160,6 @@ export function LoanPartners() {
             }}
           >
             <div className="card-number">01</div>
-            <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <img src="/hdfc-logo.png" alt="HDFC Logo" style={{ height: "42px", objectFit: "contain" }} />
-              <span>HDFC</span>
-            </div>
-            <div className="card-bank-type">Bank</div>
-            <div className="card-separator">
-              <div className="card-approved">Approved Lending Partner</div>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div
-            className="bank-card"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.7s ease 0.55s, transform 0.7s ease 0.55s, background 0.35s ease, color 0.35s ease, border-color 0.35s ease",
-            }}
-          >
-            <div className="card-number">02</div>
-            <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <img src="/icici-logo.png" alt="ICICI Logo" style={{ height: "42px", objectFit: "contain" }} />
-              <span>ICICI</span>
-            </div>
-            <div className="card-bank-type">Home Loans</div>
-            <div className="card-separator">
-              <div className="card-approved">Approved Lending Partner</div>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div
-            className="bank-card"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.7s ease 0.7s, transform 0.7s ease 0.7s, background 0.35s ease, color 0.35s ease, border-color 0.35s ease",
-            }}
-          >
-            <div className="card-number">03</div>
             <div className="card-bank-name" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <img src="/lic-logo.png" alt="LIC Logo" style={{ height: "42px", objectFit: "contain" }} />
               <span>LIC</span>

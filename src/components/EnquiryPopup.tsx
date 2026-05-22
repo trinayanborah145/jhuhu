@@ -57,7 +57,7 @@ export function EnquiryPopup() {
 
   const handleDownload = async () => {
     try {
-      const targetUrl = "/Sukrit%20Infrastructure%20-%20(Residential%20Construcion)%20-%20OneXmedia%20_20251222_191544_0000.pdf";
+      const targetUrl = "/Sukrit_Infrastructure_Catalogue.pdf";
       const response = await fetch(targetUrl, { method: "HEAD" });
       if (response.ok) {
         const link = document.createElement("a");
@@ -76,7 +76,7 @@ export function EnquiryPopup() {
 
   const triggerMailto = () => {
     window.location.href =
-      "mailto:hello@sukritinfrastructure.in?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
+      "mailto:info@sukritinfras.com?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -535,7 +535,7 @@ export function EnquiryPopup() {
               PROPERTY TYPE
             </div>
             <div className="pill-row" style={{ display: "flex", gap: "10px" }}>
-              {["Residential", "Commercial", "Semi-Residential"].map((type) => (
+              {["Residential", "Commercial", "Resi Commercial", "Assam Type"].map((type) => (
                 <button
                   key={type}
                   type="button"

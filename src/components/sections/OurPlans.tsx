@@ -16,12 +16,12 @@ const getWhatsAppUrl = (plan: { name: string; price: string; warranty: string; i
 
 I am interested in the *${plan.name}* for my construction project.
 
-📋 *Plan Details:*
-• *Price:* ${plan.price}
-• *Warranty:* ${plan.warranty}
+Plan Details:
+- Price: ${plan.price}
+- Warranty: ${plan.warranty}
 
-*Core Specifications:*
-${plan.inclusions.map(inc => `• *${inc.name}:* ${inc.value}`).join('\n')}
+Core Specifications:
+${plan.inclusions.map(inc => `- ${inc.name}: ${inc.value}`).join('\n')}
 
 Could you please guide me on the next steps, scheduling an estimator consultation, and obtaining a detailed quote?
 
@@ -45,6 +45,27 @@ Thank you!`;
 
 export function OurPlans() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleDownload = async () => {
+    try {
+      const targetUrl = "/Sukrit%20Infrastructure%20-%20(Residential%20Construcion)%20-%20OneXmedia%20_20251222_191544_0000.pdf";
+      const response = await fetch(targetUrl, { method: "HEAD" });
+      if (response.ok) {
+        const link = document.createElement("a");
+        link.href = targetUrl;
+        link.download = "Sukrit_Infrastructure_Catalogue.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.location.href =
+          "mailto:info@sukritinfras.com?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
+      }
+    } catch {
+      window.location.href =
+        "mailto:info@sukritinfras.com?subject=Request for Sukrit Infrastructure Property Catalogue&body=Hello,%0D%0A%0D%0AI would like to request the latest Sukrit Infrastructure Property Catalogue for 2025.%0D%0A%0D%0AThank you!";
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,10 +133,10 @@ export function OurPlans() {
       price: "₹1,899 / sq.ft",
       subheading: "Efficient Foundations & Solid Construction",
       desc: "Perfect for budget-conscious homeowners who refuse to compromise on core structural integrity. Sourced with trusted local brands.",
-      badge: "Best Value",
+      badge: "Download Our Catalogue",
       badgeColor: "#888888",
       accent: "#B8963E",
-      warranty: "Lifetime Civil Work Guarantee · 2 Years Material Warranty",
+      warranty: "Lifetime Civil Work Warranty Â· 2 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Zeecon 500D / Icon / Durgapur" },
         { name: "Cement", value: "Nuvoco Duraguard / Ambuja / Dalmia" },
@@ -131,10 +152,10 @@ export function OurPlans() {
       price: "₹2,099 / sq.ft",
       subheading: "Refined Finishes & Extended Durability",
       desc: "Our most popular package. Integrates premium plumbing materials, specialized CP fittings, and enhanced styling for high-traffic areas.",
-      badge: "Most Popular",
+      badge: "Download Our Catalogue",
       badgeColor: "#B8963E",
       accent: "#D4B870",
-      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty",
+      warranty: "Lifetime Civil Work Warranty Â· 5 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Zeecon 500D / Icon / Durgapur" },
         { name: "Cement", value: "Nuvoco Duraguard / Ambuja / Dalmia" },
@@ -150,10 +171,10 @@ export function OurPlans() {
       price: "₹2,299 / sq.ft",
       subheading: "Architectural Elegance & Luxury Fittings",
       desc: "Designed for premium residential landmarks. Impeccable finishes, false ceilings from USG Knauf, and elite copper electrification systems.",
-      badge: "Recommended",
+      badge: "Download Our Catalogue",
       badgeColor: "#B8963E",
       accent: "#b8963e",
-      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty",
+      warranty: "Lifetime Civil Work Warranty Â· 5 Years Material Warranty",
       inclusions: [
         { name: "TMT Steel", value: "Jindal Panther / Mythan / Kamdhenu" },
         { name: "CP Fittings", value: "Parryware Quality Series" },
@@ -169,10 +190,10 @@ export function OurPlans() {
       price: "₹2,599 / sq.ft",
       subheading: "The Ultimate Masterpiece without Compromise",
       desc: "No compromises. Sourced strictly from India's most premium brands (Tata, JSW, Kajaria). Includes complete waterproofing & advanced UPVC window systems.",
-      badge: "Elite Choice",
+      badge: "Download Our Catalogue",
       badgeColor: "#D4B870",
       accent: "#F8F5F0",
-      warranty: "Lifetime Civil Work Guarantee · 5 Years Material Warranty · Full Waterproofing",
+      warranty: "Lifetime Civil Work Warranty Â· 5 Years Material Warranty Â· Full Waterproofing",
       inclusions: [
         { name: "TMT Steel", value: "TATA Tiscon 550SD / JSW / Jindal Panther" },
         { name: "CP Fittings", value: "Hindware / Aquant Elite Series" },
@@ -250,6 +271,10 @@ export function OurPlans() {
             transform-origin: top center;
             will-change: transform, opacity, filter;
           }
+          .plan-stack-card:nth-child(1) { top: 120px; }
+          .plan-stack-card:nth-child(2) { top: 140px; }
+          .plan-stack-card:nth-child(3) { top: 160px; }
+          .plan-stack-card:nth-child(4) { top: 180px; }
         }
 
         .plan-inclusion-item {
@@ -338,7 +363,8 @@ export function OurPlans() {
                 <div className="flex justify-between items-start mb-6">
                   <div>
                     {/* Badge */}
-                    <span
+                    <button
+                      onClick={handleDownload}
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: "9px",
@@ -346,15 +372,26 @@ export function OurPlans() {
                         letterSpacing: "0.2em",
                         fontWeight: 600,
                         color: plan.badgeColor,
+                        background: "transparent",
                         border: `1px solid ${plan.badgeColor}`,
                         padding: "4px 10px",
                         borderRadius: "2px",
                         display: "inline-block",
                         marginBottom: "14px",
+                        cursor: "pointer",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = plan.badgeColor;
+                        e.currentTarget.style.color = "#161616";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = plan.badgeColor;
                       }}
                     >
                       {plan.badge}
-                    </span>
+                    </button>
                     <h3
                       className="font-serif text-[32px] md:text-[40px] font-normal text-white leading-none"
                       style={{ fontFamily: "'Playfair Display', 'Cormorant Garamond', serif" }}

@@ -12,8 +12,8 @@ export function BrandStatement() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
-            animateCount(30, setCount1);
-            animateCount(200, setCount2);
+            animateCount(8, setCount1);
+            animateCount(150, setCount2);
           }
         });
       },
@@ -57,7 +57,7 @@ export function BrandStatement() {
             className="font-serif text-[24px] lg:text-[36px] font-normal leading-[1.45] text-[#1a1a1a] max-w-[580px]"
             style={{ fontFamily: 'Playfair Display, Cormorant Garamond, serif' }}
           >
-            With 30+ years of trusted real estate development and infrastructure excellence, Sukrit Infrastructure Pvt Ltd has an unmatched legacy of delivery and a proven track record of customer-centric excellence in Assam.
+            With 8+ years of trusted real estate development and infrastructure excellence, Sukrit Infrastructure Pvt Ltd has an unmatched legacy of delivery and a proven track record of customer-centric excellence in Assam.
           </h2>
 
           {/* Divider */}

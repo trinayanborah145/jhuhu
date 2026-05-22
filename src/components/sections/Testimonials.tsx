@@ -2,95 +2,167 @@ import { useEffect, useRef, useState } from "react";
 
 const row1Cards = [
   {
-    name: "Rajiv Sharma",
-    initials: "RS",
+    name: "Rishabh Anand",
+    initials: "RA",
     background: "#3A3020",
     stars: 5,
-    quote: "Sukrit Infrastructure Pvt Ltd delivered our dream home on time with zero compromises on quality. The finishing, the materials, everything exceeded our expectations. Truly a world-class experience right here in Assam.",
-    label: "Homeowner · Sukrit Heights, Guwahati",
+    quote: "It provides you the best guidance and support in building your dream projects ❤️",
+    label: "Google Review",
   },
   {
-    name: "Priya & Anil Borah",
-    initials: "PB",
+    name: "Sahil Raj",
+    initials: "SR",
     background: "#203A30",
     stars: 5,
-    quote: "From the first site visit to handing over the keys, the entire team was professional, transparent, and genuinely caring. We never felt like just another customer. Highly recommend to any family looking to invest.",
-    label: "Homeowners · Sukrit Greens, Jorhat",
+    quote: "Best designs, guidance and work. Thanks for your support.",
+    label: "Google Review",
   },
   {
-    name: "Deepak Hazarika",
-    initials: "DH",
+    name: "Arshad Almas Ahmed",
+    initials: "AA",
     background: "#302030",
     stars: 5,
-    quote: "The construction quality is unmatched in this region. I have compared multiple builders across Assam and Sukrit stands in a completely different league. Worth every rupee invested.",
-    label: "Investor · Sukrit Elite, Dibrugarh",
+    quote: "Excellent work….and helpful advice with proper guidance..friendly staff with 24 x7 support. Thank you for your precious response to our work.",
+    label: "Google Review",
   },
   {
-    name: "Meenakshi Gogoi",
-    initials: "MG",
+    name: "AMITABH BARUAH",
+    initials: "AB",
     background: "#20302A",
     stars: 5,
-    quote: "I was initially skeptical about investing in an under-construction property but Sukrit's transparency and regular progress updates gave me complete confidence. The final product is stunning.",
-    label: "Homeowner · Sukrit Serene, Tezpur",
+    quote: "Sukrit infrastructure provides guidance services towards real estate projects of Jorhat. The company also provides materials for construction and also manpower for the same. Overall I am impressed by the services provided by the company. good job. 🙏",
+    label: "Google Review",
   },
   {
-    name: "Bhaskar & Ritu Das",
-    initials: "BD",
+    name: "Wisdom",
+    initials: "W",
     background: "#2A2030",
     stars: 5,
-    quote: "Our 3 BHK apartment is exactly as shown in the brochure — no hidden surprises, no last-minute changes. That integrity is rare and we are genuinely proud to call this our home.",
-    label: "Homeowners · Sukrit Heights, Guwahati",
+    quote: "It is a highly professional and reliable company, delivering quality projects on time with excellent attention to detail and safety. Satisfied with their work....",
+    label: "Google Review",
   },
   {
-    name: "Ankur Kalita",
-    initials: "AK",
+    name: "Sajjad Hazarika",
+    initials: "SH",
     background: "#302820",
     stars: 5,
-    quote: "As a commercial investor I have worked with multiple developers. Sukrit Infrastructure Pvt Ltd's professionalism, legal clarity, and delivery standards are truly at par with the best in India.",
-    label: "Commercial Investor · Sukrit Business Park",
+    quote: "No matter what type of construction services you want, Sukriti Infrastructure always give their best. I am highly impressed by their on-time project management.",
+    label: "Google Review",
+  },
+  {
+    name: "dibon baruah",
+    initials: "DB",
+    background: "#3A3020",
+    stars: 5,
+    quote: "Best professional work in town with best work experience and great service 🙏 Highly recommended for any construction work .surely will have great experience.",
+    label: "Google Review",
+  },
+  {
+    name: "Arnob Shyam",
+    initials: "AS",
+    background: "#203A30",
+    stars: 5,
+    quote: "Good behaviour and services. Professional workers which will guide you to your dream home.",
+    label: "Google Review",
+  },
+  {
+    name: "Shahid Anowar",
+    initials: "SA",
+    background: "#302030",
+    stars: 5,
+    quote: "Great construction company. They always complete on time and their work is top-level.",
+    label: "Google Review",
+  },
+  {
+    name: "Dharmaraj Saikia",
+    initials: "DS",
+    background: "#20302A",
+    stars: 5,
+    quote: "Excellent Service Done by SUKRIT INFRASTRUCTURE. I am highly impressed by them.",
+    label: "Google Review",
   },
 ];
 
 const row2Cards = [
   {
-    name: "Sanjukta Mahanta",
-    initials: "SM",
+    name: "Diksha Malviya",
+    initials: "DM",
     background: "#203028",
     stars: 5,
-    quote: "The amenities, the landscaping, the lobby — everything has been crafted with such attention to detail. Living here feels premium every single day. Sukrit has truly raised the bar for Assam real estate.",
-    label: "Homeowner · Sukrit Elite, Dibrugarh",
+    quote: "Best design and full support Thank you sukrit infrastructure 👍👍",
+    label: "Google Review",
   },
   {
-    name: "Pranab & Dipali Nath",
-    initials: "PN",
+    name: "Naba Gogoi",
+    initials: "NG",
     background: "#302020",
     stars: 5,
-    quote: "We visited 12 different builders before choosing Sukrit. What made the difference was their honesty about timelines and costs. No hidden charges, no delays. Just pure professionalism.",
-    label: "Homeowners · Sukrit Greens, Jorhat",
+    quote: "Nice service. Highly recommended for construction work in jorhat",
+    label: "Google Review",
   },
   {
-    name: "Rituraj Baruah",
-    initials: "RB",
+    name: "Sharmistha Dutta",
+    initials: "SD",
     background: "#282038",
     stars: 5,
-    quote: "The customer support team even after possession has been exceptional. Any minor issue raised is resolved within 48 hours. This after-sales service is what truly makes Sukrit stand apart.",
-    label: "Homeowner · Sukrit Heights, Guwahati",
+    quote: "Nice performance. Energetic boss with efficient labours",
+    label: "Google Review",
   },
   {
-    name: "Nirmali & Subhash Chetia",
-    initials: "NC",
+    name: "Dpnk Dpnk",
+    initials: "DD",
     background: "#203830",
     stars: 5,
-    quote: "We relocated from Bangalore to Guwahati and were worried about the quality of construction here. Sukrit completely changed our perception. Metropolitan quality, hometown warmth.",
-    label: "Homeowners · Sukrit Serene, Tezpur",
+    quote: "Good company..with exquisite services.....",
+    label: "Google Review",
   },
   {
-    name: "Gaurav Dutta",
-    initials: "GD",
+    name: "Rohit Yadav",
+    initials: "RY",
     background: "#383020",
     stars: 5,
-    quote: "Bought a 4 BHK as an investment. The appreciation in value within 18 months has been remarkable. Beyond returns, the product quality itself is something I am proud to show guests.",
-    label: "Investor · Sukrit Elite, Dibrugarh",
+    quote: "It provides you a best guidance and support.",
+    label: "Google Review",
+  },
+  {
+    name: "Roktim Ranjan Borah",
+    initials: "RR",
+    background: "#203028",
+    stars: 5,
+    quote: "Amazing experience working with them on our project. Highly recommend!",
+    label: "Google Review",
+  },
+  {
+    name: "Aarohi Das",
+    initials: "AD",
+    background: "#302020",
+    stars: 5,
+    quote: "The entire team is extremely supportive and helpful from start to finish.",
+    label: "Google Review",
+  },
+  {
+    name: "Nikhil Lohiya",
+    initials: "NL",
+    background: "#282038",
+    stars: 5,
+    quote: "Best construction services in the area. The quality is exceptional.",
+    label: "Google Review",
+  },
+  {
+    name: "Mantu Sahoo",
+    initials: "MS",
+    background: "#203830",
+    stars: 5,
+    quote: "Great communication and flawless execution. Truly satisfied with the outcome.",
+    label: "Google Review",
+  },
+  {
+    name: "Pranshuchaudhary",
+    initials: "P",
+    background: "#383020",
+    stars: 5,
+    quote: "Delivered exactly what they promised, on time and with great quality.",
+    label: "Google Review",
   },
 ];
 
@@ -155,7 +227,7 @@ export function Testimonials() {
               className="text-[12px]"
               style={{ fontFamily: "DM Sans, sans-serif", color: "#888888" }}
             >
-              Homeowner
+              Verified Client
             </div>
           </div>
         </div>
@@ -234,7 +306,7 @@ export function Testimonials() {
             className="flex"
             style={{
               willChange: "transform",
-              animation: "scrollLeft 35s linear infinite",
+              animation: "scrollLeft 20s linear infinite",
             }}
           >
             {[...row1Cards, ...row1Cards].map((card, index) => renderCard(card, index))}
@@ -253,7 +325,7 @@ export function Testimonials() {
             className="flex"
             style={{
               willChange: "transform",
-              animation: "scrollLeft 50s linear infinite",
+              animation: "scrollLeft 28s linear infinite",
             }}
           >
             {[...row2Cards, ...row2Cards].map((card, index) => renderCard(card, index))}

@@ -15,62 +15,62 @@ import {
 // All 40 brands data
 const allBrands = [
   // CEMENT (5)
-  { id: 1, category: "Cement", icon: IconBuildingArch, name: "Ambuja Cement" },
-  { id: 2, category: "Cement", icon: IconBuildingArch, name: "Dalmia Cement" },
-  { id: 3, category: "Cement", icon: IconBuildingArch, name: "Duraguard Cement" },
-  { id: 4, category: "Cement", icon: IconBuildingArch, name: "UltraTech Cement" },
-  { id: 5, category: "Cement", icon: IconBuildingArch, name: "Star Cement" },
+  { id: 1, category: "Cement", icon: IconBuildingArch, name: "Ambuja Cement", logo: "https://logo.clearbit.com/ambujacement.com" },
+  { id: 2, category: "Cement", icon: IconBuildingArch, name: "Dalmia Cement", logo: "https://logo.clearbit.com/dalmiacement.com" },
+  { id: 3, category: "Cement", icon: IconBuildingArch, name: "Duraguard Cement", logo: "https://logo.clearbit.com/nuvoco.com" },
+  { id: 4, category: "Cement", icon: IconBuildingArch, name: "UltraTech Cement", logo: "https://logo.clearbit.com/ultratechcement.com" },
+  { id: 5, category: "Cement", icon: IconBuildingArch, name: "Star Cement", logo: "https://logo.clearbit.com/starcement.co.in" },
 
   // ELECTRICAL (5)
-  { id: 6, category: "Electrical", icon: IconBolt, name: "Polycab" },
-  { id: 7, category: "Electrical", icon: IconBolt, name: "Anchor" },
-  { id: 8, category: "Electrical", icon: IconBolt, name: "Havells" },
-  { id: 9, category: "Electrical", icon: IconBolt, name: "V-Guard" },
-  { id: 10, category: "Electrical", icon: IconBolt, name: "Microtek" },
+  { id: 6, category: "Electrical", icon: IconBolt, name: "Polycab", logo: "https://logo.clearbit.com/polycab.com" },
+  { id: 7, category: "Electrical", icon: IconBolt, name: "Anchor", logo: "https://logo.clearbit.com/in.panasonic.com" },
+  { id: 8, category: "Electrical", icon: IconBolt, name: "Havells", logo: "https://logo.clearbit.com/havells.com" },
+  { id: 9, category: "Electrical", icon: IconBolt, name: "V-Guard", logo: "https://logo.clearbit.com/vguard.in" },
+  { id: 10, category: "Electrical", icon: IconBolt, name: "Microtek", logo: "https://logo.clearbit.com/microtekdirect.com" },
 
   // INTERIOR (5)
-  { id: 11, category: "Interior", icon: IconLayout2, name: "Century Ply" },
-  { id: 12, category: "Interior", icon: IconLayout2, name: "Greenply" },
-  { id: 13, category: "Interior", icon: IconLayout2, name: "Virco" },
+  { id: 11, category: "Interior", icon: IconLayout2, name: "Century Ply", logo: "https://logo.clearbit.com/centuryply.com" },
+  { id: 12, category: "Interior", icon: IconLayout2, name: "Greenply", logo: "https://logo.clearbit.com/greenply.com" },
+  { id: 13, category: "Interior", icon: IconLayout2, name: "Virco", logo: "https://logo.clearbit.com/vircoply.com" },
   { id: 14, category: "Interior", icon: IconLayout2, name: "Umda Panels" },
-  { id: 15, category: "Interior", icon: IconLayout2, name: "Kutchina" },
+  { id: 15, category: "Interior", icon: IconLayout2, name: "Kutchina", logo: "https://logo.clearbit.com/kutchina.com" },
 
   // PLUMBING (4)
-  { id: 16, category: "Plumbing", icon: IconDroplet, name: "Supreme" },
-  { id: 17, category: "Plumbing", icon: IconDroplet, name: "Prince Piping" },
-  { id: 18, category: "Plumbing", icon: IconDroplet, name: "Hindware" },
-  { id: 19, category: "Plumbing", icon: IconDroplet, name: "Aquant" },
+  { id: 16, category: "Plumbing", icon: IconDroplet, name: "Supreme", logo: "https://logo.clearbit.com/supreme.co.in" },
+  { id: 17, category: "Plumbing", icon: IconDroplet, name: "Prince Piping", logo: "https://logo.clearbit.com/princepipes.com" },
+  { id: 18, category: "Plumbing", icon: IconDroplet, name: "Hindware", logo: "https://logo.clearbit.com/hindware.com" },
+  { id: 19, category: "Plumbing", icon: IconDroplet, name: "Aquant", logo: "https://logo.clearbit.com/aquantindia.com" },
 
   // PAINTS (5)
-  { id: 20, category: "Paints", icon: IconBrush, name: "Berger Paints" },
-  { id: 21, category: "Paints", icon: IconBrush, name: "Birla Opus" },
-  { id: 22, category: "Paints", icon: IconBrush, name: "Asian Paints" },
-  { id: 23, category: "Paints", icon: IconBrush, name: "Nerolac" },
-  { id: 24, category: "Paints", icon: IconBrush, name: "British Paints" },
+  { id: 20, category: "Paints", icon: IconBrush, name: "Berger Paints", logo: "https://logo.clearbit.com/bergerpaints.com" },
+  { id: 21, category: "Paints", icon: IconBrush, name: "Birla Opus", logo: "https://logo.clearbit.com/birlaopus.com" },
+  { id: 22, category: "Paints", icon: IconBrush, name: "Asian Paints", logo: "https://logo.clearbit.com/asianpaints.com" },
+  { id: 23, category: "Paints", icon: IconBrush, name: "Nerolac", logo: "https://logo.clearbit.com/nerolac.com" },
+  { id: 24, category: "Paints", icon: IconBrush, name: "British Paints", logo: "https://logo.clearbit.com/britishpaints.in" },
 
   // STEEL / TMT (4)
-  { id: 25, category: "Steel", icon: IconBox, name: "Tata Tiscon 550 SD" },
-  { id: 26, category: "Steel", icon: IconBox, name: "Kamdhenu Steel" },
-  { id: 27, category: "Steel", icon: IconBox, name: "Elegant Steel" },
-  { id: 28, category: "Steel", icon: IconBox, name: "Tata Tiscon" },
+  { id: 25, category: "Steel", icon: IconBox, name: "Tata Tiscon 550 SD", logo: "https://logo.clearbit.com/tatatiscon.co.in" },
+  { id: 26, category: "Steel", icon: IconBox, name: "Kamdhenu Steel", logo: "https://logo.clearbit.com/kamdhenulimited.com" },
+  { id: 27, category: "Steel", icon: IconBox, name: "Elegant Steel", logo: "https://logo.clearbit.com/elegantsteel.in" },
+  { id: 28, category: "Steel", icon: IconBox, name: "Tata Tiscon", logo: "https://logo.clearbit.com/tatatiscon.co.in" },
 
   // TILES (5)
-  { id: 29, category: "Tiles", icon: IconGridDots, name: "Orient Bell" },
+  { id: 29, category: "Tiles", icon: IconGridDots, name: "Orient Bell", logo: "https://logo.clearbit.com/orientbell.com" },
   { id: 30, category: "Tiles", icon: IconGridDots, name: "Qmax" },
-  { id: 31, category: "Tiles", icon: IconGridDots, name: "Johnson Tiles" },
-  { id: 32, category: "Tiles", icon: IconGridDots, name: "Kajaria" },
+  { id: 31, category: "Tiles", icon: IconGridDots, name: "Johnson Tiles", logo: "https://logo.clearbit.com/hrjohnsonindia.com" },
+  { id: 32, category: "Tiles", icon: IconGridDots, name: "Kajaria", logo: "https://logo.clearbit.com/kajariaceramics.com" },
   { id: 33, category: "Tiles", icon: IconGridDots, name: "Suncore" },
 
   // DOORS (3)
-  { id: 34, category: "Doors", icon: IconDoor, name: "Century Doors" },
-  { id: 35, category: "Doors", icon: IconDoor, name: "Duro Door" },
-  { id: 36, category: "Doors", icon: IconDoor, name: "Greenply Doors" },
+  { id: 34, category: "Doors", icon: IconDoor, name: "Century Doors", logo: "https://logo.clearbit.com/centuryply.com" },
+  { id: 35, category: "Doors", icon: IconDoor, name: "Duro Door", logo: "https://logo.clearbit.com/sardaplywood.in" },
+  { id: 36, category: "Doors", icon: IconDoor, name: "Greenply Doors", logo: "https://logo.clearbit.com/greenply.com" },
 
   // WINDOWS (4)
   { id: 37, category: "Windows", icon: IconLayoutNavbar, name: "Bhagwati Aluminium" },
   { id: 38, category: "Windows", icon: IconLayoutNavbar, name: "Thalco" },
   { id: 39, category: "Windows", icon: IconLayoutNavbar, name: "Cora Performance" },
-  { id: 40, category: "Windows", icon: IconLayoutNavbar, name: "Fenesta" },
+  { id: 40, category: "Windows", icon: IconLayoutNavbar, name: "Fenesta", logo: "https://logo.clearbit.com/fenesta.com" },
 ];
 
 // Split into two columns for alternating scroll

@@ -1,9 +1,9 @@
 import { useCounter } from "@/hooks/use-counter";
 
 const stats = [
-  { n: 30, suffix: "+", label: "Years of Experience" },
-  { n: 200, suffix: "+", label: "Projects Delivered" },
-  { n: 10000, suffix: "+", label: "Happy Families" },
+  { n: 8, suffix: "+", label: "Years of Experience" },
+  { n: 150, suffix: "+", label: "Projects Delivered" },
+  { n: 150, suffix: "+", label: "Happy Families" },
   { n: 5, suffix: "", label: "Cities Across Assam" },
 ];
 

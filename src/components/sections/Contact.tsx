@@ -51,8 +51,14 @@ export function Contact() {
 
           <div className="mt-12 space-y-6">
             <Item icon={<MapPin size={16} />} label="Address" value="Ward No-01, Rajamaidam, New Colony, Jorhat, Assam 785001" />
-            <Item icon={<Phone size={16} />} label="Phone" value="+91 91010 02790" />
-            <Item icon={<Mail size={16} />} label="Email" value="hello@sukritinfrastructure.in" />
+            <Item icon={<Phone size={16} />} label="Phone" value={
+              <>
+                +91 91010 02790<br />
+                +91 78965 51600<br />
+                +91 93656 35553
+              </>
+            } />
+            <Item icon={<Mail size={16} />} label="Email" value="info@sukritinfras.com" />
           </div>
 
           <div className="mt-12 border border-[var(--divider)] aspect-[16/9] overflow-hidden relative">
@@ -114,7 +120,7 @@ export function Contact() {
   );
 }
 
-function Item({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Item({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) {
   return (
     <div className="flex gap-5">
       <div className="text-[var(--gold)] mt-1">{icon}</div>

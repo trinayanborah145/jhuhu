@@ -6,7 +6,7 @@ export function Footer() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-24 pb-12">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 pb-10 border-b border-[var(--gold)]/30 reveal">
           <div className="font-display uppercase text-white text-[28px] lg:text-[40px]" style={{ letterSpacing: "0.12em" }}>
-            Sukrit Infrastructure Pvt Ltd
+            SUKRIT INFRASTRUCTURE PVT LTD
           </div>
           <div className="flex flex-col lg:items-center mt-1">
             <a
@@ -26,7 +26,7 @@ export function Footer() {
             <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/40 mt-2 flex flex-col lg:flex-row items-start lg:items-center gap-1 lg:gap-2">
               <div>CIN U41001AS2026PTC029861 <span className="mx-2 opacity-50">|</span> UNIT OF AB GROUP</div>
               <span className="hidden lg:inline opacity-50">-</span>
-              <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)] text-white/70 transition-colors font-medium">Marketed by Veritas Media</a>
+              <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)] text-white/70 transition-colors font-medium">Marketed by Vertias Media</a>
             </div>
           </div>
           <div className="text-white/50 text-[12px] uppercase tracking-[0.3em]">
@@ -54,7 +54,9 @@ export function Footer() {
             <div className="text-[var(--gold)] text-[10px] uppercase tracking-[0.3em] mb-6">Reach Us</div>
             <div className="text-[13px] leading-[1.9] text-white/60">
               +91 91010 02790<br />
-              hello@sukritinfrastructure.in<br />
+              +91 78965 51600<br />
+              +91 93656 35553<br />
+              info@sukritinfras.com<br />
               Jorhat · Assam
             </div>
             <a

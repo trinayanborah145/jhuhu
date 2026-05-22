@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Building2, MapPin, HardHat, BedDouble, MessageCircle } from "lucide-react";
 
-const tabs = ["Residential", "Commercial", "Semi Residential"];
+const tabs = ["Residential", "Commercial", "Resi Commercial", "Assam Type"];
 
 const assamDistricts = [
   "Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo",
@@ -138,7 +138,7 @@ export function PropertySearch() {
               <Selector
                 icon={<Building2 size={16} />}
                 label="Project Type"
-                options={["Residential", "Semi Residential", "Commercial"]}
+                options={["Residential", "Commercial", "Resi Commercial", "Assam Type"]}
                 value={propertyType}
                 onChange={setPropertyType}
               />

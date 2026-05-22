@@ -14,7 +14,7 @@ import { WorkInMotion } from "@/components/sections/WorkInMotion";
 import { About } from "@/components/sections/About";
 import { OurServices } from "@/components/sections/OurServices";
 import { BrandPartners } from "@/components/sections/BrandPartners";
-import { OurGuarantee } from "@/components/sections/OurGuarantee";
+import { OurWarranty } from "@/components/sections/OurWarranty";
 import { OurPlans } from "@/components/sections/OurPlans";
 import { FoundersMessage } from "@/components/sections/FoundersMessage";
 import { DirectorsMessage } from "@/components/sections/DirectorsMessage";
@@ -28,13 +28,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Sukrit Infrastructure Pvt Ltd — Building Assam's Tomorrow, Today." },
+      { title: "Sukrit Infrastructure Pvt Ltd Building Assam's Tomorrow, Today." },
       {
         name: "description",
         content:
-          "Sukrit Infrastructure Pvt Ltd crafts landmark residential and commercial spaces across Assam — 30+ years of trusted real estate development with uncompromising quality.",
+          "Sukrit Infrastructure Pvt Ltd crafts landmark residential and commercial spaces across Assam  8+ years of trusted real estate development with uncompromising quality.",
       },
-      { property: "og:title", content: "Sukrit Infrastructure Pvt Ltd — Luxury Real Estate in Assam" },
+      { property: "og:title", content: "Sukrit Infrastructure Pvt Ltd  Luxury Real Estate in Assam" },
       {
         property: "og:description",
         content:
@@ -66,7 +66,7 @@ function Index() {
         <BrandStatement />
         <OurServices />
         <BrandPartners />
-        <OurGuarantee />
+        <OurWarranty />
         <OurPlans />
         <WorkInMotion />
         <Marquee />
@@ -83,7 +83,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
-      <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire flex"><span className="side-line">Veritas Media</span><span className="side-line">Marketed by</span></a>
+      <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire flex"><span className="side-line">Vertias Media</span><span className="side-line">Marketed by</span></a>
     </>
   );
 }

@@ -86,26 +86,24 @@ export function Navbar() {
             backdrop-filter: blur(0px) !important;
           }
         `}</style>
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-[84px] flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-6 lg:pl-12 lg:pr-4 h-[84px] flex items-center justify-between">
           <Link
             to="/"
-            className="font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors mr-8"
+            className="font-display uppercase text-[14px] sm:text-[16px] lg:text-[18px] font-medium transition-colors flex-shrink-0"
             style={{
               letterSpacing: "0.16em",
-              flexShrink: 1,
-              minWidth: 0,
               color: isProjectsMenuOpen ? "white" : showScrolled ? "var(--text-soft)" : "white"
             }}
           >
-            <div className="flex flex-col overflow-hidden">
-              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block font-medium truncate">SUKRIT INFRASTRUCTURE PVT LTD</span>
-              <span className="text-[8px] sm:text-[9px] font-sans font-normal tracking-[0.05em] sm:tracking-[0.1em] opacity-60 mt-0.5 truncate" style={{ textTransform: "none" }}>
+            <div className="flex flex-col">
+              <span className="text-[12px] sm:text-[16px] lg:text-[18px] block font-medium whitespace-nowrap">SUKRIT INFRASTRUCTURE PVT LTD</span>
+              <span className="text-[8px] sm:text-[9px] font-sans font-normal tracking-[0.05em] sm:tracking-[0.1em] opacity-60 mt-0.5 whitespace-nowrap" style={{ textTransform: "none" }}>
                 CIN U41001AS2026PTC029861 <span className="hidden sm:inline">| UNIT OF AB GROUP</span>
               </span>
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-10 ml-auto">
+          <nav className="hidden lg:flex items-center gap-8 xl:gap-14 ml-20 xl:ml-32 flex-shrink-0">
             {links.map((l) => (
               <div key={l.label} className="relative">
                 {l.label === "Projects" ? (

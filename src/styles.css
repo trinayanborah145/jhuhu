@@ -422,3 +422,90 @@
 .floating-field:focus-within {
   border-bottom-color: var(--gold);
 }
+
+/* OVERFLOW FIXES */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+}
+
+section,
+header,
+footer,
+nav,
+main,
+div {
+  max-width: 100%;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.marquee-container,
+.ticker-container,
+.scroll-track-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+.testimonial-track-wrapper,
+.testimonial-row {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.brand-track-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.services-track-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+nav,
+header {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .wrapper,
+  .content {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 100%;
+  }
+
+  .enquire-now-floating-tab,
+  .side-enquire {
+    display: none;
+  }
+}
