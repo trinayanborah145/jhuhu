@@ -267,7 +267,10 @@ export function OurWarranty() {
           <div className="font-['DM_Sans'] text-[15px] text-[#666666] text-center md:text-left">
             Ready to build with confidence?
           </div>
-          <button className="w-full md:w-auto bg-[#B8963E] text-white border-none py-[14px] px-[36px] rounded-full font-['DM_Sans'] text-[12px] uppercase tracking-[0.14em] font-medium shadow-[0_8px_32px_rgba(184,150,62,0.25)] hover:bg-[#9E7D32] hover:shadow-[0_12px_40px_rgba(184,150,62,0.4)] hover:-translate-y-[2px] transition-all duration-350 ease-out cursor-pointer">
+          <button 
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="w-full md:w-auto bg-[#B8963E] text-white border-none py-[14px] px-[36px] rounded-full font-['DM_Sans'] text-[12px] uppercase tracking-[0.14em] font-medium shadow-[0_8px_32px_rgba(184,150,62,0.25)] hover:bg-[#9E7D32] hover:shadow-[0_12px_40px_rgba(184,150,62,0.4)] hover:-translate-y-[2px] transition-all duration-350 ease-out cursor-pointer"
+          >
             START YOUR PROJECT &rarr;
           </button>
         </div>
