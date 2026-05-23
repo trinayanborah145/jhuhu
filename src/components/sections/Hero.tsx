@@ -45,7 +45,7 @@ export function Hero() {
             transition: "opacity 0.6s ease 0.1s",
           }}
         >
-          Est. 1996 · Assam, India
+          Est. 2018 · Assam, India
         </div>
 
         <h1 className="font-display text-white text-[44px] sm:text-[60px] lg:text-[88px] leading-[1.05] font-normal max-w-[900px]">
