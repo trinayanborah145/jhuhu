@@ -78,7 +78,7 @@ function GalleryCard({
         height: isHero ? "520px" : "280px",
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.8s ease ${delay}s, transform 0.8s ease ${delay}s`,
+        transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -173,7 +173,7 @@ export function FeaturedProjects() {
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? "translateY(0)" : "translateY(24px)",
-          transition: "opacity 0.8s ease, transform 0.8s ease",
+          transition: "opacity 0.5s ease, transform 0.5s ease",
         }}
       >
         <div>
@@ -222,7 +222,7 @@ export function FeaturedProjects() {
                   key={`${colIdx}-${imgIdx}`}
                   img={img}
                   isHero={colIdx === 2 && imgIdx === 0}
-                  delay={colIdx * 0.1 + imgIdx * 0.08}
+                  delay={colIdx * 0.03 + imgIdx * 0.02}
                   isVisible={isVisible}
                 />
               ))}
@@ -244,7 +244,7 @@ export function FeaturedProjects() {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(24px)",
-                transition: `opacity 0.6s ease ${i * 0.07}s, transform 0.6s ease ${i * 0.07}s`,
+                transition: `opacity 0.4s ease ${i * 0.03}s, transform 0.4s ease ${i * 0.03}s`,
               }}
             >
               <img
@@ -273,7 +273,7 @@ export function FeaturedProjects() {
         className="max-w-[1200px] mx-auto px-6 md:px-12 mt-12 flex items-center gap-4"
         style={{
           opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.8s ease 0.6s",
+          transition: "opacity 0.5s ease 0.2s",
         }}
       >
         <div className="flex-1 h-[1px] bg-[#E2DDD8]" />

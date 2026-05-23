@@ -498,8 +498,8 @@ export function ProjectsDiscovery() {
                   boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateY(0)" : "translateY(20px)",
-                  transition: "all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1)",
-                  transitionDelay: `${index * 0.1}s`,
+                  transition: "all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                  transitionDelay: `${index * 0.05}s`,
                 }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}

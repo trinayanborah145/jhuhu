@@ -42,7 +42,7 @@ export function Hero() {
           className="eyebrow eyebrow-line text-[var(--gold)] mb-6"
           style={{
             opacity: loaded ? 1 : 0,
-            transition: "opacity 1s ease 0.8s",
+            transition: "opacity 0.6s ease 0.1s",
           }}
         >
           Est. 1996 · Assam, India
@@ -50,10 +50,10 @@ export function Hero() {
 
         <h1 className="font-display text-white text-[44px] sm:text-[60px] lg:text-[88px] leading-[1.05] font-normal max-w-[900px]">
           <span className={`line-mask ${loaded ? "is-visible" : ""}`}>
-            <span style={{ transitionDelay: "0.4s" }}>A World Where</span>
+            <span style={{ transitionDelay: "0.15s" }}>A World Where</span>
           </span>
           <span className={`line-mask ${loaded ? "is-visible" : ""}`}>
-            <span style={{ transitionDelay: "0.6s" }}>Legacy Meets Vision.</span>
+            <span style={{ transitionDelay: "0.25s" }}>Legacy Meets Vision.</span>
           </span>
         </h1>
 
@@ -62,7 +62,7 @@ export function Hero() {
           style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(20px)",
-            transition: "all 1s ease 1.1s",
+            transition: "all 0.6s ease 0.35s",
           }}
         >
           Crafting landmark spaces across Assam with uncompromising quality and timeless design.
@@ -73,7 +73,7 @@ export function Hero() {
           style={{
             opacity: loaded ? 1 : 0,
             transform: loaded ? "translateY(0)" : "translateY(20px)",
-            transition: "all 1s ease 1.3s",
+            transition: "all 0.6s ease 0.45s",
           }}
         >
           <a href="#projects" className="btn-light">
