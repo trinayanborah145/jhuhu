@@ -23,6 +23,7 @@ import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -50,6 +51,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   useRevealAll();
+  useSmoothScroll();
   useEffect(() => {
     document.body.style.cursor = "none";
     return () => {

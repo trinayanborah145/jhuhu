@@ -3,6 +3,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useEffect } from "react";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 export const Route = createFileRoute("/projects")({
   component: Projects,
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/projects")({
 });
 
 function Projects() {
+  useSmoothScroll();
   useEffect(() => {
     document.body.style.cursor = "none";
     return () => {
