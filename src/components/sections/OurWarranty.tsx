@@ -199,7 +199,7 @@ export function OurWarranty() {
             className="reveal-warranty-p1 flex-1 px-6 py-8 md:py-0 md:px-14 text-center border-b md:border-b-0 md:border-r border-[rgba(255,255,255,0.06)]"
           >
             <div className="font-['Cormorant_Garamond'] text-[56px] md:text-[64px] font-light text-white leading-none">
-              LIFE
+              99+
             </div>
             <div className="w-6 h-px bg-[#B8963E] mx-auto mt-3.5 mb-3.5" />
             <h4 className="font-['DM_Sans'] text-[13px] font-medium uppercase tracking-[0.15em] text-white mb-2.5">
