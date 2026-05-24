@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/sections/Navbar";
-import { Footer } from "@/components/sections/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
 import { useEffect, useRef, useState } from "react";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
@@ -255,8 +254,6 @@ function Projects() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }
