@@ -238,8 +238,8 @@ export function Navbar() {
                             { name: "G+4 Commercial Complex", location: "Jorhat Town", route: "/projects/g4-jorhat" },
                             { name: "Assam Type House", location: "Lichubari", route: "/projects/assam-type-lichubari" },
                             { name: "G+2 Building", location: "Garmur", route: "/projects/g2-garmur" },
-                          ].map((project) => (
-                            <Link key={project.name} to={project.route as any} onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
+                          ].map((project, idx) => (
+                            <Link key={idx} to={project.route as any} onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
                               {project.name} - {project.location}
                             </Link>
                           ))}
@@ -334,9 +334,9 @@ export function Navbar() {
                       { name: "G+4 Commercial Complex", location: "Jorhat Town", route: "/projects/g4-jorhat" },
                       { name: "Assam Type House", location: "Lichubari", route: "/projects/assam-type-lichubari" },
                       { name: "G+2 Building", location: "Garmur", route: "/projects/g2-garmur" },
-                    ].map((project) => (
+                    ].map((project, idx) => (
                       <Link
-                        key={project.name}
+                        key={idx}
                         to={project.route as any}
                         onClick={closeProjectsMenu}
                         className="group p-4 rounded-lg border border-white/10 hover:border-[#B8963E]/50 hover:bg-white/5 transition-all"
