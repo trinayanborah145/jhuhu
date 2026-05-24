@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Menu, X, Search, X as CloseIcon } from "lucide-react";
+import { Menu, X, X as CloseIcon } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
 
 const links = [
@@ -224,32 +224,21 @@ export function Navbar() {
                     }}
                   >
                     <div className="pt-4 pb-2 px-4 space-y-4">
-                      <div className="border-b border-white/20 pb-4">
-                        <h4 className="text-white text-lg font-serif mb-3" style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}>Residential</h4>
-                        <div className="space-y-2">
-                          {["Sukrit Heights", "Sukrit Greens", "Sukrit Elite", "Sukrit Serene", "Sukrit Meadows"].map((project) => (
-                            <Link key={project} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                              {project}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="border-b border-white/20 pb-4">
-                        <h4 className="text-white text-lg font-serif mb-3" style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}>Commercial</h4>
-                        <div className="space-y-2">
-                          {["Offices", "Retail", "Warehousing", "Industrial Plots"].map((item) => (
-                            <Link key={item} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                              {item}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
                       <div>
-                        <h4 className="text-white text-lg font-serif mb-3" style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}>Ongoing & Upcoming</h4>
+                        <h4 className="text-white text-lg font-serif mb-3" style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}>Our Projects</h4>
                         <div className="space-y-2">
-                          {["Sukrit Heights Phase II", "Sukrit Business Park", "Sukrit Township"].map((project) => (
-                            <Link key={project} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                              {project}
+                          {[
+                            { name: "G+1 Projects", location: "Gormur" },
+                            { name: "G+2 Project", location: "Gormur" },
+                            { name: "G+2 Building", location: "Dohabara" },
+                            { name: "G+1 Building", location: "Golaghat" },
+                            { name: "G+2 Building", location: "Kenduguri" },
+                            { name: "G+1 Building", location: "Koronga" },
+                            { name: "G+2 Building", location: "Macharhat" },
+                            { name: "G+4 Commercial Complex", location: "Jorhat Town" },
+                          ].map((project) => (
+                            <Link key={project.name} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
+                              {project.name} - {project.location}
                             </Link>
                           ))}
                         </div>
@@ -307,17 +296,17 @@ export function Navbar() {
                 opacity: menuAnimationState === "closed" ? 0 : 1,
               }}
             >
-              <div className="grid grid-cols-4 gap-12 relative">
+              <div className="grid grid-cols-1 gap-8 relative max-w-4xl mx-auto">
                 {/* Close Button */}
                 <button
                   onClick={closeProjectsMenu}
-                  className="absolute -top-4 right-[8%] w-9 h-9 rounded-full border border-white/40 flex items-center justify-center hover:border-white hover:bg-white/10 transition-all"
+                  className="absolute -top-4 right-0 w-9 h-9 rounded-full border border-white/40 flex items-center justify-center hover:border-white hover:bg-white/10 transition-all"
                   style={{ width: "36px", height: "36px" }}
                 >
                   <CloseIcon size={16} className="text-white" />
                 </button>
 
-                {/* Column 1 - Residential */}
+                {/* Our Projects Section */}
                 <div
                   style={{
                     opacity: menuAnimationState === "visible" ? 1 : 0,
@@ -326,143 +315,36 @@ export function Navbar() {
                   }}
                 >
                   <h3
-                    className="font-serif text-[22px] font-normal text-white mb-6"
+                    className="font-serif text-[28px] font-normal text-white mb-8"
                     style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}
                   >
-                    Residential
+                    Our Projects
                   </h3>
-                  <div className="flex flex-col gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      { name: "Sukrit Heights", city: "Guwahati" },
-                      { name: "Sukrit Greens", city: "Jorhat" },
-                      { name: "Sukrit Elite", city: "Dibrugarh" },
-                      { name: "Sukrit Serene", city: "Tezpur" },
-                      { name: "Sukrit Meadows", city: "Silchar" },
+                      { name: "G+1 Projects", location: "Gormur" },
+                      { name: "G+2 Project", location: "Gormur" },
+                      { name: "G+2 Building", location: "Dohabara" },
+                      { name: "G+1 Building", location: "Golaghat" },
+                      { name: "G+2 Building", location: "Kenduguri" },
+                      { name: "G+1 Building", location: "Koronga" },
+                      { name: "G+2 Building", location: "Macharhat" },
+                      { name: "G+4 Commercial Complex", location: "Jorhat Town" },
                     ].map((project) => (
                       <Link
                         key={project.name}
                         to="/projects"
                         onClick={closeProjectsMenu}
-                        className="group"
+                        className="group p-4 rounded-lg border border-white/10 hover:border-[#B8963E]/50 hover:bg-white/5 transition-all"
                       >
                         <div className="text-[16px] font-normal text-white group-hover:text-[#B8963E] transition-colors duration-200" style={{ fontFamily: "DM Sans, sans-serif" }}>
                           {project.name}
                         </div>
-                        <div className="text-[12px] font-normal text-[#888888] mt-1" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                          {project.city}
+                        <div className="text-[13px] font-normal text-[#888888] mt-1" style={{ fontFamily: "DM Sans, sans-serif" }}>
+                          {project.location}
                         </div>
                       </Link>
                     ))}
-                  </div>
-                  <Link to="/projects" onClick={closeProjectsMenu} className="inline-block mt-6 text-[13px] text-[#888888] underline hover:text-[#B8963E] transition-colors" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                    View all →
-                  </Link>
-                </div>
-
-                {/* Column 2 - Commercial */}
-                <div
-                  style={{
-                    opacity: menuAnimationState === "visible" ? 1 : 0,
-                    transform: menuAnimationState === "visible" ? "translateY(0)" : "translateY(10px)",
-                    transition: "opacity 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.16s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.16s",
-                  }}
-                >
-                  <h3
-                    className="font-serif text-[22px] font-normal text-white mb-6"
-                    style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}
-                  >
-                    Commercial
-                  </h3>
-                  <div className="flex flex-col gap-5">
-                    {["Offices", "Retail", "Warehousing", "Industrial Plots"].map((item) => (
-                      <Link
-                        key={item}
-                        to="/projects"
-                        onClick={closeProjectsMenu}
-                        className="text-[16px] font-normal text-white hover:text-[#B8963E] transition-colors duration-200"
-                        style={{ fontFamily: "DM Sans, sans-serif" }}
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </div>
-                  <Link to="/projects" onClick={closeProjectsMenu} className="inline-block mt-6 text-[13px] text-[#888888] underline hover:text-[#B8963E] transition-colors" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                    View all →
-                  </Link>
-                </div>
-
-                {/* Column 3 - Ongoing & Upcoming */}
-                <div
-                  style={{
-                    opacity: menuAnimationState === "visible" ? 1 : 0,
-                    transform: menuAnimationState === "visible" ? "translateY(0)" : "translateY(10px)",
-                    transition: "opacity 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.24s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.24s",
-                  }}
-                >
-                  <h3
-                    className="font-serif text-[22px] font-normal text-white mb-6"
-                    style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}
-                  >
-                    Ongoing & Upcoming
-                  </h3>
-                  <div className="flex flex-col gap-5">
-                    {[
-                      { name: "Sukrit Heights Phase II", sub: "Guwahati | Possession 2026" },
-                      { name: "Sukrit Business Park", sub: "Guwahati | Commercial" },
-                      { name: "Sukrit Township", sub: "Jorhat | New Launch" },
-                    ].map((project) => (
-                      <Link
-                        key={project.name}
-                        to="/projects"
-                        onClick={closeProjectsMenu}
-                        className="group"
-                      >
-                        <div className="text-[16px] font-normal text-white group-hover:text-[#B8963E] transition-colors duration-200" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                          {project.name}
-                        </div>
-                        <div className="text-[12px] font-normal text-[#888888] mt-1" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                          {project.sub}
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                  <h3
-                    className="font-serif text-[22px] font-normal text-white mb-4 mt-8"
-                    style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}
-                  >
-                    Completed Projects
-                  </h3>
-                  <Link to="/projects" onClick={closeProjectsMenu} className="text-[13px] text-[#888888] underline hover:text-[#B8963E] transition-colors" style={{ fontFamily: "DM Sans, sans-serif" }}>
-                    View All Completed →
-                  </Link>
-                </div>
-
-                {/* Column 4 - Search */}
-                <div
-                  style={{
-                    opacity: menuAnimationState === "visible" ? 1 : 0,
-                    transform: menuAnimationState === "visible" ? "translateY(0)" : "translateY(10px)",
-                    transition: "opacity 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.32s, transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1) 0.32s",
-                  }}
-                >
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search a project name or location"
-                      className="w-full py-3.5 px-5 rounded-full text-[14px] text-white placeholder-white/50 outline-none transition-colors"
-                      style={{
-                        fontFamily: "DM Sans, sans-serif",
-                        backgroundColor: "rgba(255,255,255,0.12)",
-                        border: "1px solid rgba(255,255,255,0.2)",
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.borderColor = "rgba(184,150,62,0.6)";
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = "rgba(255,255,255,0.2)";
-                      }}
-                    />
-                    <Search size={18} className="absolute right-5 top-1/2 -translate-y-1/2 text-white/60" />
                   </div>
                 </div>
               </div>
