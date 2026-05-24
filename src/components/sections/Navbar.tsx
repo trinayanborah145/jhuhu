@@ -236,6 +236,8 @@ export function Navbar() {
                             { name: "G+1 Building", location: "Koronga" },
                             { name: "G+2 Building", location: "Macharhat" },
                             { name: "G+4 Commercial Complex", location: "Jorhat Town" },
+                            { name: "Assam Type House", location: "Lichubari" },
+                            { name: "G+2 Building", location: "Garmur" },
                           ].map((project) => (
                             <Link key={project.name} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
                               {project.name} - {project.location}
@@ -330,6 +332,8 @@ export function Navbar() {
                       { name: "G+1 Building", location: "Koronga" },
                       { name: "G+2 Building", location: "Macharhat" },
                       { name: "G+4 Commercial Complex", location: "Jorhat Town" },
+                      { name: "Assam Type House", location: "Lichubari" },
+                      { name: "G+2 Building", location: "Garmur" },
                     ].map((project) => (
                       <Link
                         key={project.name}
