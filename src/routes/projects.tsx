@@ -39,7 +39,6 @@ const projects: Project[] = [
   { id: 7, name: "G+2 Building", location: "Macharhat", type: "Residential", route: "/projects/g2-macharhat", image: "/IMG-20260513-WA0034.jpg" },
   { id: 8, name: "G+4 Commercial Complex", location: "Jorhat Town", type: "Commercial", route: "/projects/g4-jorhat", image: "/IMG-20260513-WA0038.jpg" },
   { id: 9, name: "Assam Type House", location: "Lichubari", type: "Residential", route: "/projects/assam-type-lichubari", image: "/IMG-20260513-WA0027.jpg" },
-  { id: 10, name: "G+2 Building", location: "Garmur", type: "Residential", route: "/projects/g2-garmur" },
 ];
 
 function Projects() {
