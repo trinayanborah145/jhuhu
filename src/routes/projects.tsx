@@ -20,9 +20,18 @@ export const Route = createFileRoute("/projects")({
   }),
 });
 
-const projects = [
-  { id: 1, name: "G+1 Projects", location: "Gormur", type: "Residential", route: "/projects/g1-gormur" },
-  { id: 2, name: "G+2 Project", location: "Gormur", type: "Residential", route: "/projects/g2-gormur" },
+interface Project {
+  id: number;
+  name: string;
+  location: string;
+  type: string;
+  route: string;
+  image?: string;
+}
+
+const projects: Project[] = [
+  { id: 1, name: "G+1 Projects", location: "Gormur", type: "Residential", route: "/projects/g1-gormur", image: "/IMG-20260522-WA0099.jpg" },
+  { id: 2, name: "G+2 Project", location: "Gormur", type: "Residential", route: "/projects/g2-gormur", image: "/IMG-20260522-WA0099.jpg" },
   { id: 3, name: "G+2 Building", location: "Dohabara", type: "Residential", route: "/projects/g2-dohabara" },
   { id: 4, name: "G+1 Building", location: "Golaghat", type: "Residential", route: "/projects/g1-golaghat" },
   { id: 5, name: "G+2 Building", location: "Kenduguri", type: "Residential", route: "/projects/g2-kenduguri" },
@@ -127,30 +136,38 @@ function Projects() {
                 >
                   {/* Image Placeholder */}
                   <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div
-                          className="w-16 h-16 mx-auto mb-3 rounded-full bg-[#B8963E]/10 flex items-center justify-center"
-                        >
-                          <svg
-                            className="w-8 h-8 text-[#B8963E]"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div
+                            className="w-16 h-16 mx-auto mb-3 rounded-full bg-[#B8963E]/10 flex items-center justify-center"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
+                            <svg
+                              className="w-8 h-8 text-[#B8963E]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.5}
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                          </div>
+                          <p className="text-sm text-gray-400 font-medium">
+                            Image Placeholder
+                          </p>
                         </div>
-                        <p className="text-sm text-gray-400 font-medium">
-                          Image Placeholder
-                        </p>
                       </div>
-                    </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
