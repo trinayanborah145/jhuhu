@@ -37,6 +37,7 @@ function G2Gormur() {
         location="Gormur"
         type="Residential"
         status="Ongoing"
+        images={["/IMG-20260522-WA0099.jpg"]}
       />
       <Footer />
     </>

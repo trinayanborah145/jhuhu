@@ -7,9 +7,10 @@ interface ProjectDetailProps {
   type: string;
   description?: string;
   status?: string;
+  images?: string[];
 }
 
-export function ProjectDetail({ name, location, type, description, status }: ProjectDetailProps) {
+export function ProjectDetail({ name, location, type, description, status, images }: ProjectDetailProps) {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -151,37 +152,52 @@ export function ProjectDetail({ name, location, type, description, status }: Pro
               Project Gallery
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[1, 2, 3, 4, 5, 6].map((imgNum) => (
-                <div
-                  key={imgNum}
-                  className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden"
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div
-                        className="w-12 h-12 mx-auto mb-2 rounded-full bg-[#B8963E]/10 flex items-center justify-center"
-                      >
-                        <svg
-                          className="w-6 h-6 text-[#B8963E]"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+              {images && images.length > 0 ? (
+                images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    className="relative aspect-[4/3] rounded-xl overflow-hidden"
+                  >
+                    <img
+                      src={img}
+                      alt={`${name} - Image ${idx + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))
+              ) : (
+                [1, 2, 3, 4, 5, 6].map((imgNum) => (
+                  <div
+                    key={imgNum}
+                    className="relative aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl overflow-hidden"
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div
+                          className="w-12 h-12 mx-auto mb-2 rounded-full bg-[#B8963E]/10 flex items-center justify-center"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
+                          <svg
+                            className="w-6 h-6 text-[#B8963E]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                        </div>
+                        <p className="text-xs text-gray-400 font-medium">
+                          Image {imgNum}
+                        </p>
                       </div>
-                      <p className="text-xs text-gray-400 font-medium">
-                        Image {imgNum}
-                      </p>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
 
