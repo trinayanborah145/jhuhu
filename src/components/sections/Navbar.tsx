@@ -228,18 +228,18 @@ export function Navbar() {
                         <h4 className="text-white text-lg font-serif mb-3" style={{ fontFamily: "Playfair Display, Cormorant Garamond, serif" }}>Our Projects</h4>
                         <div className="space-y-2">
                           {[
-                            { name: "G+1 Projects", location: "Gormur" },
-                            { name: "G+2 Project", location: "Gormur" },
-                            { name: "G+2 Building", location: "Dohabara" },
-                            { name: "G+1 Building", location: "Golaghat" },
-                            { name: "G+2 Building", location: "Kenduguri" },
-                            { name: "G+1 Building", location: "Koronga" },
-                            { name: "G+2 Building", location: "Macharhat" },
-                            { name: "G+4 Commercial Complex", location: "Jorhat Town" },
-                            { name: "Assam Type House", location: "Lichubari" },
-                            { name: "G+2 Building", location: "Garmur" },
+                            { name: "G+1 Projects", location: "Gormur", route: "/projects/g1-gormur" },
+                            { name: "G+2 Project", location: "Gormur", route: "/projects/g2-gormur" },
+                            { name: "G+2 Building", location: "Dohabara", route: "/projects/g2-dohabara" },
+                            { name: "G+1 Building", location: "Golaghat", route: "/projects/g1-golaghat" },
+                            { name: "G+2 Building", location: "Kenduguri", route: "/projects/g2-kenduguri" },
+                            { name: "G+1 Building", location: "Koronga", route: "/projects/g1-koronga" },
+                            { name: "G+2 Building", location: "Macharhat", route: "/projects/g2-macharhat" },
+                            { name: "G+4 Commercial Complex", location: "Jorhat Town", route: "/projects/g4-jorhat" },
+                            { name: "Assam Type House", location: "Lichubari", route: "/projects/assam-type-lichubari" },
+                            { name: "G+2 Building", location: "Garmur", route: "/projects/g2-garmur" },
                           ].map((project) => (
-                            <Link key={project.name} to="/projects" onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
+                            <Link key={project.name} to={project.route as any} onClick={() => setOpen(false)} className="block text-white/80 hover:text-[#B8963E] transition-colors text-sm" style={{ fontFamily: "DM Sans, sans-serif" }}>
                               {project.name} - {project.location}
                             </Link>
                           ))}
@@ -324,20 +324,20 @@ export function Navbar() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {[
-                      { name: "G+1 Projects", location: "Gormur" },
-                      { name: "G+2 Project", location: "Gormur" },
-                      { name: "G+2 Building", location: "Dohabara" },
-                      { name: "G+1 Building", location: "Golaghat" },
-                      { name: "G+2 Building", location: "Kenduguri" },
-                      { name: "G+1 Building", location: "Koronga" },
-                      { name: "G+2 Building", location: "Macharhat" },
-                      { name: "G+4 Commercial Complex", location: "Jorhat Town" },
-                      { name: "Assam Type House", location: "Lichubari" },
-                      { name: "G+2 Building", location: "Garmur" },
+                      { name: "G+1 Projects", location: "Gormur", route: "/projects/g1-gormur" },
+                      { name: "G+2 Project", location: "Gormur", route: "/projects/g2-gormur" },
+                      { name: "G+2 Building", location: "Dohabara", route: "/projects/g2-dohabara" },
+                      { name: "G+1 Building", location: "Golaghat", route: "/projects/g1-golaghat" },
+                      { name: "G+2 Building", location: "Kenduguri", route: "/projects/g2-kenduguri" },
+                      { name: "G+1 Building", location: "Koronga", route: "/projects/g1-koronga" },
+                      { name: "G+2 Building", location: "Macharhat", route: "/projects/g2-macharhat" },
+                      { name: "G+4 Commercial Complex", location: "Jorhat Town", route: "/projects/g4-jorhat" },
+                      { name: "Assam Type House", location: "Lichubari", route: "/projects/assam-type-lichubari" },
+                      { name: "G+2 Building", location: "Garmur", route: "/projects/g2-garmur" },
                     ].map((project) => (
                       <Link
                         key={project.name}
-                        to="/projects"
+                        to={project.route as any}
                         onClick={closeProjectsMenu}
                         className="group p-4 rounded-lg border border-white/10 hover:border-[#B8963E]/50 hover:bg-white/5 transition-all"
                       >
