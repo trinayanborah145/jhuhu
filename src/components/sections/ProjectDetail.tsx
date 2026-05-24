@@ -162,6 +162,8 @@ export function ProjectDetail({ name, location, type, description, status, image
                       src={img}
                       alt={`${name} - Image ${idx + 1}`}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))

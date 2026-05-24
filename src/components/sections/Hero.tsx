@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   const bgRef = useRef<HTMLDivElement | null>(null);
@@ -76,9 +77,9 @@ export function Hero() {
             transition: "all 0.6s ease 0.45s",
           }}
         >
-          <a href="#projects" className="btn-light">
+          <Link to="/projects" className="btn-light">
             Explore Our Projects <span>→</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
