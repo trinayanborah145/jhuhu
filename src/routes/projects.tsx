@@ -36,11 +36,10 @@ const projects: Project[] = [
   { id: 4, name: "G+1 Building", location: "Golaghat", type: "Residential", route: "/projects/g1-golaghat", image: "/IMG-20260513-WA0036.jpg" },
   { id: 5, name: "G+1 Building", location: "Golaghat", type: "Residential", route: "/projects/g1-golaghat-2", image: "/IMG-20260513-WA0044.jpg" },
   { id: 6, name: "G+2 Building", location: "Kenduguri", type: "Residential", route: "/projects/g2-kenduguri", image: "/IMG-20260513-WA0042 (1).jpg" },
-  { id: 7, name: "G+1 Building", location: "Koronga", type: "Residential", route: "/projects/g1-koronga" },
-  { id: 8, name: "G+2 Building", location: "Macharhat", type: "Residential", route: "/projects/g2-macharhat", image: "/IMG-20260513-WA0034.jpg" },
-  { id: 9, name: "G+4 Commercial Complex", location: "Jorhat Town", type: "Commercial", route: "/projects/g4-jorhat", image: "/IMG-20260513-WA0038.jpg" },
-  { id: 10, name: "Assam Type House", location: "Lichubari", type: "Residential", route: "/projects/assam-type-lichubari", image: "/IMG-20260513-WA0027.jpg" },
-  { id: 11, name: "G+2 Building", location: "Garmur", type: "Residential", route: "/projects/g2-garmur" },
+  { id: 7, name: "G+2 Building", location: "Macharhat", type: "Residential", route: "/projects/g2-macharhat", image: "/IMG-20260513-WA0034.jpg" },
+  { id: 8, name: "G+4 Commercial Complex", location: "Jorhat Town", type: "Commercial", route: "/projects/g4-jorhat", image: "/IMG-20260513-WA0038.jpg" },
+  { id: 9, name: "Assam Type House", location: "Lichubari", type: "Residential", route: "/projects/assam-type-lichubari", image: "/IMG-20260513-WA0027.jpg" },
+  { id: 10, name: "G+2 Building", location: "Garmur", type: "Residential", route: "/projects/g2-garmur" },
 ];
 
 function Projects() {
