@@ -177,7 +177,7 @@ export function PropertySearch() {
                 value={bedrooms}
                 onChange={setBedrooms}
               />
-              <div>
+              <div className="w-full">
                 <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--text-muted)] mb-3">
                   Budget · {formatBudget(budget)}
                 </div>
@@ -227,6 +227,7 @@ export function PropertySearch() {
             padding: 16px !important;
             max-width: 100% !important;
             overflow: hidden !important;
+            box-sizing: border-box !important;
           }
 
           .property-tabs-row {
@@ -258,17 +259,20 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 8px 16px !important;
+            padding: 12px 16px !important;
             font-size: 10px !important;
-            white-space: normal !important;
-            word-break: break-word !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
             width: 100% !important;
             max-width: 100% !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 8px !important;
             height: auto !important;
-            min-height: 36px !important;
+            min-height: 56px !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"] {
@@ -277,6 +281,12 @@ export function PropertySearch() {
             height: 4px !important;
             padding: 0 !important;
             margin: 0 !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"]::-webkit-slider-thumb {
@@ -294,6 +304,7 @@ export function PropertySearch() {
           .property-filter-card {
             padding: 12px !important;
             margin: 0 !important;
+            box-sizing: border-box !important;
           }
 
           .property-tabs-row {
@@ -311,18 +322,29 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 6px 12px !important;
+            padding: 10px 12px !important;
             font-size: 9px !important;
             letter-spacing: 0.08em !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 6px !important;
             height: auto !important;
-            min-height: 32px !important;
+            min-height: 52px !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"] {
             height: 3px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"]::-webkit-slider-thumb {
@@ -339,6 +361,7 @@ export function PropertySearch() {
         @media (max-width: 390px) {
           .property-filter-card {
             padding: 10px !important;
+            box-sizing: border-box !important;
           }
 
           .property-tabs-row button {
@@ -352,17 +375,28 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 5px 10px !important;
+            padding: 8px 10px !important;
             font-size: 8px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 5px !important;
             height: auto !important;
-            min-height: 30px !important;
+            min-height: 48px !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"] {
             height: 3px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"]::-webkit-slider-thumb {
@@ -376,9 +410,62 @@ export function PropertySearch() {
           }
         }
 
+        @media (max-width: 414px) {
+          .property-filter-card {
+            padding: 9px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-tabs-row button {
+            padding: 5px 8px !important;
+            font-size: 7px !important;
+            letter-spacing: 0.07em !important;
+          }
+
+          .property-filters-grid {
+            gap: 7px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 7px 9px !important;
+            font-size: 7px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 4px !important;
+            height: auto !important;
+            min-height: 46px !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+          }
+
+          input[type="range"] {
+            height: 2px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 11px !important;
+            height: 11px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 11px !important;
+            height: 11px !important;
+          }
+        }
+
         @media (max-width: 360px) {
           .property-filter-card {
             padding: 8px !important;
+            box-sizing: border-box !important;
           }
 
           .property-tabs-row button {
@@ -392,17 +479,28 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 4px 8px !important;
+            padding: 6px 8px !important;
             font-size: 7px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 4px !important;
             height: auto !important;
-            min-height: 28px !important;
+            min-height: 44px !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"] {
             height: 2px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"]::-webkit-slider-thumb {
@@ -419,6 +517,7 @@ export function PropertySearch() {
         @media (max-width: 320px) {
           .property-filter-card {
             padding: 6px !important;
+            box-sizing: border-box !important;
           }
 
           .property-tabs-row button {
@@ -432,17 +531,28 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 4px 6px !important;
+            padding: 5px 6px !important;
             font-size: 6px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 3px !important;
             height: auto !important;
-            min-height: 26px !important;
+            min-height: 40px !important;
+            white-space: nowrap !important;
+            word-break: normal !important;
+            display: flex !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"] {
             height: 2px !important;
+            box-sizing: border-box !important;
+          }
+
+          .property-filters-grid > div:last-child {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
 
           input[type="range"]::-webkit-slider-thumb {
