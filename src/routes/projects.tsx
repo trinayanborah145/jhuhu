@@ -43,6 +43,7 @@ const projects: Project[] = [
 function Projects() {
   useSmoothScroll();
   const [isVisible, setIsVisible] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -134,13 +135,14 @@ function Projects() {
                 >
                   {/* Image Placeholder */}
                   <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                    {project.image ? (
+                    {project.image && !imageErrors[project.id] ? (
                       <img
                         src={project.image}
                         alt={project.name}
                         className="w-full h-full object-cover"
                         loading="lazy"
                         decoding="async"
+                        onError={() => setImageErrors(prev => ({ ...prev, [project.id]: true }))}
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">

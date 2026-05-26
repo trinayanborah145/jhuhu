@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 export function PageLoader() {
   const [loaderVisible, setLoaderVisible] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -113,11 +114,29 @@ export function PageLoader() {
       `}} />
 
       <div className="page-loader-content">
-        <img
-          src="/431137390_909527687630657_177047404084965694_n (1).jpg"
-          alt="Sukrit Infrastructure Logo"
-          className="page-loader-logo"
-        />
+        {imageError ? (
+          <div className="page-loader-logo" style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: '48px',
+            fontWeight: '500',
+            color: '#FFFFFF',
+            letterSpacing: '0.1em',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            borderRadius: '8px',
+          }}>
+            SI
+          </div>
+        ) : (
+          <img
+            src="/431137390_909527687630657_177047404084965694_n (1).jpg"
+            alt="Sukrit Infrastructure Logo"
+            className="page-loader-logo"
+            onError={() => setImageError(true)}
+          />
+        )}
         <div className="page-loader-brand">SUKRIT INFRASTRUCTURE PVT LTD</div>
       </div>
     </div>

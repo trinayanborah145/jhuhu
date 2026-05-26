@@ -3,6 +3,7 @@ import path from "path";
 
 const clientDir = path.resolve("dist/client");
 const distDir = path.resolve("dist");
+const publicDir = path.resolve("public");
 
 function copyRecursiveSync(src, dest) {
   const exists = fs.existsSync(src);
@@ -38,4 +39,21 @@ if (fs.existsSync(clientDir)) {
   console.log("Postbuild static setup complete! dist/ is now the static root.");
 } else {
   console.error("dist/client does not exist.");
+}
+
+// Copy public folder assets to dist
+if (fs.existsSync(publicDir)) {
+  console.log("Copying public folder assets to dist...");
+  fs.readdirSync(publicDir).forEach((file) => {
+    const srcPath = path.join(publicDir, file);
+    const destPath = path.join(distDir, file);
+    // Skip _headers file
+    if (file !== "_headers") {
+      copyRecursiveSync(srcPath, destPath);
+      console.log(`Copied: ${file}`);
+    }
+  });
+  console.log("Public folder assets copied to dist!");
+} else {
+  console.error("public folder does not exist.");
 }
