@@ -381,6 +381,16 @@
 }
 .side-enquire:hover { background: #9a7d2f; }
 
+@media (max-width: 768px) {
+  .side-enquire {
+    width: 32px;
+    padding: 12px 8px;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    right: 0;
+  }
+}
+
 /* Floating label form */
 .floating-field {
   position: relative;
@@ -504,8 +514,7 @@ header {
     max-width: 100%;
   }
 
-  .enquire-now-floating-tab,
-  .side-enquire {
+  .enquire-now-floating-tab {
     display: none;
   }
 
@@ -776,6 +785,63 @@ header {
   [class*="full-height"] {
     height: 100svh;
     min-height: 100svh;
+  }
+
+  /* FIX 16 — PROPERTY SEARCH SECTION SPECIFIC FOR 20:9 ASPECT RATIO */
+  section[class*="PropertySearch"],
+  [class*="property-search"] {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+
+  .filter-card,
+  .filter-box,
+  [class*="filter-card"],
+  [class*="filter-box"],
+  .bg-white.border {
+    padding: 16px !important;
+  }
+
+  .filter-card h2,
+  .filter-box h2,
+  [class*="filter-card"] h2,
+  [class*="filter-box"] h2 {
+    font-size: 24px !important;
+  }
+
+  .filter-tabs-container,
+  .tabs-row,
+  [class*="tab-row"],
+  [class*="tabs"],
+  .flex.gap-8.border-b {
+    gap: 16px !important;
+  }
+
+  .filter-tab,
+  .tab-item,
+  [class*="tab-item"],
+  [class*="filter-tab"],
+  .relative.pb-4.text-\\[12px\\] {
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+  }
+
+  .filter-row,
+  .filter-grid,
+  [class*="filter-row"],
+  [class*="filter-grid"],
+  .grid.grid-cols-1.md\\:grid-cols-3.gap-6,
+  .grid.grid-cols-1.md\\:grid-cols-2.gap-8 {
+    gap: 12px !important;
+  }
+
+  .whatsapp-cta,
+  .enquire-btn,
+  [class*="whatsapp"],
+  [class*="enquire-btn"],
+  #property-search-whatsapp-cta {
+    padding: 12px 16px !important;
+    font-size: 10px !important;
   }
 }
 
