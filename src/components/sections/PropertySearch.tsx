@@ -203,14 +203,14 @@ export function PropertySearch() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group property-whatsapp-btn"
+              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group property-whatsapp-btn"
             >
               <MessageCircle
                 size={16}
-                className="transition-transform duration-300 group-hover:scale-110 flex-shrink-0"
+                className="transition-transform duration-300 group-hover:scale-110"
               />
-              <span className="text-center flex-1">Enquire on WhatsApp</span>
-              <span className="group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0">→</span>
+              <span>Enquire on WhatsApp</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </a>
 
             {/* Subtle note */}
