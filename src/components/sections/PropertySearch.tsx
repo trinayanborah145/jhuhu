@@ -272,6 +272,19 @@ export function PropertySearch() {
           input[type="range"] {
             width: 100% !important;
             max-width: 100% !important;
+            height: 4px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 16px !important;
+            height: 16px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 16px !important;
+            height: 16px !important;
           }
         }
 
@@ -303,6 +316,20 @@ export function PropertySearch() {
             justify-content: center !important;
             gap: 6px !important;
           }
+
+          input[type="range"] {
+            height: 3px !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 14px !important;
+            height: 14px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 14px !important;
+            height: 14px !important;
+          }
         }
 
         @media (max-width: 390px) {
@@ -326,6 +353,20 @@ export function PropertySearch() {
             text-align: center !important;
             justify-content: center !important;
             gap: 5px !important;
+          }
+
+          input[type="range"] {
+            height: 3px !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 12px !important;
+            height: 12px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 12px !important;
+            height: 12px !important;
           }
         }
 
@@ -351,6 +392,20 @@ export function PropertySearch() {
             justify-content: center !important;
             gap: 4px !important;
           }
+
+          input[type="range"] {
+            height: 2px !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 10px !important;
+            height: 10px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 10px !important;
+            height: 10px !important;
+          }
         }
 
         @media (max-width: 320px) {
@@ -374,6 +429,20 @@ export function PropertySearch() {
             text-align: center !important;
             justify-content: center !important;
             gap: 3px !important;
+          }
+
+          input[type="range"] {
+            height: 2px !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 8px !important;
+            height: 8px !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 8px !important;
+            height: 8px !important;
           }
         }
       `}</style>
