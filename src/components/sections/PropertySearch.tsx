@@ -258,7 +258,7 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 12px 16px !important;
+            padding: 8px 16px !important;
             font-size: 10px !important;
             white-space: normal !important;
             word-break: break-word !important;
@@ -267,6 +267,8 @@ export function PropertySearch() {
             text-align: center !important;
             justify-content: center !important;
             gap: 8px !important;
+            height: auto !important;
+            min-height: 36px !important;
           }
 
           input[type="range"] {
@@ -309,12 +311,14 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 10px 12px !important;
+            padding: 6px 12px !important;
             font-size: 9px !important;
             letter-spacing: 0.08em !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 6px !important;
+            height: auto !important;
+            min-height: 32px !important;
           }
 
           input[type="range"] {
@@ -348,11 +352,13 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 8px 10px !important;
+            padding: 5px 10px !important;
             font-size: 8px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 5px !important;
+            height: auto !important;
+            min-height: 30px !important;
           }
 
           input[type="range"] {
@@ -386,11 +392,13 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 6px 8px !important;
+            padding: 4px 8px !important;
             font-size: 7px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 4px !important;
+            height: auto !important;
+            min-height: 28px !important;
           }
 
           input[type="range"] {
@@ -424,11 +432,13 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 5px 6px !important;
+            padding: 4px 6px !important;
             font-size: 6px !important;
             text-align: center !important;
             justify-content: center !important;
             gap: 3px !important;
+            height: auto !important;
+            min-height: 26px !important;
           }
 
           input[type="range"] {
