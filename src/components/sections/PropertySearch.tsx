@@ -122,14 +122,14 @@ export function PropertySearch() {
 
         {/* Right filter card */}
         <div className="lg:col-span-7 reveal">
-          <div className="bg-white border border-[var(--divider)] p-8 lg:p-10">
+          <div className="bg-white border border-[var(--divider)] p-8 lg:p-10 property-filter-card">
             {/* Tabs */}
-            <div className="flex gap-8 border-b border-[var(--divider)]">
+            <div className="flex gap-8 border-b border-[var(--divider)] property-tabs-row overflow-x-auto overflow-y-hidden -webkit-overflow-scrolling: touch scrollbar-hide">
               {tabs.map((t, i) => (
                 <button
                   key={t}
                   onClick={() => handleTabChange(i)}
-                  className={`relative pb-4 text-[12px] uppercase tracking-[0.25em] font-medium transition-colors ${
+                  className={`relative pb-4 text-[12px] uppercase tracking-[0.25em] font-medium transition-colors flex-shrink-0 whitespace-nowrap ${
                     tab === i
                       ? "text-[var(--text-soft)]"
                       : "text-[var(--text-muted)]"
@@ -144,7 +144,7 @@ export function PropertySearch() {
             </div>
 
             {/* Filters row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 property-filters-grid">
               <Selector
                 icon={<Building2 size={16} />}
                 label="Project Type"
@@ -169,7 +169,7 @@ export function PropertySearch() {
             </div>
 
             {/* Filters row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 property-filters-grid">
               <Selector
                 icon={<BedDouble size={16} />}
                 label="Bedrooms"
@@ -203,7 +203,7 @@ export function PropertySearch() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group"
+              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group property-whatsapp-btn"
             >
               <MessageCircle
                 size={16}
@@ -220,6 +220,66 @@ export function PropertySearch() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .property-filter-card {
+            padding: 16px !important;
+          }
+
+          .property-tabs-row {
+            gap: 16px !important;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+
+          .property-tabs-row::-webkit-scrollbar {
+            display: none;
+          }
+
+          .property-tabs-row button {
+            padding: 8px 12px !important;
+            font-size: 9px !important;
+            letter-spacing: 0.15em !important;
+          }
+
+          .property-filters-grid {
+            gap: 12px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 12px 16px !important;
+            font-size: 10px !important;
+            white-space: normal !important;
+            word-break: break-word !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .property-filter-card {
+            padding: 12px !important;
+          }
+
+          .property-tabs-row {
+            gap: 12px !important;
+          }
+
+          .property-tabs-row button {
+            padding: 6px 10px !important;
+            font-size: 8px !important;
+            letter-spacing: 0.12em !important;
+          }
+
+          .property-filters-grid {
+            gap: 10px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 10px 14px !important;
+            font-size: 9px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
