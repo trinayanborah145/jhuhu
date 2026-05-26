@@ -18,7 +18,8 @@ const WHATSAPP_NUMBER = "919101002790";
 // Helper function to convert slider value to budget string
 function formatBudget(sliderValue: number): string {
   if (sliderValue < 1) {
-    return `₹${(sliderValue * 100000).toLocaleString('en-IN')} Lakh`;
+    const lakhs = Math.round(sliderValue * 100);
+    return `₹${lakhs.toLocaleString('en-IN')} Lakh`;
   } else {
     return `₹${sliderValue} Cr`;
   }
@@ -89,7 +90,7 @@ function Selector({
 /* ─── Main Component ─── */
 export function PropertySearch() {
   const [tab, setTab] = useState(0);
-  const [budget, setBudget] = useState(5);
+  const [budget, setBudget] = useState(0.5);
 
   // Controlled filter state
   const [propertyType, setPropertyType] = useState("Residential");
@@ -182,9 +183,9 @@ export function PropertySearch() {
                 </div>
                 <input
                   type="range"
-                  min={0.1}
+                  min={0.01}
                   max={10}
-                  step={0.1}
+                  step={0.01}
                   value={budget}
                   onChange={(e) => setBudget(Number(e.target.value))}
                   className="w-full accent-[var(--gold)]"
