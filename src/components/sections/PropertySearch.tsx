@@ -15,6 +15,15 @@ const assamDistricts = [
 
 const WHATSAPP_NUMBER = "919101002790";
 
+// Helper function to convert slider value to budget string
+function formatBudget(sliderValue: number): string {
+  if (sliderValue < 1) {
+    return `₹${(sliderValue * 100000).toLocaleString('en-IN')} Lakh`;
+  } else {
+    return `₹${sliderValue} Cr`;
+  }
+}
+
 function buildWhatsAppUrl(
   propertyType: string,
   location: string,
@@ -29,7 +38,7 @@ function buildWhatsAppUrl(
     `📍 *District:*       ${location}`,
     `🛏️ *Bedrooms:*      ${bedrooms}`,
     `🏗️ *Status:*         ${status}`,
-    `💰 *Budget:*         ₹${budget} Cr`,
+    `💰 *Budget:*         ${formatBudget(budget)}`,
     "",
     "Please share available properties matching the above criteria.",
   ];
@@ -80,7 +89,7 @@ function Selector({
 /* ─── Main Component ─── */
 export function PropertySearch() {
   const [tab, setTab] = useState(0);
-  const [budget, setBudget] = useState(50);
+  const [budget, setBudget] = useState(5);
 
   // Controlled filter state
   const [propertyType, setPropertyType] = useState("Residential");
@@ -169,19 +178,20 @@ export function PropertySearch() {
               />
               <div>
                 <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--text-muted)] mb-3">
-                  Budget · ₹{budget} Cr
+                  Budget · {formatBudget(budget)}
                 </div>
                 <input
                   type="range"
-                  min={0}
-                  max={100}
+                  min={0.1}
+                  max={10}
+                  step={0.1}
                   value={budget}
                   onChange={(e) => setBudget(Number(e.target.value))}
                   className="w-full accent-[var(--gold)]"
                 />
                 <div className="flex justify-between text-[11px] text-[var(--text-muted)] mt-2">
-                  <span>₹0</span>
-                  <span>₹100 Cr</span>
+                  <span>₹1 Lakh</span>
+                  <span>₹10 Cr</span>
                 </div>
               </div>
             </div>
