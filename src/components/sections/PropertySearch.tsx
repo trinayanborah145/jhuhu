@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Building2, MapPin, HardHat, BedDouble, MessageCircle } from "lucide-react";
 
-const tabs = ["Residential", "Commercial", "Resi Commercial", "Assam Type"];
+const tabs = ["Filter Out Your Needs"];
 
 const assamDistricts = [
   "Baksa", "Barpeta", "Biswanath", "Bongaigaon", "Cachar", "Charaideo",
@@ -203,14 +203,14 @@ export function PropertySearch() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group property-whatsapp-btn"
+              className="mt-10 w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--charcoal)] text-white text-[12px] uppercase tracking-[0.25em] hover:bg-[#25D366] transition-colors duration-300 group property-whatsapp-btn"
             >
               <MessageCircle
                 size={16}
-                className="transition-transform duration-300 group-hover:scale-110"
+                className="transition-transform duration-300 group-hover:scale-110 flex-shrink-0"
               />
-              24 Projects Found — Enquire on WhatsApp
-              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+              <span className="text-center flex-1">Enquire on WhatsApp</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0">→</span>
             </a>
 
             {/* Subtle note */}
@@ -264,6 +264,9 @@ export function PropertySearch() {
             word-break: break-word !important;
             width: 100% !important;
             max-width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
           }
 
           input[type="range"] {
@@ -296,6 +299,9 @@ export function PropertySearch() {
             padding: 10px 12px !important;
             font-size: 9px !important;
             letter-spacing: 0.08em !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 6px !important;
           }
         }
 
@@ -317,6 +323,9 @@ export function PropertySearch() {
           .property-whatsapp-btn {
             padding: 8px 10px !important;
             font-size: 8px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 5px !important;
           }
         }
 
@@ -338,6 +347,9 @@ export function PropertySearch() {
           .property-whatsapp-btn {
             padding: 6px 8px !important;
             font-size: 7px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 4px !important;
           }
         }
 
@@ -359,6 +371,9 @@ export function PropertySearch() {
           .property-whatsapp-btn {
             padding: 5px 6px !important;
             font-size: 6px !important;
+            text-align: center !important;
+            justify-content: center !important;
+            gap: 3px !important;
           }
         }
       `}</style>
