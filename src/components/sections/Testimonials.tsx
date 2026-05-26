@@ -306,7 +306,7 @@ export function Testimonials() {
             className="flex"
             style={{
               willChange: "transform",
-              animation: "scrollLeft 20s linear infinite",
+              animation: "scrollLeft 12s linear infinite",
             }}
           >
             {[...row1Cards, ...row1Cards].map((card, index) => renderCard(card, index))}
@@ -325,7 +325,7 @@ export function Testimonials() {
             className="flex"
             style={{
               willChange: "transform",
-              animation: "scrollLeft 28s linear infinite",
+              animation: "scrollLeft 16s linear infinite",
             }}
           >
             {[...row2Cards, ...row2Cards].map((card, index) => renderCard(card, index))}
@@ -343,10 +343,79 @@ export function Testimonials() {
 
         @media (max-width: 768px) {
           section h2 {
-            font-size: 36px !important;
+            font-size: 28px !important;
           }
+
           .flex-shrink-0 {
-            width: 280px !important;
+            width: 260px !important;
+            minHeight: 180px !important;
+            padding: 20px !important;
+            marginRight: 12px !important;
+          }
+
+          .flex-shrink-0 .w-10 {
+            width: 32px !important;
+            height: 32px !important;
+            font-size: 11px !important;
+          }
+
+          .flex-shrink-0 .text-\\[15px\\] {
+            font-size: 13px !important;
+          }
+
+          .flex-shrink-0 .text-\\[12px\\] {
+            font-size: 10px !important;
+          }
+
+          .flex-shrink-0 .text-\\[14px\\] {
+            font-size: 12px !important;
+          }
+
+          .flex-shrink-0 p {
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+          }
+
+          /* Faster scroll on mobile */
+          .overflow-hidden .flex {
+            animation-duration: 8s !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .flex-shrink-0 {
+            width: 240px !important;
+            minHeight: 160px !important;
+            padding: 16px !important;
+            marginRight: 10px !important;
+          }
+
+          .flex-shrink-0 .w-10 {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 10px !important;
+          }
+
+          .flex-shrink-0 .text-\\[15px\\] {
+            font-size: 12px !important;
+          }
+
+          .flex-shrink-0 .text-\\[12px\\] {
+            font-size: 9px !important;
+          }
+
+          .flex-shrink-0 .text-\\[14px\\] {
+            font-size: 11px !important;
+          }
+
+          .flex-shrink-0 p {
+            font-size: 11px !important;
+            line-height: 1.4 !important;
+          }
+
+          /* Even faster scroll on small mobile */
+          .overflow-hidden .flex {
+            animation-duration: 6s !important;
           }
         }
       `}</style>
