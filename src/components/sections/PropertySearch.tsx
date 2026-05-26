@@ -107,8 +107,8 @@ export function PropertySearch() {
   const whatsappUrl = buildWhatsAppUrl(propertyType, location, status, bedrooms, budget);
 
   return (
-    <section className="py-[120px] px-6 lg:px-12 bg-[var(--ivory)]">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="py-[120px] px-6 lg:px-12 bg-[var(--ivory)] overflow-x-hidden">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center overflow-x-hidden">
         {/* Left text */}
         <div className="lg:col-span-5 reveal">
           <span className="eyebrow eyebrow-line">Discover</span>
@@ -225,12 +225,19 @@ export function PropertySearch() {
         @media (max-width: 768px) {
           .property-filter-card {
             padding: 16px !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
           }
 
           .property-tabs-row {
-            gap: 16px !important;
+            gap: 12px !important;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            -webkit-overflow-scrolling: touch !important;
+            scroll-snap-type: x mandatory !important;
+            padding-bottom: 4px !important;
           }
 
           .property-tabs-row::-webkit-scrollbar {
@@ -238,9 +245,12 @@ export function PropertySearch() {
           }
 
           .property-tabs-row button {
-            padding: 8px 12px !important;
+            padding: 8px 14px !important;
             font-size: 9px !important;
-            letter-spacing: 0.15em !important;
+            letter-spacing: 0.12em !important;
+            flex-shrink: 0 !important;
+            scroll-snap-align: start !important;
+            min-width: fit-content !important;
           }
 
           .property-filters-grid {
@@ -252,22 +262,30 @@ export function PropertySearch() {
             font-size: 10px !important;
             white-space: normal !important;
             word-break: break-word !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+
+          input[type="range"] {
+            width: 100% !important;
+            max-width: 100% !important;
           }
         }
 
         @media (max-width: 480px) {
           .property-filter-card {
             padding: 12px !important;
+            margin: 0 !important;
           }
 
           .property-tabs-row {
-            gap: 12px !important;
+            gap: 8px !important;
           }
 
           .property-tabs-row button {
             padding: 6px 10px !important;
             font-size: 8px !important;
-            letter-spacing: 0.12em !important;
+            letter-spacing: 0.1em !important;
           }
 
           .property-filters-grid {
@@ -275,8 +293,72 @@ export function PropertySearch() {
           }
 
           .property-whatsapp-btn {
-            padding: 10px 14px !important;
+            padding: 10px 12px !important;
             font-size: 9px !important;
+            letter-spacing: 0.08em !important;
+          }
+        }
+
+        @media (max-width: 390px) {
+          .property-filter-card {
+            padding: 10px !important;
+          }
+
+          .property-tabs-row button {
+            padding: 5px 8px !important;
+            font-size: 7px !important;
+            letter-spacing: 0.08em !important;
+          }
+
+          .property-filters-grid {
+            gap: 8px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 8px 10px !important;
+            font-size: 8px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .property-filter-card {
+            padding: 8px !important;
+          }
+
+          .property-tabs-row button {
+            padding: 4px 6px !important;
+            font-size: 7px !important;
+            letter-spacing: 0.06em !important;
+          }
+
+          .property-filters-grid {
+            gap: 6px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 6px 8px !important;
+            font-size: 7px !important;
+          }
+        }
+
+        @media (max-width: 320px) {
+          .property-filter-card {
+            padding: 6px !important;
+          }
+
+          .property-tabs-row button {
+            padding: 3px 5px !important;
+            font-size: 6px !important;
+            letter-spacing: 0.05em !important;
+          }
+
+          .property-filters-grid {
+            gap: 4px !important;
+          }
+
+          .property-whatsapp-btn {
+            padding: 5px 6px !important;
+            font-size: 6px !important;
           }
         }
       `}</style>
