@@ -44,100 +44,60 @@ export function PageLoader() {
           align-items: center;
         }
 
-        .page-loader-box {
+        .page-loader-logo {
           width: 120px;
           height: 120px;
-          border: 2px solid rgba(255, 255, 255, 0.15);
-          background: transparent;
-          position: relative;
-          overflow: hidden;
-          animation: borderReveal 0.5s ease forwards;
+          object-fit: contain;
           opacity: 0;
-          transform: scale(0.85);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          animation: logoFadeIn 2.5s ease forwards;
+          animation-delay: 0.5s;
         }
 
         @media (max-width: 768px) {
-          .page-loader-box {
+          .page-loader-logo {
             width: 100px;
             height: 100px;
           }
         }
 
-        .page-loader-fill {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 0%;
-          background: #FFFFFF;
-          animation: fillBox 2.8s cubic-bezier(0.45, 0.05, 0.15, 1.0) forwards;
-          animation-delay: 0.4s;
-        }
-
-        .page-loader-initials {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 36px;
-          font-weight: 500;
-          color: #000000;
-          position: absolute;
-          letter-spacing: 0.08em;
-          opacity: 0;
-          transform: translateY(8px);
-          animation: textReveal 0.4s ease forwards;
-          animation-delay: 3.0s;
-          z-index: 2;
-        }
-
-        @media (max-width: 768px) {
-          .page-loader-initials {
-            font-size: 28px;
-          }
-        }
-
         .page-loader-brand {
-          margin-top: 20px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 10px;
+          margin-top: 24px;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 14px;
           text-transform: uppercase;
           text-align: center;
           color: rgba(255, 255, 255, 0);
-          letter-spacing: 0.5em;
-          animation: brandNameReveal 0.8s ease forwards;
-          animation-delay: 3.0s;
+          letter-spacing: 0.3em;
+          animation: brandNameReveal 1.5s ease forwards;
+          animation-delay: 1.5s;
         }
 
         @media (max-width: 768px) {
           .page-loader-brand {
-            font-size: 9px;
+            font-size: 11px;
+            letter-spacing: 0.2em;
           }
         }
 
-        @keyframes borderReveal {
-          0% { opacity: 0; transform: scale(0.85); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fillBox {
-          0% { height: 0%; opacity: 1; }
-          100% { height: 100%; opacity: 1; }
-        }
-
-        @keyframes textReveal {
-          0% { opacity: 0; transform: translateY(8px); }
-          100% { opacity: 1; transform: translateY(0); }
+        @keyframes logoFadeIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
         }
 
         @keyframes brandNameReveal {
           0% {
             color: rgba(255,255,255,0);
-            letter-spacing: 0.5em;
+            transform: translateY(10px);
           }
           100% {
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.8);
+            transform: translateY(0);
           }
         }
 
@@ -153,11 +113,12 @@ export function PageLoader() {
       `}} />
 
       <div className="page-loader-content">
-        <div className="page-loader-box">
-          <div className="page-loader-fill"></div>
-          <div className="page-loader-initials">SI</div>
-        </div>
-        <div className="page-loader-brand">SUKRIT INFRASTRUCTURE</div>
+        <img
+          src="/431137390_909527687630657_177047404084965694_n (1).jpg"
+          alt="Sukrit Infrastructure Logo"
+          className="page-loader-logo"
+        />
+        <div className="page-loader-brand">SUKRIT INFRASTRUCTURE PVT LTD</div>
       </div>
     </div>
   );
