@@ -131,7 +131,7 @@ export function PageLoader() {
           </div>
         ) : (
           <img
-            src="/431137390_909527687630657_177047404084965694_n (1).jpg"
+            src="/sukrit-logo.jpg"
             alt="Sukrit Infrastructure Logo"
             className="page-loader-logo"
             onError={() => setImageError(true)}
