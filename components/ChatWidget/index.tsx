@@ -9,12 +9,14 @@ interface ChatWidgetProps {
   companyName: string;
   companyPhone: string;
   ownerName: string;
+  embedMode?: boolean;
 }
 
 export default function ChatWidget({
   companyName,
   companyPhone,
   ownerName,
+  embedMode = false,
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -112,14 +114,17 @@ export default function ChatWidget({
     }
   }, [isOpen, hasGreeted, conversationId, companyName]);
 
-  const handleOpenToggle = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('Button clicked, current isOpen:', isOpen);
-    alert('Button clicked! isOpen: ' + isOpen);
-    setIsOpen(!isOpen);
-    if (showBadge) {
-      setShowBadge(false);
+  const handleOpenToggle = () => {
+    console.log('Chat button clicked');
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    setShowBadge(false);
+    // In embed mode, notify parent page to resize the iframe
+    if (embedMode && typeof window !== 'undefined' && window.parent !== window) {
+      window.parent.postMessage(
+        { type: nextOpen ? 'chat-open' : 'chat-closed' },
+        '*'
+      );
     }
   };
 
@@ -189,12 +194,23 @@ export default function ChatWidget({
 
   return (
     <div className="font-sans">
-      {/* Floating Chat Bubble Button */}
+      {/* Debug: Show current state */}
+      <div style={{ position: 'fixed', top: '10px', right: '10px', background: 'red', color: 'white', padding: '5px', zIndex: 100000, fontSize: '12px' }}>
+        isOpen: {isOpen.toString()}
+      </div>
+
+      {/* Floating Chat Bubble Button - TEMPORARILY MOVED TO CENTER FOR TESTING */}
       <button
-        onClick={handleOpenToggle}
-        className={`fixed bottom-6 right-6 w-[60px] h-[60px] rounded-full bg-[#1a1a2e] text-white flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 z-[9999] pointer-events-auto cursor-pointer ${
-          !isOpen ? 'animate-pulse-once' : 'rotate-90'
-        }`}
+        onClick={() => {
+          console.log('Button clicked, current isOpen:', isOpen);
+          const newState = !isOpen;
+          console.log('Setting isOpen to:', newState);
+          setIsOpen(newState);
+          setShowBadge(false);
+        }}
+        onMouseDown={() => console.log('Mouse down')}
+        onMouseUp={() => console.log('Mouse up')}
+        className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-2xl z-[100000] cursor-pointer"
         aria-label={isOpen ? 'Close assistant chat' : 'Open assistant chat'}
         type="button"
       >
@@ -262,7 +278,12 @@ export default function ChatWidget({
             </div>
             {/* Mobile close button */}
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                if (embedMode && typeof window !== 'undefined' && window.parent !== window) {
+                  window.parent.postMessage({ type: 'chat-closed' }, '*');
+                }
+              }}
               className="md:hidden text-slate-300 hover:text-white p-1"
               aria-label="Minimize chat"
             >
