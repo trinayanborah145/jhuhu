@@ -108,7 +108,104 @@ export function AIChatbot() {
   };
 
   const generateResponse = async (userText: string): Promise<string> => {
-    // Lead capture flow
+    const lowerText = userText.toLowerCase();
+    
+    // Check if user is asking general questions - use AI for these
+    const isGeneralQuestion = 
+      lowerText.includes('what') || 
+      lowerText.includes('how') || 
+      lowerText.includes('why') || 
+      lowerText.includes('when') ||
+      lowerText.includes('where') ||
+      lowerText.includes('who') ||
+      lowerText.includes('can you') ||
+      lowerText.includes('do you') ||
+      lowerText.includes('are you') ||
+      lowerText.includes('tell me') ||
+      lowerText.includes('explain') ||
+      lowerText.includes('services') ||
+      lowerText.includes('projects') ||
+      lowerText.includes('about') ||
+      lowerText.includes('help') ||
+      lowerText.includes('open') ||
+      lowerText.includes('available') ||
+      lowerText.includes('contact') ||
+      lowerText.includes('price') ||
+      lowerText.includes('cost') ||
+      lowerText.includes('location') ||
+      lowerText.includes('area') ||
+      lowerText.includes('residential') ||
+      lowerText.includes('commercial') ||
+      lowerText.includes('renovation');
+
+    // If it's a general question, use AI regardless of lead capture state
+    if (isGeneralQuestion && currentQuestion < 6) {
+      try {
+        const prompt = `
+You are Rahul, a friendly and professional customer assistant for Sukrit Infrastructure Pvt Ltd.
+
+COMPANY CONTEXT:
+${KNOWLEDGE_BASE}
+
+RESPONSE GUIDELINES:
+- Be friendly, professional, helpful, short, and natural
+- Never sound robotic
+- Use phrases like: "Certainly", "I'd be happy to help", "Thanks for sharing that", "Great choice", "Let me help you with that"
+- If uncertain about specific details: "Our team will confirm the exact details after reviewing your requirements"
+- Never generate fake pricing or guarantees
+- Keep responses concise and conversational
+- Focus on quality, trust, and expertise
+- Answer the question directly and helpfully
+
+USER QUESTION: ${userText}
+
+Provide a helpful, human-like response based on the company information above.
+`;
+
+        const chat = model.startChat({
+          history: conversationHistory,
+          generationConfig: {
+            maxOutputTokens: 500,
+            temperature: 0.7,
+          },
+        });
+
+        const result = await chat.sendMessage(prompt);
+        const response = result.response.text();
+
+        // Update conversation history
+        setConversationHistory(prev => [
+          ...prev,
+          { role: 'user', parts: userText },
+          { role: 'model', parts: response }
+        ]);
+
+        return response;
+      } catch (error) {
+        console.error('Gemini API error:', error);
+        
+        // Fallback to rule-based responses
+        if (lowerText.includes('open') || lowerText.includes('available')) {
+          return "Yes, we're open and ready to help! Our team is available to discuss your construction needs. Feel free to ask about our services or projects.";
+        }
+        
+        if (lowerText.includes('services')) {
+          return "We offer comprehensive construction services including residential and commercial building, renovation, interior design, consulting, and more. What specific service are you interested in?";
+        }
+        
+        if (lowerText.includes('projects')) {
+          return "We have completed numerous projects across Assam including G+1, G+2, and G+4 buildings in locations like Jorhat, Golaghat, Gormur, and more. Would you like to know about any specific project type?";
+        }
+        
+        if (lowerText.includes('about')) {
+          return "Sukrit Infrastructure Pvt Ltd was established in 2018. We're a trusted real estate development company with 8+ years of experience crafting landmark spaces across Assam with uncompromising quality.";
+        }
+
+        return "I'd be happy to help with that. Our team specializes in premium construction services across Assam. What specific information would you like?";
+      }
+    }
+
+    // Lead capture flow - only if not a general question
     if (currentQuestion === 0) {
       setCurrentQuestion(1);
       setLeadData((prev) => ({ ...prev, name: userText }));
@@ -145,7 +242,7 @@ export function AIChatbot() {
       return "Thank you for providing all the details! Our team will review your requirements and get back to you shortly. Is there anything else I can help you with?";
     }
 
-    // Use Gemini AI for general queries
+    // After lead capture is complete, use AI for follow-up questions
     try {
       const prompt = `
 You are Rahul, a friendly and professional customer assistant for Sukrit Infrastructure Pvt Ltd.
@@ -190,8 +287,6 @@ Provide a helpful, human-like response based on the company information above.
       console.error('Gemini API error:', error);
       
       // Fallback to rule-based responses if API fails
-      const lowerText = userText.toLowerCase();
-      
       if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
         return "We specialize in premium residential construction including G+1, G+2, and G+4 buildings. Our team delivers quality homes with modern amenities across Assam.";
       }
