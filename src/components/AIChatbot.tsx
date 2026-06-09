@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Minimize2, User, Bot } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { KNOWLEDGE_BASE } from '@/lib/knowledge-base';
 
 interface Message {
   id: string;
@@ -25,8 +27,13 @@ export function AIChatbot() {
   const [isTyping, setIsTyping] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [conversationHistory, setConversationHistory] = useState<{role: string, parts: string}[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Initialize Gemini AI
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
   const questions = [
     { key: 'name', text: "Hi! I'm Rahul, your Sukrit Infrastructure AI assistant. How may I help you today?" },
@@ -77,9 +84,8 @@ export function AIChatbot() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const response = generateResponse(userMessage.text);
+    try {
+      const response = await generateResponse(userMessage.text);
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: response,
@@ -88,12 +94,20 @@ export function AIChatbot() {
       };
       setMessages((prev) => [...prev, assistantMessage]);
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    } catch (error) {
+      console.error('Error generating response:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        text: "I apologize, but I'm having trouble connecting right now. Please try again or contact our team directly.",
+        sender: 'assistant',
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+      setIsTyping(false);
+    }
   };
 
-  const generateResponse = (userText: string): string => {
-    const lowerText = userText.toLowerCase();
-    
+  const generateResponse = async (userText: string): Promise<string> => {
     // Lead capture flow
     if (currentQuestion === 0) {
       setCurrentQuestion(1);
@@ -131,41 +145,87 @@ export function AIChatbot() {
       return "Thank you for providing all the details! Our team will review your requirements and get back to you shortly. Is there anything else I can help you with?";
     }
 
-    // General responses based on keywords
-    if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
-      return "We specialize in premium residential construction including G+1, G+2, and G+4 buildings. Our team delivers quality homes with modern amenities across Assam.";
-    }
-    
-    if (lowerText.includes('commercial') || lowerText.includes('office') || lowerText.includes('shop')) {
-      return "Our commercial construction services include office buildings, retail spaces, and commercial complexes. We ensure functional and aesthetically pleasing designs.";
-    }
-    
-    if (lowerText.includes('renovation') || lowerText.includes('remodel')) {
-      return "We offer comprehensive renovation services to transform your existing spaces. Our team handles everything from planning to execution.";
-    }
-    
-    if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('budget')) {
-      return "Pricing varies based on project requirements, location, and specifications. Our team will provide a detailed quote after reviewing your specific needs.";
-    }
-    
-    if (lowerText.includes('location') || lowerText.includes('area') || lowerText.includes('where')) {
-      return "We primarily serve across Assam including Jorhat, Golaghat, and surrounding areas. Our team can discuss site visits based on your location.";
-    }
-    
-    if (lowerText.includes('contact') || lowerText.includes('reach') || lowerText.includes('call')) {
-      return "You can reach us through our contact form on the website, or call our office directly. We're also available on WhatsApp for quick inquiries.";
-    }
-    
-    if (lowerText.includes('thank')) {
-      return "You're welcome! I'm here to help. Feel free to ask any other questions you might have.";
-    }
-    
-    if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey')) {
-      return "Hello! I'm Rahul, your Sukrit Infrastructure AI assistant. How can I help you today?";
-    }
+    // Use Gemini AI for general queries
+    try {
+      const prompt = `
+You are Rahul, a friendly and professional customer assistant for Sukrit Infrastructure Pvt Ltd.
 
-    // Default response
-    return "I'd be happy to help you with that. Our team will confirm the exact details after reviewing your requirements. Could you please share more specifics about what you're looking for?";
+COMPANY CONTEXT:
+${KNOWLEDGE_BASE}
+
+RESPONSE GUIDELINES:
+- Be friendly, professional, helpful, short, and natural
+- Never sound robotic
+- Use phrases like: "Certainly", "I'd be happy to help", "Thanks for sharing that", "Great choice", "Let me help you with that"
+- If uncertain about specific details: "Our team will confirm the exact details after reviewing your requirements"
+- Never generate fake pricing or guarantees
+- Keep responses concise and conversational
+- Focus on quality, trust, and expertise
+
+USER QUESTION: ${userText}
+
+Provide a helpful, human-like response based on the company information above.
+`;
+
+      const chat = model.startChat({
+        history: conversationHistory,
+        generationConfig: {
+          maxOutputTokens: 500,
+          temperature: 0.7,
+        },
+      });
+
+      const result = await chat.sendMessage(prompt);
+      const response = result.response.text();
+
+      // Update conversation history
+      setConversationHistory(prev => [
+        ...prev,
+        { role: 'user', parts: userText },
+        { role: 'model', parts: response }
+      ]);
+
+      return response;
+    } catch (error) {
+      console.error('Gemini API error:', error);
+      
+      // Fallback to rule-based responses if API fails
+      const lowerText = userText.toLowerCase();
+      
+      if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
+        return "We specialize in premium residential construction including G+1, G+2, and G+4 buildings. Our team delivers quality homes with modern amenities across Assam.";
+      }
+      
+      if (lowerText.includes('commercial') || lowerText.includes('office') || lowerText.includes('shop')) {
+        return "Our commercial construction services include office buildings, retail spaces, and commercial complexes. We ensure functional and aesthetically pleasing designs.";
+      }
+      
+      if (lowerText.includes('renovation') || lowerText.includes('remodel')) {
+        return "We offer comprehensive renovation services to transform your existing spaces. Our team handles everything from planning to execution.";
+      }
+      
+      if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('budget')) {
+        return "Pricing varies based on project requirements, location, and specifications. Our team will provide a detailed quote after reviewing your specific needs.";
+      }
+      
+      if (lowerText.includes('location') || lowerText.includes('area') || lowerText.includes('where')) {
+        return "We primarily serve across Assam including Jorhat, Golaghat, and surrounding areas. Our team can discuss site visits based on your location.";
+      }
+      
+      if (lowerText.includes('contact') || lowerText.includes('reach') || lowerText.includes('call')) {
+        return "You can reach us through our contact form on the website, or call our office directly. We're also available on WhatsApp for quick inquiries.";
+      }
+      
+      if (lowerText.includes('thank')) {
+        return "You're welcome! I'm here to help. Feel free to ask any other questions you might have.";
+      }
+      
+      if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey')) {
+        return "Hello! I'm Rahul, your Sukrit Infrastructure AI assistant. How can I help you today?";
+      }
+
+      return "I'd be happy to help you with that. Our team will confirm the exact details after reviewing your requirements. Could you please share more specifics about what you're looking for?";
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
