@@ -26,23 +26,13 @@ export function AIChatbot() {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [leadData, setLeadData] = useState<LeadData>({});
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [conversationHistory, setConversationHistory] = useState<{role: string, parts: string}[]>([]);
+  const [conversationHistory, setConversationHistory] = useState<{role: string, parts: {text: string}[]}[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize Gemini AI
+  // Initialize Gemini AI with better model for conversations
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-  const questions = [
-    { key: 'name', text: "Hi! I'm Rahul, your Sukrit Infrastructure AI assistant. How may I help you today?" },
-    { key: 'phone', text: "Could you please share your phone number so we can follow up?" },
-    { key: 'city', text: "Which city are you located in?" },
-    { key: 'projectType', text: "What type of project are you looking for? (Residential, Commercial, Renovation, etc.)" },
-    { key: 'budget', text: "What's your approximate budget range?" },
-    { key: 'timeline', text: "When are you planning to start the project?" },
-  ];
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
 
   useEffect(() => {
     // Load conversation from localStorage
@@ -108,219 +98,178 @@ export function AIChatbot() {
   };
 
   const generateResponse = async (userText: string): Promise<string> => {
-    const lowerText = userText.toLowerCase();
-    
-    // Check if user is asking general questions - use AI for these
-    const isGeneralQuestion = 
-      lowerText.includes('what') || 
-      lowerText.includes('how') || 
-      lowerText.includes('why') || 
-      lowerText.includes('when') ||
-      lowerText.includes('where') ||
-      lowerText.includes('who') ||
-      lowerText.includes('can you') ||
-      lowerText.includes('do you') ||
-      lowerText.includes('are you') ||
-      lowerText.includes('tell me') ||
-      lowerText.includes('explain') ||
-      lowerText.includes('services') ||
-      lowerText.includes('projects') ||
-      lowerText.includes('about') ||
-      lowerText.includes('help') ||
-      lowerText.includes('open') ||
-      lowerText.includes('available') ||
-      lowerText.includes('contact') ||
-      lowerText.includes('price') ||
-      lowerText.includes('cost') ||
-      lowerText.includes('location') ||
-      lowerText.includes('area') ||
-      lowerText.includes('residential') ||
-      lowerText.includes('commercial') ||
-      lowerText.includes('renovation');
+    // Build conversation context from message history
+    const recentConversation = messages.slice(-6).map(msg => 
+      `${msg.sender === 'user' ? 'User' : 'Rahul'}: ${msg.text}`
+    ).join('\n');
 
-    // If it's a general question, use AI regardless of lead capture state
-    if (isGeneralQuestion && currentQuestion < 6) {
-      try {
-        const prompt = `
-You are Rahul, a friendly and professional customer assistant for Sukrit Infrastructure Pvt Ltd.
+    // Build lead data context
+    const leadContext = Object.entries(leadData)
+      .filter(([_, value]) => value)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join(', ');
 
-COMPANY CONTEXT:
+    const systemPrompt = `You are Rahul, the official AI assistant of Sukrit Infrastructure Pvt Ltd.
+
+YOUR IDENTITY:
+- You represent Sukrit Infrastructure Pvt Ltd, a premium construction company in Assam, India
+- Established in 2018 with 8+ years of experience
+- You are NOT a generic AI assistant - you are a company representative
+- Never mention being an AI language model or chatbot
+- Always answer from the company's perspective
+
+YOUR PURPOSE:
+- Help website visitors with their construction needs
+- Answer questions about Sukrit Infrastructure's services and projects
+- Guide users through their construction requirements
+- Be professional, friendly, and helpful
+- Naturally collect lead information when appropriate
+
+COMPANY KNOWLEDGE:
 ${KNOWLEDGE_BASE}
 
+CONVERSATION CONTEXT:
+Recent messages:
+${recentConversation}
+
+Lead information collected so far:
+${leadContext || 'None yet'}
+
 RESPONSE GUIDELINES:
-- Be friendly, professional, helpful, short, and natural
-- Never sound robotic
-- Use phrases like: "Certainly", "I'd be happy to help", "Thanks for sharing that", "Great choice", "Let me help you with that"
-- If uncertain about specific details: "Our team will confirm the exact details after reviewing your requirements"
-- Never generate fake pricing or guarantees
-- Keep responses concise and conversational
-- Focus on quality, trust, and expertise
-- Answer the question directly and helpfully
+1. ALWAYS answer the user's actual question FIRST before asking follow-up questions
+2. Be context-aware - remember what the user has already told you
+3. Keep responses concise (2-3 sentences maximum)
+4. Sound natural and human-like, not robotic
+5. Use phrases like: "Certainly", "I'd be happy to help", "Thanks for sharing that", "Great choice", "Let me help you with that"
+6. If uncertain about specific details: "Our team will confirm the exact details after reviewing your requirements"
+7. NEVER generate fake pricing or guarantees
+8. Focus on quality, trust, and expertise
+9. Answer directly and specifically - avoid generic responses
 
-USER QUESTION: ${userText}
+LEAD COLLECTION STRATEGY:
+- After answering their question, naturally guide toward collecting: name, phone, city, project type, budget, timeline
+- Do NOT ask for contact details immediately unless the user explicitly wants to connect
+- Make it feel like a natural conversation, not an interrogation
+- If they mention wanting to connect or discuss their project, that's the right time to ask for contact details
 
-Provide a helpful, human-like response based on the company information above.
-`;
+CURRENT USER MESSAGE: ${userText}
 
-        const chat = model.startChat({
-          history: conversationHistory,
-          generationConfig: {
-            maxOutputTokens: 500,
-            temperature: 0.7,
-          },
-        });
+Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
 
-        const result = await chat.sendMessage(prompt);
-        const response = result.response.text();
-
-        // Update conversation history
-        setConversationHistory(prev => [
-          ...prev,
-          { role: 'user', parts: userText },
-          { role: 'model', parts: response }
-        ]);
-
-        return response;
-      } catch (error) {
-        console.error('Gemini API error:', error);
-        
-        // Fallback to rule-based responses
-        if (lowerText.includes('open') || lowerText.includes('available')) {
-          return "Yes, we're open and ready to help! Our team is available to discuss your construction needs. Feel free to ask about our services or projects.";
-        }
-        
-        if (lowerText.includes('services')) {
-          return "We offer comprehensive construction services including residential and commercial building, renovation, interior design, consulting, and more. What specific service are you interested in?";
-        }
-        
-        if (lowerText.includes('projects')) {
-          return "We have completed numerous projects across Assam including G+1, G+2, and G+4 buildings in locations like Jorhat, Golaghat, Gormur, and more. Would you like to know about any specific project type?";
-        }
-        
-        if (lowerText.includes('about')) {
-          return "Sukrit Infrastructure Pvt Ltd was established in 2018. We're a trusted real estate development company with 8+ years of experience crafting landmark spaces across Assam with uncompromising quality.";
-        }
-
-        return "I'd be happy to help with that. Our team specializes in premium construction services across Assam. What specific information would you like?";
-      }
-    }
-
-    // Lead capture flow - only if not a general question
-    if (currentQuestion === 0) {
-      setCurrentQuestion(1);
-      setLeadData((prev) => ({ ...prev, name: userText }));
-      return "Thanks for sharing that! Could you please share your phone number so we can follow up?";
-    }
-    
-    if (currentQuestion === 1) {
-      setCurrentQuestion(2);
-      setLeadData((prev) => ({ ...prev, phone: userText }));
-      return "Which city are you located in?";
-    }
-    
-    if (currentQuestion === 2) {
-      setCurrentQuestion(3);
-      setLeadData((prev) => ({ ...prev, city: userText }));
-      return "What type of project are you looking for? (Residential, Commercial, Renovation, etc.)";
-    }
-    
-    if (currentQuestion === 3) {
-      setCurrentQuestion(4);
-      setLeadData((prev) => ({ ...prev, projectType: userText }));
-      return "What's your approximate budget range?";
-    }
-    
-    if (currentQuestion === 4) {
-      setCurrentQuestion(5);
-      setLeadData((prev) => ({ ...prev, budget: userText }));
-      return "When are you planning to start the project?";
-    }
-    
-    if (currentQuestion === 5) {
-      setCurrentQuestion(6);
-      setLeadData((prev) => ({ ...prev, timeline: userText }));
-      return "Thank you for providing all the details! Our team will review your requirements and get back to you shortly. Is there anything else I can help you with?";
-    }
-
-    // After lead capture is complete, use AI for follow-up questions
     try {
-      const prompt = `
-You are Rahul, a friendly and professional customer assistant for Sukrit Infrastructure Pvt Ltd.
-
-COMPANY CONTEXT:
-${KNOWLEDGE_BASE}
-
-RESPONSE GUIDELINES:
-- Be friendly, professional, helpful, short, and natural
-- Never sound robotic
-- Use phrases like: "Certainly", "I'd be happy to help", "Thanks for sharing that", "Great choice", "Let me help you with that"
-- If uncertain about specific details: "Our team will confirm the exact details after reviewing your requirements"
-- Never generate fake pricing or guarantees
-- Keep responses concise and conversational
-- Focus on quality, trust, and expertise
-
-USER QUESTION: ${userText}
-
-Provide a helpful, human-like response based on the company information above.
-`;
-
       const chat = model.startChat({
         history: conversationHistory,
         generationConfig: {
-          maxOutputTokens: 500,
-          temperature: 0.7,
+          maxOutputTokens: 300,
+          temperature: 0.8,
+          topP: 0.8,
+          topK: 40,
         },
       });
 
-      const result = await chat.sendMessage(prompt);
+      const result = await chat.sendMessage(systemPrompt);
       const response = result.response.text();
 
-      // Update conversation history
+      // Update conversation history for context
       setConversationHistory(prev => [
         ...prev,
-        { role: 'user', parts: userText },
-        { role: 'model', parts: response }
+        { role: 'user', parts: [{ text: userText }] },
+        { role: 'model', parts: [{ text: response }] }
       ]);
+
+      // Extract and store lead information if mentioned naturally
+      extractLeadInfo(userText, response);
 
       return response;
     } catch (error) {
       console.error('Gemini API error:', error);
       
-      // Fallback to rule-based responses if API fails
-      if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
-        return "We specialize in premium residential construction including G+1, G+2, and G+4 buildings. Our team delivers quality homes with modern amenities across Assam.";
+      // Retry once
+      try {
+        const chat = model.startChat({
+          generationConfig: {
+            maxOutputTokens: 300,
+            temperature: 0.8,
+          },
+        });
+        const result = await chat.sendMessage(systemPrompt);
+        const response = result.response.text();
+        
+        setConversationHistory(prev => [
+          ...prev,
+          { role: 'user', parts: [{ text: userText }] },
+          { role: 'model', parts: [{ text: response }] }
+        ]);
+        
+        extractLeadInfo(userText, response);
+        return response;
+      } catch (retryError) {
+        console.error('Gemini API retry failed:', retryError);
+        return getFallbackResponse(userText);
       }
-      
-      if (lowerText.includes('commercial') || lowerText.includes('office') || lowerText.includes('shop')) {
-        return "Our commercial construction services include office buildings, retail spaces, and commercial complexes. We ensure functional and aesthetically pleasing designs.";
-      }
-      
-      if (lowerText.includes('renovation') || lowerText.includes('remodel')) {
-        return "We offer comprehensive renovation services to transform your existing spaces. Our team handles everything from planning to execution.";
-      }
-      
-      if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('budget')) {
-        return "Pricing varies based on project requirements, location, and specifications. Our team will provide a detailed quote after reviewing your specific needs.";
-      }
-      
-      if (lowerText.includes('location') || lowerText.includes('area') || lowerText.includes('where')) {
-        return "We primarily serve across Assam including Jorhat, Golaghat, and surrounding areas. Our team can discuss site visits based on your location.";
-      }
-      
-      if (lowerText.includes('contact') || lowerText.includes('reach') || lowerText.includes('call')) {
-        return "You can reach us through our contact form on the website, or call our office directly. We're also available on WhatsApp for quick inquiries.";
-      }
-      
-      if (lowerText.includes('thank')) {
-        return "You're welcome! I'm here to help. Feel free to ask any other questions you might have.";
-      }
-      
-      if (lowerText.includes('hello') || lowerText.includes('hi') || lowerText.includes('hey')) {
-        return "Hello! I'm Rahul, your Sukrit Infrastructure AI assistant. How can I help you today?";
-      }
-
-      return "I'd be happy to help you with that. Our team will confirm the exact details after reviewing your requirements. Could you please share more specifics about what you're looking for?";
     }
+  };
+
+  const extractLeadInfo = (userText: string, response: string) => {
+    const text = (userText + ' ' + response).toLowerCase();
+    
+    // Extract phone number
+    const phoneMatch = text.match(/(\+?\d{10,15})/);
+    if (phoneMatch && !leadData.phone) {
+      setLeadData(prev => ({ ...prev, phone: phoneMatch[1] }));
+    }
+    
+    // Extract email
+    const emailMatch = text.match(/[\w.-]+@[\w.-]+\.\w+/);
+    if (emailMatch && !leadData.email) {
+      setLeadData(prev => ({ ...prev, email: emailMatch[0] }));
+    }
+    
+    // Extract city/location
+    const cities = ['jorhat', 'guwahati', 'dibrugarh', 'tezpur', 'golaghat', 'gormur', 'dohabara', 'kenduguri', 'macharhat', 'lichubari'];
+    cities.forEach(city => {
+      if (text.includes(city) && !leadData.city) {
+        setLeadData(prev => ({ ...prev, city: city.charAt(0).toUpperCase() + city.slice(1) }));
+      }
+    });
+  };
+
+  const getFallbackResponse = (userText: string): string => {
+    const lowerText = userText.toLowerCase();
+    
+    if (lowerText.includes('jorhat')) {
+      return "Yes, Sukrit Infrastructure serves Jorhat and various locations across Assam. We'd be happy to discuss your project requirements there.";
+    }
+    
+    if (lowerText.includes('commercial')) {
+      return "We build commercial properties including office spaces, retail shops, and G+4 commercial complexes across Assam. What type of commercial space are you looking for?";
+    }
+    
+    if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
+      return "We specialize in residential construction including G+1, G+2, and G+4 buildings, villas, and duplex homes across Assam. What type of residential project are you planning?";
+    }
+    
+    if (lowerText.includes('services')) {
+      return "We offer comprehensive construction services: residential and commercial building, renovation, interior design, architectural services, and complete project management across Assam.";
+    }
+    
+    if (lowerText.includes('connect') || lowerText.includes('contact') || lowerText.includes('reach')) {
+      return "I'd be happy to help you connect with our team. You can reach us at +91 9101002790 on WhatsApp, or through the contact form on our website. What's the best way to reach you?";
+    }
+    
+    if (lowerText.includes('open') || lowerText.includes('available')) {
+      return "Yes, we're open and ready to help! Our team is available to discuss your construction needs across Assam. How can I assist you today?";
+    }
+    
+    if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('budget')) {
+      return "Pricing varies based on project requirements, location, and specifications. Our team provides detailed quotes after assessing your specific needs. What type of project are you considering?";
+    }
+    
+    if (lowerText.includes('process') || lowerText.includes('start')) {
+      return "Our process starts with a free consultation and site visit, followed by design, planning, and construction with regular updates. We handle everything from start to finish. Would you like to schedule a consultation?";
+    }
+    
+    return "I'd be happy to help you with that. Sukrit Infrastructure specializes in premium construction across Assam. Could you tell me more about what you're looking for?";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -384,7 +333,7 @@ Provide a helpful, human-like response based on the company information above.
                   setIsOpen(false);
                   setMessages([]);
                   setLeadData({});
-                  setCurrentQuestion(0);
+                  setConversationHistory([]);
                   localStorage.removeItem('chatbotMessages');
                   localStorage.removeItem('chatbotLeadData');
                 }}
