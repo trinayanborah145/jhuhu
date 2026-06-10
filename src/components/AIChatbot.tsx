@@ -31,8 +31,10 @@ export function AIChatbot() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Initialize Gemini AI with better model for conversations
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+  console.log('API Key loaded:', apiKey ? 'Yes' : 'No');
+  const genAI = new GoogleGenerativeAI(apiKey);
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
   useEffect(() => {
     // Load conversation from localStorage
@@ -156,30 +158,35 @@ CURRENT USER MESSAGE: ${userText}
 
 Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
 
-    const chat = model.startChat({
-      history: conversationHistory,
-      generationConfig: {
-        maxOutputTokens: 300,
-        temperature: 0.8,
-        topP: 0.8,
-        topK: 40,
-      },
-    });
+    try {
+      const chat = model.startChat({
+        history: conversationHistory,
+        generationConfig: {
+          maxOutputTokens: 300,
+          temperature: 0.8,
+          topP: 0.8,
+          topK: 40,
+        },
+      });
 
-    const result = await chat.sendMessage(systemPrompt);
-    const response = result.response.text();
+      const result = await chat.sendMessage(systemPrompt);
+      const response = result.response.text();
 
-    // Update conversation history for context
-    setConversationHistory(prev => [
-      ...prev,
-      { role: 'user', parts: [{ text: userText }] },
-      { role: 'model', parts: [{ text: response }] }
-    ]);
+      // Update conversation history for context
+      setConversationHistory(prev => [
+        ...prev,
+        { role: 'user', parts: [{ text: userText }] },
+        { role: 'model', parts: [{ text: response }] }
+      ]);
 
-    // Extract and store lead information if mentioned naturally
-    extractLeadInfo(userText, response);
+      // Extract and store lead information if mentioned naturally
+      extractLeadInfo(userText, response);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.error('Gemini API Error:', error);
+      throw error;
+    }
   };
 
   const extractLeadInfo = (userText: string, response: string) => {
