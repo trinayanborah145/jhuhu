@@ -37,7 +37,7 @@ export function Footer() {
           <div>
             <div className="text-[var(--gold)] text-[10px] uppercase tracking-[0.3em] mb-6">Connect</div>
             <p className="text-[14px] leading-[1.8] text-white/60 max-w-[240px]">
-              A real estate house from Assam, building landmark homes since 2005.
+              A real estate house from Assam, building landmark homes since 2018.
             </p>
             <div className="flex gap-4 mt-6 text-white/70">
               <a href="https://www.instagram.com/sukrit.infrastructure/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[var(--gold)] transition-colors"><Instagram size={18} /></a>

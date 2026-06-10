@@ -156,58 +156,30 @@ CURRENT USER MESSAGE: ${userText}
 
 Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
 
-    try {
-      const chat = model.startChat({
-        history: conversationHistory,
-        generationConfig: {
-          maxOutputTokens: 300,
-          temperature: 0.8,
-          topP: 0.8,
-          topK: 40,
-        },
-      });
+    const chat = model.startChat({
+      history: conversationHistory,
+      generationConfig: {
+        maxOutputTokens: 300,
+        temperature: 0.8,
+        topP: 0.8,
+        topK: 40,
+      },
+    });
 
-      const result = await chat.sendMessage(systemPrompt);
-      const response = result.response.text();
+    const result = await chat.sendMessage(systemPrompt);
+    const response = result.response.text();
 
-      // Update conversation history for context
-      setConversationHistory(prev => [
-        ...prev,
-        { role: 'user', parts: [{ text: userText }] },
-        { role: 'model', parts: [{ text: response }] }
-      ]);
+    // Update conversation history for context
+    setConversationHistory(prev => [
+      ...prev,
+      { role: 'user', parts: [{ text: userText }] },
+      { role: 'model', parts: [{ text: response }] }
+    ]);
 
-      // Extract and store lead information if mentioned naturally
-      extractLeadInfo(userText, response);
+    // Extract and store lead information if mentioned naturally
+    extractLeadInfo(userText, response);
 
-      return response;
-    } catch (error) {
-      console.error('Gemini API error:', error);
-      
-      // Retry once
-      try {
-        const chat = model.startChat({
-          generationConfig: {
-            maxOutputTokens: 300,
-            temperature: 0.8,
-          },
-        });
-        const result = await chat.sendMessage(systemPrompt);
-        const response = result.response.text();
-        
-        setConversationHistory(prev => [
-          ...prev,
-          { role: 'user', parts: [{ text: userText }] },
-          { role: 'model', parts: [{ text: response }] }
-        ]);
-        
-        extractLeadInfo(userText, response);
-        return response;
-      } catch (retryError) {
-        console.error('Gemini API retry failed:', retryError);
-        return getFallbackResponse(userText);
-      }
-    }
+    return response;
   };
 
   const extractLeadInfo = (userText: string, response: string) => {
@@ -232,44 +204,6 @@ Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
         setLeadData(prev => ({ ...prev, city: city.charAt(0).toUpperCase() + city.slice(1) }));
       }
     });
-  };
-
-  const getFallbackResponse = (userText: string): string => {
-    const lowerText = userText.toLowerCase();
-    
-    if (lowerText.includes('jorhat')) {
-      return "Yes, Sukrit Infrastructure serves Jorhat and various locations across Assam. We'd be happy to discuss your project requirements there.";
-    }
-    
-    if (lowerText.includes('commercial')) {
-      return "We build commercial properties including office spaces, retail shops, and G+4 commercial complexes across Assam. What type of commercial space are you looking for?";
-    }
-    
-    if (lowerText.includes('residential') || lowerText.includes('home') || lowerText.includes('house')) {
-      return "We specialize in residential construction including G+1, G+2, and G+4 buildings, villas, and duplex homes across Assam. What type of residential project are you planning?";
-    }
-    
-    if (lowerText.includes('services')) {
-      return "We offer comprehensive construction services: residential and commercial building, renovation, interior design, architectural services, and complete project management across Assam.";
-    }
-    
-    if (lowerText.includes('connect') || lowerText.includes('contact') || lowerText.includes('reach')) {
-      return "I'd be happy to help you connect with our team. You can reach us at +91 9101002790 on WhatsApp, or through the contact form on our website. What's the best way to reach you?";
-    }
-    
-    if (lowerText.includes('open') || lowerText.includes('available')) {
-      return "Yes, we're open and ready to help! Our team is available to discuss your construction needs across Assam. How can I assist you today?";
-    }
-    
-    if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('budget')) {
-      return "Pricing varies based on project requirements, location, and specifications. Our team provides detailed quotes after assessing your specific needs. What type of project are you considering?";
-    }
-    
-    if (lowerText.includes('process') || lowerText.includes('start')) {
-      return "Our process starts with a free consultation and site visit, followed by design, planning, and construction with regular updates. We handle everything from start to finish. Would you like to schedule a consultation?";
-    }
-    
-    return "I'd be happy to help you with that. Sukrit Infrastructure specializes in premium construction across Assam. Could you tell me more about what you're looking for?";
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {

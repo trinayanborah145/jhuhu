@@ -11,6 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsG4JorhatRouteImport } from './routes/projects.g4-jorhat'
+import { Route as ProjectsG2MacharhatRouteImport } from './routes/projects.g2-macharhat'
+import { Route as ProjectsG2KenduguriRouteImport } from './routes/projects.g2-kenduguri'
+import { Route as ProjectsG2GormurRouteImport } from './routes/projects.g2-gormur'
+import { Route as ProjectsG2DohabaraRouteImport } from './routes/projects.g2-dohabara'
+import { Route as ProjectsG1GormurRouteImport } from './routes/projects.g1-gormur'
+import { Route as ProjectsG1Golaghat2RouteImport } from './routes/projects.g1-golaghat-2'
+import { Route as ProjectsG1GolaghatRouteImport } from './routes/projects.g1-golaghat'
+import { Route as ProjectsAssamTypeLichubariRouteImport } from './routes/projects.assam-type-lichubari'
 
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
@@ -22,31 +31,138 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsG4JorhatRoute = ProjectsG4JorhatRouteImport.update({
+  id: '/g4-jorhat',
+  path: '/g4-jorhat',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG2MacharhatRoute = ProjectsG2MacharhatRouteImport.update({
+  id: '/g2-macharhat',
+  path: '/g2-macharhat',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG2KenduguriRoute = ProjectsG2KenduguriRouteImport.update({
+  id: '/g2-kenduguri',
+  path: '/g2-kenduguri',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG2GormurRoute = ProjectsG2GormurRouteImport.update({
+  id: '/g2-gormur',
+  path: '/g2-gormur',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG2DohabaraRoute = ProjectsG2DohabaraRouteImport.update({
+  id: '/g2-dohabara',
+  path: '/g2-dohabara',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG1GormurRoute = ProjectsG1GormurRouteImport.update({
+  id: '/g1-gormur',
+  path: '/g1-gormur',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG1Golaghat2Route = ProjectsG1Golaghat2RouteImport.update({
+  id: '/g1-golaghat-2',
+  path: '/g1-golaghat-2',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsG1GolaghatRoute = ProjectsG1GolaghatRouteImport.update({
+  id: '/g1-golaghat',
+  path: '/g1-golaghat',
+  getParentRoute: () => ProjectsRoute,
+} as any)
+const ProjectsAssamTypeLichubariRoute =
+  ProjectsAssamTypeLichubariRouteImport.update({
+    id: '/assam-type-lichubari',
+    path: '/assam-type-lichubari',
+    getParentRoute: () => ProjectsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
+  '/projects/assam-type-lichubari': typeof ProjectsAssamTypeLichubariRoute
+  '/projects/g1-golaghat': typeof ProjectsG1GolaghatRoute
+  '/projects/g1-golaghat-2': typeof ProjectsG1Golaghat2Route
+  '/projects/g1-gormur': typeof ProjectsG1GormurRoute
+  '/projects/g2-dohabara': typeof ProjectsG2DohabaraRoute
+  '/projects/g2-gormur': typeof ProjectsG2GormurRoute
+  '/projects/g2-kenduguri': typeof ProjectsG2KenduguriRoute
+  '/projects/g2-macharhat': typeof ProjectsG2MacharhatRoute
+  '/projects/g4-jorhat': typeof ProjectsG4JorhatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
+  '/projects/assam-type-lichubari': typeof ProjectsAssamTypeLichubariRoute
+  '/projects/g1-golaghat': typeof ProjectsG1GolaghatRoute
+  '/projects/g1-golaghat-2': typeof ProjectsG1Golaghat2Route
+  '/projects/g1-gormur': typeof ProjectsG1GormurRoute
+  '/projects/g2-dohabara': typeof ProjectsG2DohabaraRoute
+  '/projects/g2-gormur': typeof ProjectsG2GormurRoute
+  '/projects/g2-kenduguri': typeof ProjectsG2KenduguriRoute
+  '/projects/g2-macharhat': typeof ProjectsG2MacharhatRoute
+  '/projects/g4-jorhat': typeof ProjectsG4JorhatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/projects': typeof ProjectsRoute
+  '/projects': typeof ProjectsRouteWithChildren
+  '/projects/assam-type-lichubari': typeof ProjectsAssamTypeLichubariRoute
+  '/projects/g1-golaghat': typeof ProjectsG1GolaghatRoute
+  '/projects/g1-golaghat-2': typeof ProjectsG1Golaghat2Route
+  '/projects/g1-gormur': typeof ProjectsG1GormurRoute
+  '/projects/g2-dohabara': typeof ProjectsG2DohabaraRoute
+  '/projects/g2-gormur': typeof ProjectsG2GormurRoute
+  '/projects/g2-kenduguri': typeof ProjectsG2KenduguriRoute
+  '/projects/g2-macharhat': typeof ProjectsG2MacharhatRoute
+  '/projects/g4-jorhat': typeof ProjectsG4JorhatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects'
+  fullPaths:
+    | '/'
+    | '/projects'
+    | '/projects/assam-type-lichubari'
+    | '/projects/g1-golaghat'
+    | '/projects/g1-golaghat-2'
+    | '/projects/g1-gormur'
+    | '/projects/g2-dohabara'
+    | '/projects/g2-gormur'
+    | '/projects/g2-kenduguri'
+    | '/projects/g2-macharhat'
+    | '/projects/g4-jorhat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects'
-  id: '__root__' | '/' | '/projects'
+  to:
+    | '/'
+    | '/projects'
+    | '/projects/assam-type-lichubari'
+    | '/projects/g1-golaghat'
+    | '/projects/g1-golaghat-2'
+    | '/projects/g1-gormur'
+    | '/projects/g2-dohabara'
+    | '/projects/g2-gormur'
+    | '/projects/g2-kenduguri'
+    | '/projects/g2-macharhat'
+    | '/projects/g4-jorhat'
+  id:
+    | '__root__'
+    | '/'
+    | '/projects'
+    | '/projects/assam-type-lichubari'
+    | '/projects/g1-golaghat'
+    | '/projects/g1-golaghat-2'
+    | '/projects/g1-gormur'
+    | '/projects/g2-dohabara'
+    | '/projects/g2-gormur'
+    | '/projects/g2-kenduguri'
+    | '/projects/g2-macharhat'
+    | '/projects/g4-jorhat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProjectsRoute: typeof ProjectsRoute
+  ProjectsRoute: typeof ProjectsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +181,103 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/g4-jorhat': {
+      id: '/projects/g4-jorhat'
+      path: '/g4-jorhat'
+      fullPath: '/projects/g4-jorhat'
+      preLoaderRoute: typeof ProjectsG4JorhatRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g2-macharhat': {
+      id: '/projects/g2-macharhat'
+      path: '/g2-macharhat'
+      fullPath: '/projects/g2-macharhat'
+      preLoaderRoute: typeof ProjectsG2MacharhatRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g2-kenduguri': {
+      id: '/projects/g2-kenduguri'
+      path: '/g2-kenduguri'
+      fullPath: '/projects/g2-kenduguri'
+      preLoaderRoute: typeof ProjectsG2KenduguriRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g2-gormur': {
+      id: '/projects/g2-gormur'
+      path: '/g2-gormur'
+      fullPath: '/projects/g2-gormur'
+      preLoaderRoute: typeof ProjectsG2GormurRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g2-dohabara': {
+      id: '/projects/g2-dohabara'
+      path: '/g2-dohabara'
+      fullPath: '/projects/g2-dohabara'
+      preLoaderRoute: typeof ProjectsG2DohabaraRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g1-gormur': {
+      id: '/projects/g1-gormur'
+      path: '/g1-gormur'
+      fullPath: '/projects/g1-gormur'
+      preLoaderRoute: typeof ProjectsG1GormurRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g1-golaghat-2': {
+      id: '/projects/g1-golaghat-2'
+      path: '/g1-golaghat-2'
+      fullPath: '/projects/g1-golaghat-2'
+      preLoaderRoute: typeof ProjectsG1Golaghat2RouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/g1-golaghat': {
+      id: '/projects/g1-golaghat'
+      path: '/g1-golaghat'
+      fullPath: '/projects/g1-golaghat'
+      preLoaderRoute: typeof ProjectsG1GolaghatRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
+    '/projects/assam-type-lichubari': {
+      id: '/projects/assam-type-lichubari'
+      path: '/assam-type-lichubari'
+      fullPath: '/projects/assam-type-lichubari'
+      preLoaderRoute: typeof ProjectsAssamTypeLichubariRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
   }
 }
 
+interface ProjectsRouteChildren {
+  ProjectsAssamTypeLichubariRoute: typeof ProjectsAssamTypeLichubariRoute
+  ProjectsG1GolaghatRoute: typeof ProjectsG1GolaghatRoute
+  ProjectsG1Golaghat2Route: typeof ProjectsG1Golaghat2Route
+  ProjectsG1GormurRoute: typeof ProjectsG1GormurRoute
+  ProjectsG2DohabaraRoute: typeof ProjectsG2DohabaraRoute
+  ProjectsG2GormurRoute: typeof ProjectsG2GormurRoute
+  ProjectsG2KenduguriRoute: typeof ProjectsG2KenduguriRoute
+  ProjectsG2MacharhatRoute: typeof ProjectsG2MacharhatRoute
+  ProjectsG4JorhatRoute: typeof ProjectsG4JorhatRoute
+}
+
+const ProjectsRouteChildren: ProjectsRouteChildren = {
+  ProjectsAssamTypeLichubariRoute: ProjectsAssamTypeLichubariRoute,
+  ProjectsG1GolaghatRoute: ProjectsG1GolaghatRoute,
+  ProjectsG1Golaghat2Route: ProjectsG1Golaghat2Route,
+  ProjectsG1GormurRoute: ProjectsG1GormurRoute,
+  ProjectsG2DohabaraRoute: ProjectsG2DohabaraRoute,
+  ProjectsG2GormurRoute: ProjectsG2GormurRoute,
+  ProjectsG2KenduguriRoute: ProjectsG2KenduguriRoute,
+  ProjectsG2MacharhatRoute: ProjectsG2MacharhatRoute,
+  ProjectsG4JorhatRoute: ProjectsG4JorhatRoute,
+}
+
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
+  ProjectsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProjectsRoute: ProjectsRoute,
+  ProjectsRoute: ProjectsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
