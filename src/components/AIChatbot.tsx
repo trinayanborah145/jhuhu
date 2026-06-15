@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Minimize2, User, Bot } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import { KNOWLEDGE_BASE } from '@/lib/knowledge-base';
 
 interface Message {
@@ -34,7 +34,7 @@ export function AIChatbot() {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || '';
   console.log('API Key loaded:', apiKey ? 'Yes' : 'No');
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
   useEffect(() => {
     // Load conversation from localStorage
@@ -100,11 +100,6 @@ export function AIChatbot() {
   };
 
   const generateResponse = async (userText: string): Promise<string> => {
-    // Build conversation context from message history
-    const recentConversation = messages.slice(-6).map(msg => 
-      `${msg.sender === 'user' ? 'User' : 'Rahul'}: ${msg.text}`
-    ).join('\n');
-
     // Build lead data context
     const leadContext = Object.entries(leadData)
       .filter(([_, value]) => value)
@@ -130,10 +125,6 @@ YOUR PURPOSE:
 COMPANY KNOWLEDGE:
 ${KNOWLEDGE_BASE}
 
-CONVERSATION CONTEXT:
-Recent messages:
-${recentConversation}
-
 Lead information collected so far:
 ${leadContext || 'None yet'}
 
@@ -152,24 +143,44 @@ LEAD COLLECTION STRATEGY:
 - After answering their question, naturally guide toward collecting: name, phone, city, project type, budget, timeline
 - Do NOT ask for contact details immediately unless the user explicitly wants to connect
 - Make it feel like a natural conversation, not an interrogation
-- If they mention wanting to connect or discuss their project, that's the right time to ask for contact details
+- If they mention wanting to connect or discuss their project, that's the right time to ask for contact details`;
 
-CURRENT USER MESSAGE: ${userText}
-
-Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
+    // Use a more stable and powerful model, assigning the system prompt properly
+    const dynamicModel = genAI.getGenerativeModel({ 
+      model: 'gemini-3.5-flash',
+      systemInstruction: systemPrompt,
+      safetySettings: [
+        {
+          category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+        {
+          category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+          threshold: HarmBlockThreshold.BLOCK_NONE,
+        },
+      ]
+    });
 
     try {
-      const chat = model.startChat({
+      const chat = dynamicModel.startChat({
         history: conversationHistory,
         generationConfig: {
-          maxOutputTokens: 300,
+          maxOutputTokens: 600,
           temperature: 0.8,
           topP: 0.8,
           topK: 40,
         },
       });
 
-      const result = await chat.sendMessage(systemPrompt);
+      const result = await chat.sendMessage(userText);
       const response = result.response.text();
 
       // Update conversation history for context
@@ -234,7 +245,7 @@ Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-[#B8963E] text-white p-4 rounded-full shadow-2xl hover:bg-[#9a7d2f] transition-all duration-300 hover:scale-110 group"
+          className="fixed bottom-6 right-6 z-[99999] bg-[#B8963E] text-white p-4 rounded-full shadow-2xl hover:bg-[#9a7d2f] transition-all duration-300 hover:scale-110 group cursor-pointer"
           style={{
             boxShadow: '0 8px 32px rgba(184, 150, 62, 0.3)',
           }}
@@ -246,7 +257,7 @@ Provide a helpful, context-aware response as Rahul from Sukrit Infrastructure.`;
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[380px] h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-10 duration-300">
+        <div className="fixed bottom-6 right-6 z-[99999] w-[380px] h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-10 duration-300">
           {/* Header */}
           <div className="bg-[#1a1a1a] text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
