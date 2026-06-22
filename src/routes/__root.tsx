@@ -7,9 +7,18 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { PageLoader } from "../components/PageLoader";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'zapier-interfaces-chatbot-embed': any;
+    }
+  }
+}
 
 function NotFoundComponent() {
   return (
@@ -108,10 +117,22 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    const existingScript = document.querySelector('script[src*="zapier-interfaces.esm.js"]');
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.type = 'module';
+      script.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
+      document.head.appendChild(script);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <PageLoader />
       <Outlet />
+      <zapier-interfaces-chatbot-embed is-popup="true" chatbot-id="cmqnv8ve1000fuszzxn7x95fx" />
     </QueryClientProvider>
   );
 }

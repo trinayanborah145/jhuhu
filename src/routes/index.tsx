@@ -22,7 +22,6 @@ import { ESG } from "@/components/sections/ESG";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
-import { AIChatbot } from "@/components/AIChatbot";
 import { useRevealAll } from "@/hooks/use-reveal";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
@@ -87,7 +86,6 @@ function Index() {
       </main>
       <Footer />
       <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire flex"><span className="side-line">Vertias Media</span><span className="side-line">Marketed by</span></a>
-      <AIChatbot />
     </>
   );
 }

@@ -11,44 +11,9 @@
     <div id="root" class="overflow-x-hidden"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Sukrit AI Chatbot Widget -->
-    <script>
-      (function() {
-        var CHATBOT_URL = 'https://sukrit-chatbot.vercel.app/embed';
-        var CLOSED_W = '80px', CLOSED_H = '80px';
-        var OPEN_W   = '360px', OPEN_H  = '560px';
-
-        var iframe = document.createElement('iframe');
-        iframe.src = CHATBOT_URL;
-        iframe.id  = 'sukrit-chat-iframe';
-        iframe.style.cssText = [
-          'position:fixed',
-          'bottom:0',
-          'right:0',
-          'width:' + CLOSED_W,
-          'height:' + CLOSED_H,
-          'border:none',
-          'background:transparent',
-          'z-index:9999',
-          'transition:width 0.3s ease,height 0.3s ease',
-          'overflow:hidden'
-        ].join(';');
-        iframe.setAttribute('allow', 'microphone');
-        iframe.setAttribute('title', 'Sukrit Chatbot');
-        document.body.appendChild(iframe);
-
-        window.addEventListener('message', function(e) {
-          if (!e.data || !e.data.type) return;
-          if (e.data.type === 'chat-open') {
-            iframe.style.width  = OPEN_W;
-            iframe.style.height = OPEN_H;
-          } else if (e.data.type === 'chat-closed') {
-            iframe.style.width  = CLOSED_W;
-            iframe.style.height = CLOSED_H;
-          }
-        });
-      })();
-    </script>
+    <!-- Zapier Chatbot Widget -->
+    <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
+    <zapier-interfaces-chatbot-embed is-popup="true" chatbot-id="cmqnv8ve1000fuszzxn7x95fx"></zapier-interfaces-chatbot-embed>
   </body>
 </html>
 

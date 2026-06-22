@@ -10,6 +10,18 @@ export default defineConfig({
       crawlLinks: true,
     },
   },
+  vite: {
+    server: {
+      proxy: {
+        '/api/nvidia': {
+          target: 'https://integrate.api.nvidia.com',
+          changeOrigin: true,
+          rewrite: (path: string) => path.replace(/^\/api\/nvidia/, ''),
+          secure: true,
+        },
+      },
+    },
+  },
   plugins: [
     viteStaticCopy({
       targets: [
