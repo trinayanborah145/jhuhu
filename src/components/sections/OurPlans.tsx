@@ -113,7 +113,7 @@ export function OurPlans() {
     {
       num: "01",
       name: "Basic Plan",
-      price: "₹1,899 / sq.ft",
+      price: "₹1,999 / sq.ft",
       subheading: "Efficient Foundations & Solid Construction",
       desc: "Perfect for budget-conscious homeowners who refuse to compromise on core structural integrity. Sourced with trusted local brands.",
       badge: "Download Our Catalogue",
@@ -132,7 +132,7 @@ export function OurPlans() {
     {
       num: "02",
       name: "Standard Plan",
-      price: "₹2,099 / sq.ft",
+      price: "₹2,199 / sq.ft",
       subheading: "Refined Finishes & Extended Durability",
       desc: "Our most popular package. Integrates premium plumbing materials, specialized CP fittings, and enhanced styling for high-traffic areas.",
       badge: "Download Our Catalogue",
@@ -151,7 +151,7 @@ export function OurPlans() {
     {
       num: "03",
       name: "Luxury Plan",
-      price: "₹2,299 / sq.ft",
+      price: "₹2,399 / sq.ft",
       subheading: "Architectural Elegance & Luxury Fittings",
       desc: "Designed for premium residential landmarks. Impeccable finishes, false ceilings from USG Knauf, and elite copper electrification systems.",
       badge: "Download Our Catalogue",
