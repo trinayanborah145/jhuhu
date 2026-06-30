@@ -85,7 +85,6 @@ function Index() {
         <Contact />
       </main>
       <Footer />
-      <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="side-enquire flex"><span className="side-line">Vertias Media</span><span className="side-line">Marketed by</span></a>
     </>
   );
 }

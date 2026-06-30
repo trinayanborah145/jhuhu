@@ -102,11 +102,7 @@ VALUE PROPOSITION:
 CONTACT INFORMATION:
 - WhatsApp: +91 9101002790
 - Website: sukritinfras.com
-- Social Media: Instagram - @vertiasmedia (Marketing partner)
-
-MARKETING:
-- Marketed by Vertias Media
-- Premium positioning in real estate market
+- Social Media: Instagram - @sukrit.infrastructure
 
 LEAD CAPTURE PROCESS:
 - Collect visitor information through natural conversation

@@ -22,10 +22,8 @@ export function Footer() {
               </svg>
               Download Our Catalogue
             </a>
-            <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/40 mt-2 flex flex-col lg:flex-row items-start lg:items-center gap-1 lg:gap-2">
-              <div>CIN U41001AS2026PTC029861 <span className="mx-2 opacity-50">|</span> UNIT OF AB GROUP</div>
-              <span className="hidden lg:inline opacity-50">-</span>
-              <a href="https://www.instagram.com/vertiasmedia/" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--gold)] text-white/70 transition-colors font-medium">Marketed by Vertias Media</a>
+            <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-white/40 mt-2">
+              CIN U41001AS2026PTC029861 <span className="mx-2 opacity-50">|</span> UNIT OF AB GROUP
             </div>
           </div>
           <div className="text-white/50 text-[12px] uppercase tracking-[0.3em]">
