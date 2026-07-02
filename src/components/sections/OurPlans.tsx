@@ -47,7 +47,7 @@ export function OurPlans() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-    window.open("https://drive.google.com/file/d/1jkdri5gqxzkOIUjGPtSut3snOdrIPLeP/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1fwnuj0Qw8CppqZ7GrGpMGLSVcVTGPKLS/view?usp=sharing", "_blank");
   };
 
   useEffect(() => {
