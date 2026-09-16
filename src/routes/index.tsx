@@ -25,6 +25,14 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { useRevealAll } from "@/hooks/use-reveal";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'zapier-interfaces-chatbot-embed': any;
+    }
+  }
+}
+
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
