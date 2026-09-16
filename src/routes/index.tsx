@@ -54,6 +54,14 @@ function Index() {
   useSmoothScroll();
   useEffect(() => {
     document.body.style.cursor = "none";
+    
+    // Load Zapier chatbot script
+    const script = document.createElement('script');
+    script.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
+    script.type = 'module';
+    script.async = true;
+    document.body.appendChild(script);
+    
     return () => {
       document.body.style.cursor = "";
     };
@@ -85,6 +93,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmu3hiixw001cl2y6d6bnyb8u'></zapier-interfaces-chatbot-embed>
     </>
   );
 }
