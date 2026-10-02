@@ -25,14 +25,6 @@ import { CustomCursor } from "@/components/CustomCursor";
 import { useRevealAll } from "@/hooks/use-reveal";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'zapier-interfaces-chatbot-embed': any;
-    }
-  }
-}
-
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
@@ -69,13 +61,6 @@ function Index() {
   useEffect(() => {
     document.body.style.cursor = "none";
     
-    // Load Zapier chatbot script
-    const zapierScript = document.createElement('script');
-    zapierScript.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
-    zapierScript.type = 'module';
-    zapierScript.async = true;
-    document.body.appendChild(zapierScript);
-    
     return () => {
       document.body.style.cursor = "";
     };
@@ -107,7 +92,6 @@ function Index() {
         <Contact />
       </main>
       <Footer />
-      <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmu3hiixw001cl2y6d6bnyb8u'></zapier-interfaces-chatbot-embed>
       <div className="commonninja_component pid-fb8c3958-69fd-4fa4-83ae-ec6d08550797"></div>
     </>
   );
