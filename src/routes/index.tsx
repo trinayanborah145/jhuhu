@@ -46,12 +46,6 @@ export const Route = createFileRoute("/")({
         content: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=80",
       },
     ],
-    scripts: [
-      {
-        src: "https://cdn.commoninja.com/sdk/latest/commonninja.js",
-        defer: true,
-      },
-    ],
   }),
 });
 
@@ -60,6 +54,12 @@ function Index() {
   useSmoothScroll();
   useEffect(() => {
     document.body.style.cursor = "none";
+    
+    // Load CommonNinja script
+    const script = document.createElement('script');
+    script.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
+    script.defer = true;
+    document.body.appendChild(script);
     
     return () => {
       document.body.style.cursor = "";
