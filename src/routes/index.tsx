@@ -64,11 +64,17 @@ function Index() {
     document.body.style.cursor = "none";
     
     // Load Zapier chatbot script
-    const script = document.createElement('script');
-    script.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
-    script.type = 'module';
-    script.async = true;
-    document.body.appendChild(script);
+    const zapierScript = document.createElement('script');
+    zapierScript.src = 'https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js';
+    zapierScript.type = 'module';
+    zapierScript.async = true;
+    document.body.appendChild(zapierScript);
+    
+    // Load CommonNinja script
+    const commonNinjaScript = document.createElement('script');
+    commonNinjaScript.src = 'https://cdn.commoninja.com/sdk/latest/commonninja.js';
+    commonNinjaScript.defer = true;
+    document.body.appendChild(commonNinjaScript);
     
     return () => {
       document.body.style.cursor = "";
@@ -102,6 +108,7 @@ function Index() {
       </main>
       <Footer />
       <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmu3hiixw001cl2y6d6bnyb8u'></zapier-interfaces-chatbot-embed>
+      <div className="commonninja_component pid-fb8c3958-69fd-4fa4-83ae-ec6d08550797"></div>
     </>
   );
 }
